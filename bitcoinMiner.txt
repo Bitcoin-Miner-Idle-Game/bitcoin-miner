@@ -1,0 +1,71 @@
+Let's make a game!
+	name:Bitcoin Miner
+	by:BitcoinMiner Team
+	desc:This is an idle game made to show the basics of bitcoin mining and blockchain.<//>Become rich by unleashing the power of technology!
+	created:07/12/2020
+	updated:07/12/2020
+	version:0.1
+
+Settings
+	background:https://i.imgur.com/haH2ubb.jpg
+	building cost increase:115%
+	building cost refund:50%
+	stylesheet:stuff/bigBlue.css
+
+Layout
+	use default
+	
+Buttons
+	*bitcoinButton
+		name:Computer
+		desc:Click here to mine bitcoins!
+		on click:anim icon wobble
+		on click:yield 1 bitcoin
+		icon:https://i.imgur.com/Fv200ZH.png
+		no text
+		class:bigButton hasFlares
+		icon class:shadowed
+		tooltip origin:bottom
+		tooltip class:red
+		
+Resources
+	*bitcoin|bitcoins
+		name:Bitcoin|Bitcoins
+		desc: This is how many Bitcoins are in your possesion. Become rich and dominate the cryptomarket!
+		icon:https://i.imgur.com/lmoXat0.png
+		class:noBackground
+		show earned
+
+Buildings
+	*TEMPLATE
+		on click:anim glow
+		
+	*gpu|gpus
+		name:Graphics card|Graphics cards
+		desc:A graphics card will allow you to use its computing power to solve problems faster, and thus, mine faster.<//><b>Effect:</b><.>Produces 1 bitcoin every 10 seconds.
+		icon:https://i.imgur.com/fzLKXDZ.png
+		cost:10 bitcoins
+		on tick:yield 0.1 bitcoin
+		unlocked
+	
+Upgrades
+	*TEMPLATE
+		on click:anim glow
+	
+	*gpuOverclock1
+		name:GPU Overclock 10%
+		desc:Push your graphics card further to the limit.<//><b>Effect:</b><.>Increase the production of your graphics cards by 10%.
+		icon:https://i.imgur.com/Ng884yH.png
+		cost:100 bitcoin
+		passive:multiply yield of gpus by 1.1
+		req:(gpus >=1)
+		
+Achievements
+	*TEMPLATE
+		on click:anim glow
+		
+	*bitcoinCount1
+		name:Gotta start from somewhere
+		desc:Have <b>1</b> bitcoin.
+		req:1 bitcoin
+		//icon:	

@@ -36,6 +36,7 @@ Resources
 		icon:https://i.imgur.com/lmoXat0.png
 		class:noBackground
 		show earned
+    req:(bitcoins<1)
 
 	*bitcoin|bitcoins
 		name:Bitcoin|Bitcoins
@@ -44,6 +45,7 @@ Resources
 		class:noBackground
 		is always:microbitcoins*0.000001
 		show earned
+    req:(bitcoins>=1)
 
 	*dollar|dollars
 		name:US Dollar|US Dollars

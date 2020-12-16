@@ -10,6 +10,7 @@ Settings
 	background:https://i.imgur.com/haH2ubb.jpg
 	building cost increase:115%
 	building cost refund:50%
+    spritesheet:icons, 48 by 48, https://raw.githubusercontent.com/Bitcoin-Miner-Idle-Game/bitcoin-miner/feature_spritesheet/img/icons_spritesheet.png
 	stylesheet:stuff/bigBlue.css
 
 Layout

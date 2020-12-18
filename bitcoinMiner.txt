@@ -245,7 +245,7 @@ Achievements
 	*satoshiAchiev
 		name:Satoshi Nakamoto wants to meet you. 
 		desc: You have <b>1M</b> Bitcoins. You are the person in the world that owns more Bitcoins.
-		req:1000000 Bitcoins
+		req:1000000 (bitcoins:earned)
 		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
 	*allBitcoins
 		name: Congratulations! You have mined all the bitcoins that exist

@@ -176,71 +176,71 @@ Achievements
 		req:10000 (bitcoins:earned)
 		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
 
-	*cpuAchiev
-		name:Bought your first CPU
-		desc:Have <b>1</b> CPU.
-		req:1 cpu
-		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
-	*gpuClassCAchiev
-		name:Bought your first GPU class C
-		desc:Have <b>1</b> GPU class C.
-		req:1 gpuC
-		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
-	*gpuClassBAchiev
-		name:Bought your first GPU class B
-		desc:Have <b>1</b> GPU class B.
-		req:1 gpuB
-		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
-	*gpuClassAAchiev
-		name:Bought your first GPU class A
-		desc:Have <b>1</b> GPU class A.
-		req:1 gpuA
-		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
-	*gpuClassSAchiev
-		name:Bought your first GPU class S
-		desc:Have <b>1</b> GPU class S.
-		req:1 gpuS
-		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
-	*fpgaAchiev
-		name:Bought your first FPGA
-		desc:Have <b>1</b> FPGA.
-		req:1 fpga
-		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
-	*asicClassCAchiev
-		name:Bought your first ASIC class C
-		desc:Have <b>1</b> ASIC class C.
-		req:1 asicC
-		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
-	*asicClassBAchiev
-		name:Bought your first ASIC class B
-		desc:Have <b>1</b> ASIC class B.
-		req:1 asicB
-		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
-	*asicClassAchiev
-		name:Bought your first ASIC class A
-		desc:Have <b>1</b> ASIC class A.
-		req:1 asicA
-		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
-	*asicClassSAchiev
-		name:Bought your first ASIC class S
-		desc:Have <b>1</b> ASIC class S.
-		req:1 asicS
-		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
-	*cloudAchiev
-		name:You are now working on the cloud
-		desc:Have <b>1</b> Cloud.
-		req:1 cloud
-		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
-	*miningPoolAchiev
-		name:There's two people on your Mining Pool
-		desc:You have join a mining pool.
-		req:1 miningPool
-		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
-	*dataCenterAchiev
-		name:You have created your first Calc Centre. 
-		desc:Have <b>1</b> Calc Centre.
-		req:1 calcCentre
-		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+//	*cpuAchiev
+//		name:Bought your first CPU
+//		desc:Have <b>1</b> CPU.
+//		req:1 cpu
+//		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+//	*gpuClassCAchiev
+//		name:Bought your first GPU class C
+//		desc:Have <b>1</b> GPU class C.
+//		req:1 gpuC
+//		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+//	*gpuClassBAchiev
+//		name:Bought your first GPU class B
+//		desc:Have <b>1</b> GPU class B.
+//		req:1 gpuB
+//		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+//	*gpuClassAAchiev
+//		name:Bought your first GPU class A
+//		desc:Have <b>1</b> GPU class A.
+//		req:1 gpuA
+//		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+//	*gpuClassSAchiev
+//		name:Bought your first GPU class S
+//		desc:Have <b>1</b> GPU class S.
+//		req:1 gpuS
+//		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+//	*fpgaAchiev
+//		name:Bought your first FPGA
+//		desc:Have <b>1</b> FPGA.
+//		req:1 fpga
+//		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+//	*asicClassCAchiev
+//		name:Bought your first ASIC class C
+//		desc:Have <b>1</b> ASIC class C.
+//		req:1 asicC
+//		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+//	*asicClassBAchiev
+//		name:Bought your first ASIC class B
+//		desc:Have <b>1</b> ASIC class B.
+//		req:1 asicB
+//		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+//	*asicClassAchiev
+//		name:Bought your first ASIC class A
+//		desc:Have <b>1</b> ASIC class A.
+//		req:1 asicA
+//		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+//	*asicClassSAchiev
+//		name:Bought your first ASIC class S
+//		desc:Have <b>1</b> ASIC class S.
+//		req:1 asicS
+//		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+//	*cloudAchiev
+//		name:You are now working on the cloud
+//		desc:Have <b>1</b> Cloud.
+//		req:1 cloud
+//		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+//	*miningPoolAchiev
+//		name:There's two people on your Mining Pool
+//		desc:You have join a mining pool.
+//		req:1 miningPool
+//		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+//	*dataCenterAchiev
+//		name:You have created your first Calc Centre. 
+//		desc:Have <b>1</b> Calc Centre.
+//		req:1 calcCentre
+//		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
 
 	*satoshiAchiev
 		name:Satoshi Nakamoto wants to meet you. 

@@ -15,13 +15,16 @@ Settings
 
 Layout
 	use default
+	*achievs
+		in:main
+		contains:Achievements
 	
 Buttons
 	*bitcoinButton
 		name:Computer
 		desc:Click here to mine bitcoins!
 		on click:anim icon wobble
-		on click:yield 1 bitcoin
+		on click:yield 1 microbitcoin
 		icon:https://i.imgur.com/Fv200ZH.png
 		no text
 		class:bigButton hasFlares
@@ -30,25 +33,67 @@ Buttons
 		tooltip class:red
 		
 Resources
+	*microbitcoin|microbitcoins
+		name:Microbitcoin|Microbitcoins
+		desc: This is how many Microbitcoins are in your possesion. A Microbitcoin is worth 0.000001 Bitcoin. Become rich and dominate the cryptomarket!
+		icon:https://i.imgur.com/lmoXat0.png
+		class:noBackground
+		show earned
+    req:(bitcoins<1)
+
 	*bitcoin|bitcoins
 		name:Bitcoin|Bitcoins
 		desc: This is how many Bitcoins are in your possesion. Become rich and dominate the cryptomarket!
 		icon:https://i.imgur.com/lmoXat0.png
 		class:noBackground
+		is always:microbitcoins*0.000001
+		show earned
+    req:(bitcoins>=1)
+
+	*dollar|dollars
+		name:US Dollar|US Dollars
+		desc: Exchanging your Bitcoins to US dollars, this is how many dollars you will obtain if you sell your Bitcoins now.
+		icon:https://i.imgur.com/vfF2jpP.jpeg
+		class:noBackground
+		is always:microbitcoins*20717.10*0.000001
 		show earned
 
 Buildings
 	*TEMPLATE
 		on click:anim glow
-		
+
+	//https://2cryptocalc.com/most-profitable-gpu https://www.nicehash.com/profitability-calculator
+	//The real cost of GPU is between $400-$1800
+	//It produces 0.00024400BTC/day ==> $4.74
+
 	*gpu|gpus
 		name:Graphics card|Graphics cards
-		desc:A graphics card will allow you to use its computing power to solve problems faster, and thus, mine faster.<//><b>Effect:</b><.>Produces 1 bitcoin every 10 seconds.
+		desc:A graphics card will allow you to use its computing power to solve problems faster, and thus, mine faster.<//><b>Effect:</b><.>Produces 100 Microbitcoin every 10 seconds.
 		icon:https://i.imgur.com/fzLKXDZ.png
-		cost:10 bitcoins
-		on tick:yield 0.1 bitcoin
+		cost:100 microbitcoin
+		on tick:yield 10 microbitcoins
 		unlocked
-	
+
+	//https://www.asicminervalue.com/miners/innosilicon/a10-pro-ethminer-720mh
+	//The real cost of an ASIC machine is $5000
+	//It produces 0.0015BTC/day ==> $30.82
+
+	*bitcoinASIC|bitcoinASICs
+		name:Bitcoin ASIC|Bitcoin ASICs
+		desc:The ASIC Bitcoin Miner is a computarized device that was designed for the sole purpose of mining Bitcoin. It is able to mine Bitcoin in a more efficient way than a standard computer.<//><b>Effect:</b><.>Produces 1000 Microbitcoin every 10 seconds.
+		icon:https://cdn.pixabay.com/photo/2017/10/14/22/20/farm-2852024_960_720.jpg
+		cost:1000 microbitcoin
+		on tick:yield 100 microbitcoins
+		req:1000 microbitcoins:earned
+
+	*miningPool|miningPools
+		name:Mining Pool
+		desc:A mining pool is a joint group of cryptocurrency miners who combine their computational resources so that they can mine faster.<//><b>Effect:</b><.>Produces 10000 Microbitcoin every 10 seconds. 
+		icon:https://cdn.pixabay.com/photo/2014/04/02/16/27/crowd-307354__340.png
+		cost:1 bitcoin
+		on tick:yield 1000 microbitcoins
+		req:5 bitcoins:earned
+
 Upgrades
 	*TEMPLATE
 		on click:anim glow
@@ -76,13 +121,13 @@ Upgrades
 		cost:40000 dollars
 		passive:multiply yield of miningPool by 1.05
 		req:(miningPool >=1)
-		
+
 Achievements
 	*TEMPLATE
 		on click:anim glow
 		
 	*bitcoinCount1
 		name:Gotta start from somewhere
-		desc:Have <b>1</b> bitcoin.
-		req:1 bitcoin
+		desc:Have <b>1</b> microbitcoin.
+		req:1 microbitcoin
 		//icon:	

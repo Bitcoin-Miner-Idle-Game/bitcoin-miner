@@ -30,27 +30,27 @@ Buttons
 		tooltip class:red
  
     *bitcoin2Dollar
-      name:Bitcoin exchanger
-      desc:Exchange 50 microbitcoins for 1 dollar
-      on click:
-              if (microbitcoins >= 50)
-                  lose 50 microbitcoins
-                  yield 1 dollar
-              end
-          end
-          // TODO poner el icono que sea
-      icon:https://i.imgur.com/lmoXat0.png
-      icon class:shadowed
-      tooltip origin:bottom
-      tooltip class:red
+        name:Bitcoin exchanger
+        desc:Exchange [bitcoinExchangingBTC] microbitcoins for [bitcoinExchangingDol] dollars
+        on click:
+            if (microbitcoins >= bitcoinExchangingBTC)
+                lose bitcoinExchangingBTC microbitcoins
+                yield bitcoinExchangingDol dollars
+            end
+        end
+        // TODO poner el icono que sea
+        icon:https://i.imgur.com/lmoXat0.png
+        icon class:shadowed
+        tooltip origin:bottom
+        tooltip class:red
 
     *dollar2Bitcoin
       name:Dollar exchanger
-      desc:Exchange 1 dollar for 45 microbitcoin
+      desc:Exchange [dollarsExchangingDol] dollars for [dollarsExchangingBTC] microbitcoin
       on click:
-              if (dollars >= 1)
-                  lose 1 dollar
-                  yield 45 microbitcoins
+              if (dollars >= dollarsExchangingDol)
+                  lose dollarsExchangingDol dollars
+                  yield dollarsExchangingBTC microbitcoins
               end
           end
           // TODO poner el icono que sea
@@ -110,6 +110,22 @@ Resources
 		class:noBackground
 		//is always:microbitcoins*20717.10*0.000001
 		show earned
+    
+    *bitcoinExchangingBTC
+        is always:((microbitcoins < 500) * 50 + (microbitcoins >= 500 and microbitcoins < 5000) * 500 + (microbitcoins >= 5000) * 5000)
+        always hidden
+    
+    *bitcoinExchangingDol
+        is always:((microbitcoins < 500) * 1 + (microbitcoins >= 500 and microbitcoins < 5000) * 10 + (microbitcoins >= 5000) * 100)
+        always hidden
+    
+    *dollarsExchangingBTC
+        is always:((dollars < 10) * 45 + (dollars >= 10 and dollars < 100) * 450 + (dollars >= 100) * 4500)
+        always hidden
+    
+    *dollarsExchangingDol
+        is always:((dollars < 10) * 1 + (dollars >= 10 and dollars < 100) * 10 + (dollars >= 100) * 100)
+        always hidden
  
 Buildings
 	*TEMPLATE

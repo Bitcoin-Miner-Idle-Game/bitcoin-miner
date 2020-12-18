@@ -77,8 +77,7 @@ Buildings
 
 	*bitcoinASIC|bitcoinASICs
 		name:Bitcoin ASIC|Bitcoin ASICs
-		desc:The ASIC Bitcoin Miner is a computarized device that was designed for the sole purpose of mining Bitcoin. It is able to mine Bitcoin in a more efficient way than a standard computer.
-			 <//><b>Effect:</b><.>Produces 1000 Microbitcoin every 10 seconds.
+		desc:The ASIC Bitcoin Miner is a computarized device that was designed for the sole purpose of mining Bitcoin. It is able to mine Bitcoin in a more efficient way than a standard computer.<//><b>Effect:</b><.>Produces 1000 Microbitcoin every 10 seconds.
 		icon:https://cdn.pixabay.com/photo/2017/10/14/22/20/farm-2852024_960_720.jpg
 		cost:5000 dollars
 		on tick:yield 100 microbitcoins

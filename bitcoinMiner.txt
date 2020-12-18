@@ -10,7 +10,7 @@ Settings
 	background:https://i.imgur.com/haH2ubb.jpg
 	building cost increase:115%
 	building cost refund:50%
-    spritesheet:icons, 48 by 48, https://raw.githubusercontent.com/Bitcoin-Miner-Idle-Game/bitcoin-miner/feature_spritesheet/img/icons_spritesheet.png
+    spritesheet:icons, 48 by 48, https://raw.githubusercontent.com/Bitcoin-Miner-Idle-Game/bitcoin-miner/main/img/icons_spritesheet.png
 	stylesheet:stuff/bigBlue.css
 
 Layout
@@ -28,6 +28,36 @@ Buttons
 		icon:https://i.imgur.com/Fv200ZH.png
 		no text
 		class:bigButton hasFlares
+		icon class:shadowed
+		tooltip origin:bottom
+		tooltip class:red
+    
+	*bitcoin2Dollar
+		name:Bitcoin exchanger
+		desc:Exchange 50 microbitcoins for 1 dollar
+		on click:
+            if (microbitcoins >= 50)
+                lose 50 microbitcoins
+                yield 1 dollar
+            end
+        end
+        // TODO poner el icono que sea
+		icon:https://i.imgur.com/lmoXat0.png
+		icon class:shadowed
+		tooltip origin:bottom
+		tooltip class:red
+    
+	*dollar2Bitcoin
+		name:Dollar exchanger
+		desc:Exchange 1 dollar for 45 microbitcoin
+		on click:
+            if (dollars >= 1)
+                lose 1 dollar
+                yield 45 microbitcoins
+            end
+        end
+        // TODO poner el icono que sea
+		icon:https://i.imgur.com/lmoXat0.png
 		icon class:shadowed
 		tooltip origin:bottom
 		tooltip class:red
@@ -55,7 +85,7 @@ Resources
 		desc: Exchanging your Bitcoins to US dollars, this is how many dollars you will obtain if you sell your Bitcoins now.
 		icon:https://i.imgur.com/vfF2jpP.jpeg
 		class:noBackground
-		is always:microbitcoins*20717.10*0.000001
+		//is always:microbitcoins*20717.10*0.000001
 		show earned
 
 Buildings

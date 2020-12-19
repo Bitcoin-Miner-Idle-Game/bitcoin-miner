@@ -52,33 +52,31 @@ Buttons
  
     *bitcoin2Dollar
         name:Bitcoin exchanger
-        desc:Exchange [bitcoinExchangingBTC] microbitcoins for [bitcoinExchangingDol] dollars
+        desc:Exchange all your microbitcoins for [bitcoinExchanging] dollars
         on click:
-            if (microbitcoins >= bitcoinExchangingBTC)
-                lose bitcoinExchangingBTC microbitcoins
-                yield bitcoinExchangingDol dollars
-            end
+            yield bitcoinExchanging dollars
+            lose microbitcoins microbitcoins
         end
         // TODO poner el icono que sea
         icon:https://i.imgur.com/lmoXat0.png
         icon class:shadowed
         tooltip origin:bottom
         tooltip class:red
+        hidden
 
     *dollar2Bitcoin
       name:Dollar exchanger
-      desc:Exchange [dollarsExchangingDol] dollars for [dollarsExchangingBTC] microbitcoin
+      desc:Exchange all your dollars for [dollarsExchanging] microbitcoin
       on click:
-              if (dollars >= dollarsExchangingDol)
-                  lose dollarsExchangingDol dollars
-                  yield dollarsExchangingBTC microbitcoins
-              end
+              yield dollarsExchanging microbitcoins
+              lose dollars dollars
           end
           // TODO poner el icono que sea
       icon:https://i.imgur.com/lmoXat0.png
       icon class:shadowed
       tooltip origin:bottom
       tooltip class:red
+      hidden
       
   //TODO botones para hacer trampas en fase de desarrollo, borrar antes de subir
     *cheat1000
@@ -152,21 +150,27 @@ Resources
 		//is always:microbitcoins*20717.10*0.000001
 		show earned
     
-    *bitcoinExchangingBTC
-        is always:((microbitcoins < 500) * 50 + (microbitcoins >= 500 and microbitcoins < 5000) * 500 + (microbitcoins >= 5000) * 5000)
+    *bitcoinExchanging
+        is always:(floor(microbitcoins * 20000 * pow(10, -6) * 0.98))
         always hidden
+        on tick:
+            if (bitcoinExchanging > 0)
+                show bitcoin2Dollar
+            else
+                hide bitcoin2Dollar
+            end
+        end
     
-    *bitcoinExchangingDol
-        is always:((microbitcoins < 500) * 1 + (microbitcoins >= 500 and microbitcoins < 5000) * 10 + (microbitcoins >= 5000) * 100)
+    *dollarsExchanging
+        is always:(floor(dollars * pow(10, 6) / 20000) * 0.98)
         always hidden
-    
-    *dollarsExchangingBTC
-        is always:((dollars < 10) * 45 + (dollars >= 10 and dollars < 100) * 450 + (dollars >= 100) * 4500)
-        always hidden
-    
-    *dollarsExchangingDol
-        is always:((dollars < 10) * 1 + (dollars >= 10 and dollars < 100) * 10 + (dollars >= 100) * 100)
-        always hidden
+        on tick:
+            if (dollarsExchanging > 0)
+                show dollar2Bitcoin
+            else
+                hide dollar2Bitcoin
+            end
+        end
  
 Buildings
 	*TEMPLATE

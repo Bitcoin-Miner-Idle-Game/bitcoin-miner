@@ -227,59 +227,59 @@ Buildings
 	on tick:yield 22 microbitcoins
 	req:(cpus >= 10)
     
-  *gpuB|gpusB
-  	name:Graphics card type B|Graphics cards type B
-    desc:A better graphics card solves problems even faster. <//><b>Effect:</b><.>Produces 130 Microbitcoin every second.
-    icon:icons[3,0]
-    tags:isGPU isBuilding
+  *asicC|asicsC
+  	name:ASIC chip type C|ASIC chips type C
+    desc:A computarized device that was designed for the sole purpose of mining Bitcoin. It is able to mine Bitcoin in a more efficient way than a standard computer.<//><b>Effect:</b><.>Produces 130 Microbitcoin every second.
+    icon:icons[3,1]
+    tags:isBuilding isAsic
     cost:33000 microbitcoin
     on tick:yield 130 microbitcoin
     req:(gpusC >= 10)
     
-  *gpuA|gpusA
-  	name:Graphics card type A|Graphics cards type A
-    desc:There's always room for improvements. <//><b>Effect:</b><.>Produces 740 Microbitcoin every second.
-    icon:icons[0,1]
-    tags:isGPU isBuilding
+  *fpga|fpgas
+  	name:FPGA|FPGAs
+    desc:An integrated circuit you can configure to help you mine. <//><b>Effect:</b><.>Produces 740 Microbitcoin every second.
+    icon:icons[2,1]
+    tags:isBuilding
     cost:370000 microbitcoin
     on tick:yield 740 microbitcoin
-    req:(gpusB >= 10)
+    req:(asicsC >= 10)
     
-  *gpuS|gpusS
-  	name:Graphics card type S|Graphics cards type S
-    desc:This one is the Aston Martin of graphics. <//><b>Effect:</b><.>Produces 4000 Microbitcoin every second.
-    icon:icons[1,1]
+  *gpuB|gpusB
+  	name:Graphics card type B|Graphics cards type B
+    desc:A better graphics card solves problems even faster. <//><b>Effect:</b><.>Produces 4000 Microbitcoin every second.
+    icon:icons[3,0]
     tags:isGPU isBuilding
     cost:4000000 microbitcoin
     on tick:yield 4000 microbitcoin
-    req:(gpusA >= 10)
-    
-  *fpga|fpgas
-  	name:FPGA|FPGAs
-    desc:An integrated circuit you can configure to help you mine. <//><b>Effect:</b><.>Produces 17500 Microbitcoin every second.
-    icon:icons[2,1]
-    tags:isBuilding
-    cost:45000000 microbitcoin
-    on tick:yield 17500 microbitcoin
-    req:(cpus >= 100)
-    
-  *asicC|asicsC
-  	name:ASIC chip type C|ASIC chips type C
-    desc:A computarized device that was designed for the sole purpose of mining Bitcoin. It is able to mine Bitcoin in a more efficient way than a standard computer.<//><b>Effect:</b><.>Produces 70000 Microbitcoin every second.
-    icon:icons[3,1]
-    tags:isBuilding isAsic
-    cost:500000000 microbitcoin
-    on tick:yield 70000 microbitcoin
-    req:(gpusC + gpusB + gpusA + gpusS >= 25)
+    req:(gpusC >= 30)
     
   *asicB|asicsB
   	name:ASIC chip type B|ASIC chips type B
-    desc:Its sole purpose is mining Bitcoin... but now much better.<//><b>Effect:</b><.>Produces 270000 Microbitcoin every second.
+    desc:Its sole purpose is mining Bitcoin... but now much better.<//><b>Effect:</b><.>Produces 17500 Microbitcoin every second.
     icon:icons[0,2]
     tags:isBuilding isAsic
+    cost:45000000 microbitcoin
+    on tick:yield 17500 microbitcoin
+    req:(asicC >= 30)
+    
+  *cloud|clouds
+    name:Cloud mining datacenter|Cloud mining datacenters
+    desc:It provides you with a service that allows you to mine in a remote datacenter with shared processing power.<//><b>Effect:</b><.>Produces 70000 Microbitcoin every second.
+    icon:icons[3,2]
+    tags:isBuilding
+    cost:500000000 microbitcoin
+    on tick:yield 70000 microbitcoin
+    req:(fpgas >= 30)
+    
+  *gpuA|gpusA
+  	name:Graphics card type A|Graphics cards type A
+    desc:There's always room for improvements. <//><b>Effect:</b><.>Produces 270000 Microbitcoin every second.
+    icon:icons[0,1]
+    tags:isGPU isBuilding
     cost:5300000000 microbitcoin
     on tick:yield 270000 microbitcoin
-    req:(asicC >= 10)
+    req:(gpusC + gpusB >= 50)
     
   *asicA|asicsA
   	name:ASIC chip type A|ASIC chips type A
@@ -288,35 +288,34 @@ Buildings
     tags:isBuilding isAsic
     cost:60000000000 microbitcoin
     on tick:yield 1280000 microbitcoin
-    req:(asicB >= 10)
+    req:(asicsC + asicsB >= 50)
+    
+  *pool|pools
+	name:Mining Pool | Mining Pools
+	desc:A mining pool is a joint group of cryptocurrency miners who combine their computational resources so that they can mine faster.<//><b>Effect:</b><.>Produces 6.5 Bitcoin every second. 
+	icon:icons[0,3]
+	tags:isBuilding
+	cost:650000000000 microbitcoin
+	on tick:yield 6500000 microbitcoins
+	req:(asicA + asicB + asicC + fpga + gpuA + gpuB + gpuC + cpu + pickaxe + cloud >= 250)
+    
+  *gpuS|gpusS
+  	name:Graphics card type S|Graphics cards type S
+    desc:This one is the Aston Martin of graphics. <//><b>Effect:</b><.>Produces 33 Bitcoin every second.
+    icon:icons[1,1]
+    tags:isGPU isBuilding
+    cost:4000000 microbitcoin
+    on tick:yield 7100000000000 microbitcoin
+    req:(gpusA + gpusB + gpusC >= 100)
     
   *asicS|asicsS
   	name:ASIC chip type S|ASIC chips type S
-    desc:You won't find a better miner than this one here.<//><b>Effect:</b><.>Produces 6.5 Bitcoin every second.
+    desc:You won't find a better miner than this one here.<//><b>Effect:</b><.>Produces 197 Bitcoin every second.
     icon:icons[2,2]
     tags:isBuilding isAsic
-    cost:650000000000 microbitcoin
-    on tick:yield 6500000 microbitcoin
-    req:(asicA >= 10)
-    
-  *cloud|clouds
-    name:Cloud mining datacenter|Cloud mining datacenters
-    desc:It provides you with a service that allows you to mine in a remote datacenter with shared processing power.<//><b>Effect:</b><.>Produces 33 Bitcoin every second.
-    icon:icons[3,2]
-    tags:isBuilding
-    cost:7100000000000 microbitcoin
-    on tick:yield 33000000 microbitcoin
-    //esto se debería poder hacer con los tags (250 es orientativo, equilibrar en cuánto se sepa)
-    req:(asicS + asicA + asicB + asicC + fpga + gpuS + gpuA + gpuB + gpuC + cpu + pickaxe >= 250)
-
-  *pool|pools
-	name:Mining Pool | Mining Pools
-	desc:A mining pool is a joint group of cryptocurrency miners who combine their computational resources so that they can mine faster.<//><b>Effect:</b><.>Produces 197 bitcoin every second. 
-	icon:icons[0,3]
-	tags:isBuilding
-	cost:78000000000000 microbitcoin
-	on tick:yield 197000000 microbitcoins
-	req:(asicS + asicA + asicB + asicC + fpga + gpuS + gpuA + gpuB + gpuC + cpu + pickaxe + cloud >= 375)
+    cost:78000000000000 microbitcoin
+    on tick:yield 197000000 microbitcoin
+    req:(asicsA + asicsB + asicsC >= 100)
 
   *calcCentre|calcCentres
     name: Calculation Centre|Calculation Centres

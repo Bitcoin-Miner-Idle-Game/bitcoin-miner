@@ -167,7 +167,16 @@ Resources
     *dollarsExchangingDol
         is always:((dollars < 10) * 1 + (dollars >= 10 and dollars < 100) * 10 + (dollars >= 100) * 100)
         always hidden
- 
+
+	*cloverTiming
+		no buy
+		always hidden
+		on tick:
+			if ((cloverTiming) > 0)
+		 		lose 1 cloverTiming
+			end
+		end
+		
 Buildings
 	*TEMPLATE
 		on click:anim glow
@@ -308,7 +317,7 @@ Buildings
 		cost:1 bitcoin
 		on tick:yield 1000 microbitcoins
 		req:5 bitcoins:earned
- 
+
 Upgrades
 	*TEMPLATE
 		on click:anim glow
@@ -317,14 +326,16 @@ Upgrades
 		// Sleight of Hand significa prestidigitación, lo veo un nombre más fancy que "Mine Faster"
 		name:Sleight of Hand
 		desc:Practice makes perfect. <//><b>Effect:</b><.>Mine 10% more with each click.
+		tags:isUpgrade
 		//TODO icon:
 		cost:50 microbitcoin
-		passive:multiply yield of bitcoinButton by 1,1
-		req:(microbitcoin:earned > 200)
+		passive:increase microbitcoins yield of bitcoinButton by 1
+		req:(microbitcoin:earned > 20)
 	
     *pickaxeUpgrade
 		name:Dual Wield Pickaxes
 		desc:Two hands work better than one.<//><b>Effect:</b><.>Double the production of your pickaxes.
+		tags:isUpgrade
 		// TODO icon:
 		cost:1000 microbitcoin
 		passive:multiply yield of pickaxes by 2
@@ -333,6 +344,7 @@ Upgrades
 	*uninstallApps
 		name:App Cleaning
 		desc:Delete the apps you don't use from your computer.<//><b>Effect:</b><.>Increase the production of your CPUs by 10%.
+		tags:isUpgrade
 		//TODO icon:
 		cost:5000 microbitcoin
 		passive:multiply yield of cpus by 1.1
@@ -341,7 +353,8 @@ Upgrades
 	*cpuOverclock
 		name:CPU Overclock
     	desc:Push your CPU further to the limit.<//><b>Effect:</b><.>Increase the production of your CPUs by 50%.
-    // TODO: new icon
+    	tags:isUpgrade
+		// TODO: new icon
 		icon:https://i.imgur.com/Ng884yH.png
 		cost:100000 microbitcoin
 		passive:multiply yield of cpus by 1.5
@@ -350,7 +363,8 @@ Upgrades
 	*gpuOverclock
 		name:GPU Overclock
 		desc:Push your GPUs further to the limit.<//><b>Effect:</b><.>Increase the production of all your GPUs by 50%.
-    // TODO: new icon
+    	tags:isUpgrade
+		// TODO: new icon
 		icon:https://i.imgur.com/Ng884yH.png
 		cost:100000 microbitcoin
 		passive:multiply yield of tag:isGPU by 1.5
@@ -359,7 +373,8 @@ Upgrades
 	*asicOverclock
 		name:ASIC Overclock
 		desc:Push your ASICs further to the limit.<//><b>Effect:</b><.>Increase the production of your ASICs by 50%.
-    // TODO: New icon
+    	tags:isUpgrade
+		// TODO: New icon
 		icon:https://i.imgur.com/Ng884yH.png
 		cost:1000000 microbitcoin
 		passive:multiply yield of tag:isASIC by 1.5
@@ -368,7 +383,8 @@ Upgrades
     *fpgaOverclock
 		name:FPGA Overclock
 		desc:Push your FPGAs further to the limit.<//><b>Effect:</b><.>Increase the production of all your FPGAs by 50%.
-    // TODO: new icon
+    	tags:isUpgrade
+		// TODO: new icon
 		icon:https://i.imgur.com/Ng884yH.png
 		cost:1000000 microbitcoin
 		passive:multiply yield of fpgas by 1.5
@@ -377,6 +393,7 @@ Upgrades
 	*driversUpdate
 		name:Drivers Update
 		desc:Updating your drivers optimizes the performance of your GPUs.<//><b>Effect:</b><.>Increase the production of all your GPUs by 50%.
+		tags:isUpgrade
 		//TODO: new icon
 		icon:https://i.imgur.com/Ng884yH.png
 		cost:2000000 microbitcoin
@@ -387,11 +404,31 @@ Upgrades
 	*cheaperElectricity
 		name:Cheaper Electricity.
 		desc:Your Mining Pool got an offer from the electric company. Mining is now more profitable. <//><b>Effect:</b><.>Increase the production of your Mining Pools by 5%.
+		tags:isUpgrade
 		icon:https://upload.wikimedia.org/wikipedia/commons/2/21/Electricity_warning_sign.svg
 		cost:40000 microbitcoin
 		passive:multiply yield of miningPool by 1.05
 		req:(miningPool >=1)
- 
+
+	*cloverUpgrade
+		no buy
+		always hidden
+		passive:multiply yield of tag:isBuilding, isUpgrade by 2
+		req:(cloverTiming>0)
+
+Shinies
+	*luckyclover
+		movement:onRight moveLeft wiggle:0.25 growShrink
+		frequency:60
+		frequency variation:20
+		icon:https://upload.wikimedia.org/wikipedia/commons/5/53/Tr%C3%A9bol_de_4_hojas.svg
+		class:bigButton
+		on click:
+			toast Double the productivity of your buildings and upgrades for the next minute!
+			grant 60 cloverTiming
+			if ((cloverUpgrade) < 1) grant 1 cloverUpgrade
+		end
+
 Achievements
 	*TEMPLATE
 		on click:anim glow

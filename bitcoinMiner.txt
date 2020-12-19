@@ -169,13 +169,12 @@ Resources
         always hidden
 
 	*cloverTiming
-		no buy
 		always hidden
 		on tick:
 			if ((cloverTiming) > 0)
 		 		lose 1 cloverTiming
 			else if ((cloverTiming) = 0)
-				lose 1 cloverUpgrade
+				lose cloverUpgrade
 			end
 		end
 		
@@ -415,19 +414,20 @@ Upgrades
 	*cloverUpgrade
 		no buy
 		always hidden
-		passive:multiply yield of tag:isBuilding, isUpgrade by 2
+		passive:multiply yield of tag:isBuilding by 2
+		passive:multiply yield of tag:isUpgrade by 2
 
 Shinies
 	*luckyclover
 		movement:onRight moveLeft wiggle:0.25 growShrink
-		frequency:60
+		frequency:6
 		frequency variation:20
 		icon:https://upload.wikimedia.org/wikipedia/commons/5/53/Tr%C3%A9bol_de_4_hojas.svg
 		class:bigButton
 		on click:
 			toast Double the productivity of your buildings and upgrades for the next minute!
 			grant 60 cloverTiming
-			if ((cloverUpgrade) < 1) grant 1 cloverUpgrade
+			if (!(cloverUpgrade)) yield cloverUpgrade
 		end
 
 Achievements

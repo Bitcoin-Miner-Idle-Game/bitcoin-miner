@@ -5,14 +5,13 @@ Let's make a game!
 	created:07/12/2020
 	updated:07/12/2020
 	version:0.1
-
+ 
 Settings
 	background:https://i.imgur.com/haH2ubb.jpg
 	building cost increase:115%
 	building cost refund:50%
-    spritesheet:icons, 48 by 48, https://raw.githubusercontent.com/Bitcoin-Miner-Idle-Game/bitcoin-miner/feature_spritesheet/img/icons_spritesheet.png
+    spritesheet:icons, 48 by 48, https://raw.githubusercontent.com/Bitcoin-Miner-Idle-Game/bitcoin-miner/main/img/icons_spritesheet.png
 	stylesheet:stuff/bigBlue.css
-
 CSS
 	#box-achievs{
 		position:fixed;
@@ -49,7 +48,63 @@ Buttons
 		icon class:shadowed
 		tooltip origin:bottom
 		tooltip class:red
-		
+ 
+    *bitcoin2Dollar
+        name:Bitcoin exchanger
+        desc:Exchange [bitcoinExchangingBTC] microbitcoins for [bitcoinExchangingDol] dollars
+        on click:
+            if (microbitcoins >= bitcoinExchangingBTC)
+                lose bitcoinExchangingBTC microbitcoins
+                yield bitcoinExchangingDol dollars
+            end
+        end
+        // TODO poner el icono que sea
+        icon:https://i.imgur.com/lmoXat0.png
+        icon class:shadowed
+        tooltip origin:bottom
+        tooltip class:red
+
+    *dollar2Bitcoin
+      name:Dollar exchanger
+      desc:Exchange [dollarsExchangingDol] dollars for [dollarsExchangingBTC] microbitcoin
+      on click:
+              if (dollars >= dollarsExchangingDol)
+                  lose dollarsExchangingDol dollars
+                  yield dollarsExchangingBTC microbitcoins
+              end
+          end
+          // TODO poner el icono que sea
+      icon:https://i.imgur.com/lmoXat0.png
+      icon class:shadowed
+      tooltip origin:bottom
+      tooltip class:red
+      
+  //TODO botones para hacer trampas en fase de desarrollo, borrar antes de subir
+    *cheat1000
+    	name:CHEAT: 1000 uBTC
+      on click:yield 1000 microbitcoins
+      icon class:shadowed
+      
+    *cheat10000
+    	name:CHEAT: 10000 uBTC
+      on click:yield 10000 microbitcoins
+      icon class:shadowed
+      
+    *cheat100000
+    	name:CHEAT: 100000 uBTC
+      on click:yield 100000 microbitcoins
+      icon class:shadowed
+      
+    *cheat1000000
+    	name:CHEAT: 1 BTC
+      on click:yield 1000000 microbitcoins
+      icon class:shadowed
+      
+    *cheat100000000
+    	name:CHEAT: 100 BTC
+      on click:yield 100000000 microbitcoins
+      icon class:shadowed
+ 
 Resources
 	*microbitcoin|microbitcoins
 		name:Microbitcoin|Microbitcoins
@@ -58,7 +113,7 @@ Resources
 		class:noBackground
 		show earned
     req:(bitcoins<1)
-
+ 
 	*bitcoin|bitcoins
 		name:Bitcoin|Bitcoins
 		desc: This is how many Bitcoins are in your possesion. Become rich and dominate the cryptomarket!
@@ -67,43 +122,147 @@ Resources
 		is always:microbitcoins*0.000001
 		show earned
     req:(bitcoins>=1)
-
+ 
 	*dollar|dollars
 		name:US Dollar|US Dollars
 		desc: Exchanging your Bitcoins to US dollars, this is how many dollars you will obtain if you sell your Bitcoins now.
 		icon:https://i.imgur.com/vfF2jpP.jpeg
 		class:noBackground
-		is always:microbitcoins*20717.10*0.000001
+		//is always:microbitcoins*20717.10*0.000001
 		show earned
-
+    
+    *bitcoinExchangingBTC
+        is always:((microbitcoins < 500) * 50 + (microbitcoins >= 500 and microbitcoins < 5000) * 500 + (microbitcoins >= 5000) * 5000)
+        always hidden
+    
+    *bitcoinExchangingDol
+        is always:((microbitcoins < 500) * 1 + (microbitcoins >= 500 and microbitcoins < 5000) * 10 + (microbitcoins >= 5000) * 100)
+        always hidden
+    
+    *dollarsExchangingBTC
+        is always:((dollars < 10) * 45 + (dollars >= 10 and dollars < 100) * 450 + (dollars >= 100) * 4500)
+        always hidden
+    
+    *dollarsExchangingDol
+        is always:((dollars < 10) * 1 + (dollars >= 10 and dollars < 100) * 10 + (dollars >= 100) * 100)
+        always hidden
+ 
 Buildings
 	*TEMPLATE
 		on click:anim glow
-
+ 
 	//https://2cryptocalc.com/most-profitable-gpu https://www.nicehash.com/profitability-calculator
 	//The real cost of GPU is between $400-$1800
 	//It produces 0.00024400BTC/day ==> $4.74
-
-	*gpu|gpus
-		name:Graphics card|Graphics cards
-		desc:A graphics card will allow you to use its computing power to solve problems faster, and thus, mine faster.<//><b>Effect:</b><.>Produces 100 Microbitcoin every 10 seconds.
-		icon:https://i.imgur.com/fzLKXDZ.png
-		cost:100 microbitcoin
-		on tick:yield 10 microbitcoins
-		unlocked
-
+  
+  *pickaxe|pickaxes
+  	name:Pickaxe|Pickaxes
+    desc:A pickaxe will autoclick once every second.
+    //TODO meter el icono
+    cost:25 microbitcoin
+    on tick:yield 1 microbitcoins
+    unlocked
+    
+  *cpu|cpus
+  	name:CPU|CPUs
+    desc:Have you really been doing it by hand? <//><b>Effect:</b><.>Produces 3 Microbitcoin every second.
+    //TODO meter el icono
+    cost:275 microbitcoin
+    on tick:yield 3 microbitcoin
+    unlocked
+  
+  *gpuC|gpusC
+	name:Graphics card type C|Graphics cards type C
+	desc:A graphics card will allow you to use its computing power to solve problems faster, and thus, mine faster.<//><b>Effect:</b><.>Produces 22 Microbitcoin every second.
+	icon:https://i.imgur.com/fzLKXDZ.png
+    tag:isGPU
+	cost:3000 microbitcoin
+	on tick:yield 22 microbitcoins
+	req:(cpus >= 10)
+    
+  *gpuB|gpusB
+  	name:Graphics card type B|Graphics cards type B
+    desc:A better graphics card solves problems even faster. <//><b>Effect:</b><.>Produces 130 Microbitcoin every second.
+    //TODO añadir icono
+    tag:isGPU
+    cost:33000 microbitcoin
+    on tick:yield 130 microbitcoin
+    req:(gpusC >= 10)
+    
+  *gpuA|gpusA
+  	name:Graphics card type A|Graphics cards type A
+    desc:There's always room for improvements. <//><b>Effect:</b><.>Produces 740 Microbitcoin every second.
+    //TODO añadir icono
+    tag:isGPU
+    cost:370000 microbitcoin
+    on tick:yield 740 microbitcoin
+    req:(gpusB >= 10)
+    
+  *gpuS|gpusS
+  	name:Graphics card type S|Graphics cards type S
+    desc:This one is the Aston Martin of graphics. <//><b>Effect:</b><.>Produces 4000 Microbitcoin every second.
+    //TODO añadir icono
+    tag:isGPU
+    cost:4000000 microbitcoin
+    on tick:yield 4000 microbitcoin
+    req:(gpusA >= 10)
+    
+  *fpga|fpgas
+  	name:FPGA|FPGAs
+    desc:An integrated circuit you can configure to help you mine. <//><b>Effect:</b><.>Produces 17500 Microbitcoin every second.
+    //TODO añadir icono
+    cost:45000000 microbitcoin
+    on tick:yield 17500 microbitcoin
+    req:(cpus >= 100)
+    
+  *asicC|asicsC
+  	name:ASIC chip type C|ASIC chips type C
+    desc:A computarized device that was designed for the sole purpose of mining Bitcoin. It is able to mine Bitcoin in a more efficient way than a standard computer.<//><b>Effect:</b><.>Produces 70000 Microbitcoin every second.
+    //TODO añadir icono
+    cost:500000000 microbitcoin
+    on tick:yield 70000 microbitcoin
+    req:(gpusC + gpusB + gpusA + gpusS >= 25)
+    
+  *asicB|asicsB
+  	name:ASIC chip type B|ASIC chips type B
+    desc:Its sole purpose is mining Bitcoin but much better.<//><b>Effect:</b><.>Produces 270000 Microbitcoin every second.
+    //TODO añadir icono
+    cost:5300000000 microbitcoin
+    on tick:yield 270000 microbitcoin
+    req:(asicC >= 10)
+    
+  *asicA|asicsA
+  	name:ASIC chip type A|ASIC chips type A
+    desc:A Super Incredible Circuit.<//><b>Effect:</b><.>Produces 1.28 Bitcoin every second.
+    //TODO añadir icono
+    cost:60000000000 microbitcoin
+    on tick:yield 1280000 microbitcoin
+    req:(asicB >= 10)
+    
+  *asicS|asicsS
+  	name:ASIC chip type S|ASIC chips type S
+    desc:You won't find a miner better than this one here.<//><b>Effect:</b><.>Produces 6.5 Bitcoin every second.
+    //TODO añadir icono
+    cost:650000000000 microbitcoin
+    on tick:yield 6500000 microbitcoin
+    req:(asicA >= 10)
+  
+  // De aquí para abajo es antes de establecer la lista, pero se pueden reusar las descripciones, etc.
+ 
 	//https://www.asicminervalue.com/miners/innosilicon/a10-pro-ethminer-720mh
 	//The real cost of an ASIC machine is $5000
 	//It produces 0.0015BTC/day ==> $30.82
-
+ 
+ /*
 	*bitcoinASIC|bitcoinASICs
 		name:Bitcoin ASIC|Bitcoin ASICs
 		desc:The ASIC Bitcoin Miner is a computarized device that was designed for the sole purpose of mining Bitcoin. It is able to mine Bitcoin in a more efficient way than a standard computer.<//><b>Effect:</b><.>Produces 1000 Microbitcoin every 10 seconds.
 		icon:https://cdn.pixabay.com/photo/2017/10/14/22/20/farm-2852024_960_720.jpg
 		cost:1000 microbitcoin
-		on tick:yield 100 microbitcoins
+		on tick:yield 100000 microbitcoins
 		req:1000 microbitcoins:earned
-
+  */
+ 
 	*miningPool|miningPools
 		name:Mining Pool
 		desc:A mining pool is a joint group of cryptocurrency miners who combine their computational resources so that they can mine faster.<//><b>Effect:</b><.>Produces 10000 Microbitcoin every 10 seconds. 
@@ -111,23 +270,69 @@ Buildings
 		cost:1 bitcoin
 		on tick:yield 1000 microbitcoins
 		req:5 bitcoins:earned
-
+ 
 Upgrades
 	*TEMPLATE
 		on click:anim glow
-	
-	*gpuOverclock1
-		name:GPU Overclock 10%
-		desc:Push your graphics card further to the limit.<//><b>Effect:</b><.>Increase the production of your graphics cards by 10%.
+    
+  *pickaxeUpgrade
+		name:Dual Wield Pickaxes
+		desc:Two hands work better than one.<//><b>Effect:</b><.>Double the production of your pickaxes.
+		// TODO icon:
+		cost:1000 microbitcoin
+		passive:multiply yield of pickaxes by 2
+		req:(pickaxes >=1)
+ 
+	*cpuOverclock
+		name:CPU Overclock
+    desc:Push your CPU further to the limit.<//><b>Effect:</b><.>Increase the production of your CPUs by 50%.
+    // TODO: new icon
 		icon:https://i.imgur.com/Ng884yH.png
-		cost:500 microbitcoin
-		passive:multiply yield of gpus by 1.1
-		req:(gpus >=1)
-
+		cost:100000 microbitcoin
+		passive:multiply yield of cpus by 1.5
+		req:(cpus >=1) 
+ 
+	*gpuOverclock
+		name:GPU Overclock
+		desc:Push your GPUs further to the limit.<//><b>Effect:</b><.>Increase the production of all your GPUs by 50%.
+    // TODO: new icon
+		icon:https://i.imgur.com/Ng884yH.png
+		cost:100000 microbitcoin
+		passive:multiply yield of tag:isGPU by 1.5
+		req:(gpusC >=1)
+    
+  *fpgaOverclock
+		name:FPGA Overclock
+		desc:Push your FPGAs further to the limit.<//><b>Effect:</b><.>Increase the production of all your FPGAs by 50%.
+    // TODO: new icon
+		icon:https://i.imgur.com/Ng884yH.png
+		cost:1000000 microbitcoin
+		passive:multiply yield of fpgas by 1.5
+		req:(fpgas >=1)
+ 
+ /*
+	*asicOverclock1
+		name:ASIC Overclock 10%
+		desc:Push your ASICs further to the limit.<//><b>Effect:</b><.>Increase the production of your ASICs by 10%.
+    // TODO: New icon
+		icon:https://i.imgur.com/Ng884yH.png
+		cost:10000 dollars
+		passive:multiply yield of bitcoinASIC by 1.1
+		req:(bitcoinASIC >=1)
+  */
+ 
+	*cheaperElectricity
+		name:Cheaper electricity
+		desc:Your Mining Pool got an offer from the electric company. Mining is now more profitable. <//><b>Effect:</b><.>Increase the production of your Mining Pool by 5%.
+		icon:https://upload.wikimedia.org/wikipedia/commons/2/21/Electricity_warning_sign.svg
+		cost:40000 dollars
+		passive:multiply yield of miningPool by 1.05
+		req:(miningPool >=1)
+ 
 Achievements
 	*TEMPLATE
 		on click:anim glow
-		
+    
 	*microbitcoinAchiev1
 		name:Gotta start from somewhere.
 		desc:Have <b>1</b> Microbitcoin.

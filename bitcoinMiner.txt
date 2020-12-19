@@ -203,7 +203,7 @@ Buildings
   *pickaxe|pickaxes
   	name:Pickaxe|Pickaxes
     desc:A pickaxe will autoclick once every second.
-    //TODO meter el icono
+    icon:icons[0,0]
     tags:isBuilding
     cost:25 microbitcoin
     on tick:yield 1 microbitcoins
@@ -212,7 +212,7 @@ Buildings
   *cpu|cpus
   	name:CPU|CPUs
     desc:Have you really been doing it by hand? <//><b>Effect:</b><.>Produces 3 Microbitcoin every second.
-    //TODO meter el icono
+    icon:icons[1,0]
     tags:isBuilding
     cost:275 microbitcoin
     on tick:yield 3 microbitcoin
@@ -221,7 +221,7 @@ Buildings
   *gpuC|gpusC
 	name:Graphics card type C|Graphics cards type C
 	desc:A graphics card will allow you to use its computing power to solve problems faster, and thus, mine faster.<//><b>Effect:</b><.>Produces 22 Microbitcoin every second.
-	icon:https://i.imgur.com/fzLKXDZ.png
+	icon:icons[2,0]
     tags:isGPU isBuilding
 	cost:3000 microbitcoin
 	on tick:yield 22 microbitcoins
@@ -230,7 +230,7 @@ Buildings
   *gpuB|gpusB
   	name:Graphics card type B|Graphics cards type B
     desc:A better graphics card solves problems even faster. <//><b>Effect:</b><.>Produces 130 Microbitcoin every second.
-    //TODO añadir icono
+    icon:icons[3,0]
     tags:isGPU isBuilding
     cost:33000 microbitcoin
     on tick:yield 130 microbitcoin
@@ -239,7 +239,7 @@ Buildings
   *gpuA|gpusA
   	name:Graphics card type A|Graphics cards type A
     desc:There's always room for improvements. <//><b>Effect:</b><.>Produces 740 Microbitcoin every second.
-    //TODO añadir icono
+    icon:icons[0,1]
     tags:isGPU isBuilding
     cost:370000 microbitcoin
     on tick:yield 740 microbitcoin
@@ -248,7 +248,7 @@ Buildings
   *gpuS|gpusS
   	name:Graphics card type S|Graphics cards type S
     desc:This one is the Aston Martin of graphics. <//><b>Effect:</b><.>Produces 4000 Microbitcoin every second.
-    //TODO añadir icono
+    icon:icons[1,1]
     tags:isGPU isBuilding
     cost:4000000 microbitcoin
     on tick:yield 4000 microbitcoin
@@ -257,7 +257,7 @@ Buildings
   *fpga|fpgas
   	name:FPGA|FPGAs
     desc:An integrated circuit you can configure to help you mine. <//><b>Effect:</b><.>Produces 17500 Microbitcoin every second.
-    //TODO añadir icono
+    icon:icons[2,1]
     tags:isBuilding
     cost:45000000 microbitcoin
     on tick:yield 17500 microbitcoin
@@ -266,7 +266,7 @@ Buildings
   *asicC|asicsC
   	name:ASIC chip type C|ASIC chips type C
     desc:A computarized device that was designed for the sole purpose of mining Bitcoin. It is able to mine Bitcoin in a more efficient way than a standard computer.<//><b>Effect:</b><.>Produces 70000 Microbitcoin every second.
-    //TODO añadir icono
+    icon:icons[3,1]
     tags:isBuilding isAsic
     cost:500000000 microbitcoin
     on tick:yield 70000 microbitcoin
@@ -275,7 +275,7 @@ Buildings
   *asicB|asicsB
   	name:ASIC chip type B|ASIC chips type B
     desc:Its sole purpose is mining Bitcoin... but now much better.<//><b>Effect:</b><.>Produces 270000 Microbitcoin every second.
-    //TODO añadir icono
+    icon:icons[0,2]
     tags:isBuilding isAsic
     cost:5300000000 microbitcoin
     on tick:yield 270000 microbitcoin
@@ -284,7 +284,7 @@ Buildings
   *asicA|asicsA
   	name:ASIC chip type A|ASIC chips type A
     desc:A Super Incredible Circuit.<//><b>Effect:</b><.>Produces 1.28 Bitcoin every second.
-    //TODO añadir icono
+    icon:icons[1,2]
     tags:isBuilding isAsic
     cost:60000000000 microbitcoin
     on tick:yield 1280000 microbitcoin
@@ -293,7 +293,7 @@ Buildings
   *asicS|asicsS
   	name:ASIC chip type S|ASIC chips type S
     desc:You won't find a better miner than this one here.<//><b>Effect:</b><.>Produces 6.5 Bitcoin every second.
-    //TODO añadir icono
+    icon:icons[2,2]
     tags:isBuilding isAsic
     cost:650000000000 microbitcoin
     on tick:yield 6500000 microbitcoin
@@ -302,7 +302,7 @@ Buildings
   *cloud|clouds
     name:Cloud mining datacenter|Cloud mining datacenters
     desc:It provides you with a service that allows you to mine in a remote datacenter with shared processing power.<//><b>Effect:</b><.>Produces 33 Bitcoin every second.
-    //TODO añadir icono
+    icon:icons[3,2]
     tags:isBuilding
     cost:7100000000000 microbitcoin
     on tick:yield 33000000 microbitcoin
@@ -312,7 +312,7 @@ Buildings
   *pool|pools
 	name:Mining Pool | Mining Pools
 	desc:A mining pool is a joint group of cryptocurrency miners who combine their computational resources so that they can mine faster.<//><b>Effect:</b><.>Produces 197 bitcoin every second. 
-	//TODO: añadir icono
+	icon:icons[0,3]
 	tags:isBuilding
 	cost:78000000000000 microbitcoin
 	on tick:yield 197000000 microbitcoins
@@ -321,7 +321,7 @@ Buildings
   *calcCentre|calcCentres
     name: Calculation Centre|Calculation Centres
     desc: A high computacional capacity centre in which mining is as fast as possible.<//><b>Effect:</b><.>Produces 1187 Bitcoin every second.
-    //TODO añadir icono
+    icon:icons[1,3]
     tags:isBuilding
     cost:860000000000000 microbitcoin
     on tick:yield 1187000000 microbitcoin

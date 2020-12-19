@@ -52,35 +52,33 @@ Buttons
  
     *bitcoin2Dollar
         name:Bitcoin exchanger
-        desc:Exchange all your microbitcoins for [bitcoinExchanging] dollars (2% commission)
+        desc:Exchange [bitcoinExchangingBTC] microbitcoin for [bitcoinExchangingDol] dollars
         on click:
-            hide bitcoin2Dollar
-            lose bitcoinExchangingAcc
-            yield bitcoinExchanging dollars
-            lose microbitcoins microbitcoins
+            if (microbitcoins >= bitcoinExchangingBTC)
+                lose bitcoinExchangingBTC microbitcoins
+                yield bitcoinExchangingDol dollars
+            end
         end
         // TODO poner el icono que sea
         icon:https://i.imgur.com/lmoXat0.png
         icon class:shadowed
         tooltip origin:bottom
         tooltip class:red
-        hidden
 
     *dollar2Bitcoin
         name:Dollar exchanger
-        desc:Exchange all your dollars for [dollarsExchanging] microbitcoin (2% commission)
+        desc:Exchange [dollarsExchangingDol] dollars for [dollarsExchangingBTC] microbitcoin
         on click:
-            hide dollar2Bitcoin
-            lose dollarsExchangingAcc
-            yield dollarsExchanging microbitcoins
-            lose dollars dollars
+            if (dollars >= dollarsExchangingDol)
+                lose dollarsExchangingDol dollars
+                yield dollarsExchangingBTC microbitcoins
+            end
         end
         // TODO poner el icono que sea
         icon:https://i.imgur.com/lmoXat0.png
         icon class:shadowed
         tooltip origin:bottom
         tooltip class:red
-        hidden
       
   //TODO botones para hacer trampas en fase de desarrollo, borrar antes de subir
     *cheat1000
@@ -154,43 +152,31 @@ Resources
 		//is always:microbitcoins*20717.10*0.000001
 		show earned
     
-    *bitcoinExchanging
-        is always:(floor(microbitcoins * 20000 * pow(10, -6) * 0.98))
+    *microbitcoinLog
         always hidden
-        on tick:
-            if (bitcoinExchanging > 0)
-                if (bitcoinExchangingAcc = 1)
-                    show bitcoin2Dollar
-                else
-                    yield 1 bitcoinExchangingAcc
-                end
-            else
-                lose bitcoinExchangingAcc bitcoinExchangingAcc
-                hide bitcoin2Dollar
-            end
-        end
+        // log10 of current uBTC using lim formula with n=10^9
+        is always:(max(0, (floor((pow(microbitcoins, pow(10, -9)) - 1) / (pow(10, pow(10, -9)) - 1)))))
     
-    *bitcoinExchangingAcc
+    *dollarsLog
         always hidden
+        // log10 of current $ using lim formula with n=10^9
+        is always:(max(0, (floor((pow(dollars, pow(10, -9)) - 1) / (pow(10, pow(10, -9)) - 1)))))
     
-    *dollarsExchanging
-        is always:(floor(dollars * pow(10, 6) / 20000) * 0.98)
+    *bitcoinExchangingBTC
         always hidden
-        on tick:
-            if (dollarsExchanging > 0)
-                if (dollarsExchangingAcc = 1)
-                    show dollar2Bitcoin
-                else
-                    yield 1 dollarsExchangingAcc
-                end
-            else
-                lose dollarsExchangingAcc dollarsExchangingAcc
-                hide dollar2Bitcoin
-            end
-        end
+        is always:max(100, pow(10, microbitcoinLog))
     
-    *dollarsExchangingAcc
+    *bitcoinExchangingDol
         always hidden
+        is always:max(2, (2 * pow(10, microbitcoinLog - 2)))
+    
+    *dollarsExchangingDol
+        always hidden
+        is always:(pow(10, dollarsLog))
+    
+    *dollarsExchangingBTC
+        always hidden
+        is always:(4.9 * pow(10, dollarsLog + 1))
  
 Buildings
 	*TEMPLATE

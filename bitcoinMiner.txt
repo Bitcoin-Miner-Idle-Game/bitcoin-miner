@@ -423,7 +423,7 @@ Upgrades
 		desc:Practice makes perfect. <//><b>Effect:</b><.>Mine twice as efficiently with each click.
 		//TODO icon:
 		cost:50 microbitcoin
-		passive:multiply yield of bitcoinButton by 2
+		passive:increase microbitcoins yield of bitcoinButton by 1
 		req:(microbitcoin:earned >= 200)
 	
     *pickaxeUpgrade

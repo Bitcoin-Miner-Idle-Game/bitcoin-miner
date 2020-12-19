@@ -171,10 +171,12 @@ Resources
 	*cloverTiming
 		always hidden
 		on tick:
-			if ((cloverTiming) > 0)
+			if ((cloverTiming) > 1)
 		 		lose 1 cloverTiming
-			else if ((cloverTiming) = 0)
+			else if ((cloverTiming) is 1)
 				lose cloverUpgrade
+				yield cloverDowngrade
+				lose 1 cloverTiming
 			end
 		end
 		
@@ -414,8 +416,14 @@ Upgrades
 	*cloverUpgrade
 		no buy
 		always hidden
-		passive:multiply yield of tag:isBuilding by 1,1
-		passive:multiply yield of tag:isUpgrade by 1,1
+		passive:multiply yield of tag:isBuilding by 2
+		passive:multiply yield of tag:isUpgrade by 2
+	
+	*cloverDowngrade
+		no buy
+		always hidden
+		passive:lower yield of tag:isBuilding by 2
+		passive:lower yield of tag:isUpgrade by 2
 
 Shinies
 	*luckyclover
@@ -425,9 +433,14 @@ Shinies
 		icon:https://upload.wikimedia.org/wikipedia/commons/5/53/Tr%C3%A9bol_de_4_hojas.svg
 		class:bigButton
 		on click:
-			toast The Productivity of your buildings and upgrades increases by 10%!
-			grant 60 cloverTiming
-			if (!(cloverUpgrade)) yield cloverUpgrade
+			toast Duplicate the productivity of your buildings and upgrades for 1 minute
+			if (cloverDowngrade) 
+				lose cloverDowngrade
+			end
+			if (!(cloverUpgrade)) 
+				yield cloverUpgrade
+			end
+			grant 61 cloverTiming
 		end
 
 Achievements

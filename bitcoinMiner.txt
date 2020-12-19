@@ -12,19 +12,6 @@ Settings
 	building cost refund:50%
     spritesheet:icons, 48 by 48, https://raw.githubusercontent.com/Bitcoin-Miner-Idle-Game/bitcoin-miner/main/img/icons_spritesheet.png
 	stylesheet:stuff/bigBlue.css
-CSS
-	#box-achievs{
-		position:fixed;
-		top: 400px;
-		left: 0px;
-		width: 220px;
-		height: 200px;
-		overflow: scroll;
-	}
-	.achievs-text{
-		font-size:16x;
-	}
-
 
 CSS
 	#box-achievs{
@@ -191,7 +178,7 @@ Buildings
   
   *pickaxe|pickaxes
   	name:Pickaxe|Pickaxes
-    desc:A pickaxe will autoclick once every second.           
+    desc:A pickaxe will autoclick once every second.
     //TODO meter el icono
     tags:isBuilding
     cost:25 microbitcoin
@@ -263,7 +250,7 @@ Buildings
     
   *asicB|asicsB
   	name:ASIC chip type B|ASIC chips type B
-    desc:Its sole purpose is mining Bitcoin but much better.<//><b>Effect:</b><.>Produces 270000 Microbitcoin every second.
+    desc:Its sole purpose is mining Bitcoin... but now much better.<//><b>Effect:</b><.>Produces 270000 Microbitcoin every second.
     //TODO añadir icono
     tags:isBuilding isAsic
     cost:5300000000 microbitcoin
@@ -281,7 +268,7 @@ Buildings
     
   *asicS|asicsS
   	name:ASIC chip type S|ASIC chips type S
-    desc:You won't find a miner better than this one here.<//><b>Effect:</b><.>Produces 6.5 Bitcoin every second.
+    desc:You won't find a better miner than this one here.<//><b>Effect:</b><.>Produces 6.5 Bitcoin every second.
     //TODO añadir icono
     tags:isBuilding isAsic
     cost:650000000000 microbitcoin
@@ -327,8 +314,9 @@ Upgrades
 		on click:anim glow
 
     *mineFaster
-		name:Mine Faster
-		desc:Experience make perfection. <//><b>Effect:</b><.>Mine 10% more with each click.
+		// Sleight of Hand significa prestidigitación, lo veo un nombre más fancy que "Mine Faster"
+		name:Sleight of Hand
+		desc:Practice makes perfect. <//><b>Effect:</b><.>Mine 10% more with each click.
 		//TODO icon:
 		cost:50 microbitcoin
 		passive:multiply yield of bitcoinButton by 1,1
@@ -343,7 +331,7 @@ Upgrades
 		req:(pickaxes >=1)
 
 	*uninstallApps
-		name:Unsinstall unuseful apps
+		name:App Cleaning
 		desc:Delete the apps you don't use from your computer.<//><b>Effect:</b><.>Increase the production of your CPUs by 10%.
 		//TODO icon:
 		cost:5000 microbitcoin
@@ -369,11 +357,11 @@ Upgrades
 		req:(gpusC >=1)
     
 	*asicOverclock
-		name:ASIC Overclock 10%
+		name:ASIC Overclock
 		desc:Push your ASICs further to the limit.<//><b>Effect:</b><.>Increase the production of your ASICs by 50%.
     // TODO: New icon
 		icon:https://i.imgur.com/Ng884yH.png
-		cost:1000000 dollars
+		cost:1000000 microbitcoin
 		passive:multiply yield of tag:isASIC by 1.5
 		req:(asicC >=1)
 
@@ -388,7 +376,7 @@ Upgrades
 	
 	*driversUpdate
 		name:Drivers Update
-		desc:Update your drivers optimizes the performance of your GPUs.<//><b>Effect:</b><.>Increase the production of all your FPGAs by 50%.
+		desc:Updating your drivers optimizes the performance of your GPUs.<//><b>Effect:</b><.>Increase the production of all your GPUs by 50%.
 		//TODO: new icon
 		icon:https://i.imgur.com/Ng884yH.png
 		cost:2000000 microbitcoin
@@ -397,16 +385,18 @@ Upgrades
 	
 	//TODO:revise when every other upgrade is done
 	*cheaperElectricity
-		name:Cheaper electricity
-		desc:Your Mining Pool got an offer from the electric company. Mining is now more profitable. <//><b>Effect:</b><.>Increase the production of your Mining Pool by 5%.
+		name:Cheaper Electricity.
+		desc:Your Mining Pool got an offer from the electric company. Mining is now more profitable. <//><b>Effect:</b><.>Increase the production of your Mining Pools by 5%.
 		icon:https://upload.wikimedia.org/wikipedia/commons/2/21/Electricity_warning_sign.svg
-		cost:40000 dollars
+		cost:40000 microbitcoin
 		passive:multiply yield of miningPool by 1.05
 		req:(miningPool >=1)
  
 Achievements
 	*TEMPLATE
 		on click:anim glow
+		
+	// Coin achievements
     
 	*microbitcoinAchiev1
 		name:Gotta start from somewhere.
@@ -414,199 +404,229 @@ Achievements
 		req:1 (microbitcoin:earned)
 		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
 	*microbitcoinAchiev2
-		name:You are great dude!
+		name:Still not enough.
+		desc:Have <b>10</b> Microbitcoin.
+		req:10 (microbitcoin:earned)
+		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+	*microbitcoinAchiev3
+		name:100% ready to make money.
+		desc:Have <b>100</b> Microbitcoin.
+		req:100 (microbitcoin:earned)
+		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+	*microbitcoinAchiev4
+		name:Doing great!
 		desc:Have <b>1000</b> Microbitcoin.
 		req:1000 (microbitcoins:earned)
 		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
-	*microbitcoinAchiev3
-		name:You rock! You are nearer from your first Bitcoin
+	*microbitcoinAchiev5
+		name:10K Magic.
 		desc:Have <b>10000</b> Microbitcoin.
 		req:10000 (microbitcoins:earned)
 		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+	*microbitcoinAchiev6
+		name:Closer to your first Bitcoin.
+		desc:Have <b>100000</b> Microbitcoin.
+		req:100000 (microbitcoins:earned)
+		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+	*microbitcoinAchiev7
+		name:Bit by Bit, you did it.
+		desc:Have <b>1000000</b> Microbitcoin (1 Bitcoin).
+		req:1000000 (microbitcoins:earned)
+		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+	*microbitcoinAchiev8
+		name:You are on a roll!
+		desc:Have <b>10</b> Bitcoin.
+		req:10000000 (microbitcoins:earned)
+		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+	*microbitcoinAchiev9
+		name:Keep on mining, baby!
+		desc:Have <b>100</b> Bitcoin.
+		req:100000000 (microbitcoins:earned)
+		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+	// Faltan más múltiplos
+	*satoshiAch
+		name:Satoshi Nakamoto wants to meet you. 
+		desc: You have <b>1M</b> Bitcoin. You are the person in the world that owns the most Bitcoins.
+		req:1000000000000 (microbitcoins:earned)
+		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+	*allBitcoins
+		name: Every bitcoin that actually exists in the world.
+		desc: You have mined <b>21000000</b> Bitcoin. 
+		req:21000000000000 (microbitcoins:earned)
+		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+		
+	// Click achievements
 
 	*clickAchiev1
-		name:You did it! You have publish your first block
-		desc:Click the computer once.
+		name:You did it!
+		desc:Click the computer once. You have published your first block.
 		req:1 bitcoinButton clicks
 		icon:https://static.thenounproject.com/png/74554-200.png
 	*clickAchiev2
-		name:You are fast! You have publish 100 blocks
-		desc:Click the computer <b>100</b> times.
-		req:100 bitcoinButton clicks
+		name:Getting clickier!
+		desc:Click the computer <b>10</b> times. You have published 10 blocks.
+		req:10 bitcoinButton clicks
 		icon:https://static.thenounproject.com/png/74554-200.png
 	*clickAchiev3
-		name:You have entered the cryptomarket to be the best! You have publish 1000 blocks
-		desc:Click the computer <b>1000</b> times.
+		name:Working fast!
+		desc:Click the computer <b>100</b> times. You have published 100 blocks.
+		req:100 bitcoinButton clicks
+		icon:https://static.thenounproject.com/png/74554-200.png
+	*clickAchiev4
+		name:Entered the cryptomarket to be the best!
+		desc:Click the computer <b>1000</b> times. You have published 1000 blocks
 		req:1000 bitcoinButton clicks
 		icon:https://static.thenounproject.com/png/74554-200.png
+		
+	// Upgrade achievements
 
-	*bitcoinAchiev1
-		name:You are getting better at this!
-		desc:Have <b>1</b> Bitcoin.
-		req:1 (bitcoin:earned)
-		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
-	*bitcoinAchiev2
-		name:You are on a roll!
-		desc:Have <b>1000</b> Bitcoin.
-		req:1000 (bitcoins:earned)
-		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
-	*bitcoinAchiev3
-		name:Continue mining like that!
-		desc:Have <b>10000</b> Bitcoin.
-		req:10000 (bitcoins:earned)
+	*pickaxeUpAch
+		name:Buying another pickaxe.
+		desc:Buy the <b>Dual Wield Pickaxes</b> upgrade.
+		req:1 pickaxeUpgrade
 		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
 
-
-	*pickaxeUPAchiev
-		name:You have upgraded your pickaxes.		desc:Have <b>1</b> pickaxeUpgrade.
-		req: 1 pickaxeUpgrade
+	*uninstAppsUpAch
+		name:A PC that feels new.
+		desc:Buy the <b>App Cleaning</b> upgrade. 
+		req:1 uninstallApps
 		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
 
-	*uninstallAppsUPAchiev
-		name:You have uninstalled your unused apps.
-		desc:Have <b>1</b> uninstallApps. 
-		req: 1 pickaxeUpgrade
+	*cpuOverclockUpAch
+		name:Unleashed your CPUs.
+		desc:Buy the <b>CPU Overclock</b> upgrade. 
+		req:1 cpuOverclock
 		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
 
-	*cpuOverclockUPAchiev
-		name:You have upgraded your CPUs.
-		desc:Have <b>1</b> cpuOverclock. 
-		req: 1 cpuOverclock
+	*gpuOverclockUpAch
+		name:Unleashed your GPUs.
+		desc:Buy the <b>GPU Overclock</b> upgrade.
+		req:1 gpuOverclock
 		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
 
-	*gpuOverclockUPAchiev
-		name:You have upgraded your GPUs.
-		desc:Have <b>1</b> gpuOverclock. 
-		req: 1 gpuOverclock
+	*asicOverclockUpAch
+		name:Unleashed your ASICs.
+		desc:Buy the <b>ASIC Overclock</b> upgrade.
+		req:1 asicOverclock
 		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
 
-	*asicOverclockUPAchiev
-		name:You have upgraded your ASICs.
-		desc:Have <b>1</b> asicOverclock1. 
-		req: 1 asicOverclock1
+	*fpgaOverclockUpAch
+		name:Unleashed your FPGAs.
+		desc:Buy the <b>FPGA Overclock</b> upgrade.
+		req:1 fpgaOverclock
 		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
 
-	*fpgaOverclockUPAchiev
-		name:You have upgraded your FPGAs.
-		desc:You have pushed your FPGAs further to the limit.
-		req: 1 fpgaOverclock
+	*cheaperElectUpAch
+		// Este juego de palabras es to buenardo, actual = current = corriente
+		name:Changed your current plan.
+		desc:Buy the <b>Cheaper Electricity</b> upgrade. 
+		req:1 cheaperElectricity
 		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
 
-	*cheaperElectricityUPAchiev
-		name:Your have upgraded your electricity plan.
-		desc:Have <b>1</b> cheaperElectricity. 
-		req: 1 cheaperElectricity
+	*driversUpdateUpAch
+		name:Up to date.
+		desc:Buy the <b>Drivers Update</b> upgrade. 
+		req:1 driversUpdate
 		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
 
-	*driversUpdateUPAchiev
-		name:Your have updated your drivers.
-		desc:Have <b>1</b> driversUpdate. 
-		req: 1 driversUpdate
-		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
-
-//	*compCleaningUPAchiev
-//		name:Your have cleaned your electric components.
-//		desc:Have <b>1</b> compCleaning. 
-//		req: 1 compCleaning
+//	*compCleaningUpAch
+//		name:Hardware needs cleaning, too.
+//		desc:Buy the <b>???</b> upgrade. 
+//		req:1 compCleaning
 //		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
 
-//	*antivirusCUPAchiev
-//		name:Your have upgraded your Antivirus C.
-//		desc:Have <b>1</b> antivirusC. 
-//		req: 1 antivirusC
+//	*antivirusCUpAch
+//		name:Safety first.
+//		desc:Buy the <b>???</b> upgrade. 
+//		req:1 antivirusC
 //		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
 
-//	*antivirusBUPAchiev
-//		name:Your have  upgraded your Antivirus B.
-//		desc:Have <b>1</b> antivirusB. 
-//		req: 1 antivirusB
+//	*antivirusBUpAch
+//		name:No more pesky ads.
+//		desc:Buy the <b>???</b> upgrade. 
+//		req:1 antivirusB
 //		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
 
-//	*antivirusAUPAchiev
-//		name:Your have upgraded your Antivirus A.
-//		desc:Have <b>1</b> antivirusA. 
-//		req: 1 antivirusA
+//	*antivirusAUpAch
+//		name:Avoiding malware.
+//		desc:Buy the <b>???</b> upgrade. 
+//		req:1 antivirusA
 //		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
 
-//	*antivirusSUPAchiev
-//		name:Your have upgraded your Antivirus S.
-//		desc:Have <b>1</b> antivirusS. 
-//		req: 1 antivirusS
+//	*antivirusSUpAch
+//		name:Your computer got vaccined.
+//		desc:Buy the <b>???</b> upgrade. 
+//		req:1 antivirusS
 //		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
 
-	*cpuAchiev
-		name:Bought your first CPU
+	// Building achievements
+	// Faltan algunos de múltiplos de 10.
+
+	*cpuAch
+		name:Bought your first CPU.
 		desc:Have <b>1</b> CPU.
 		req:1 cpu
 		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
-	*gpuClassCAchiev
-		name:Bought your first GPU class C
+	*gpuClassCAch
+		name:Bought your first GPU class C.
 		desc:Have <b>1</b> GPU class C.
 		req:1 gpuC
 		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
-	*gpuClassBAchiev
-		name:Bought your first GPU class B
+	*gpuClassBAch
+		name:Bought your first GPU class B.
 		desc:Have <b>1</b> GPU class B.
 		req:1 gpuB
 		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
-	*gpuClassAAchiev
-		name:Bought your first GPU class A
+	*gpuClassAAch
+		name:Bought your first GPU class A.
 		desc:Have <b>1</b> GPU class A.
 		req:1 gpuA
 		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
-	*gpuClassSAchiev
-		name:Bought your first GPU class S
+	*gpuClassSAch
+		name:Bought your first GPU class S.
 		desc:Have <b>1</b> GPU class S.
 		req:1 gpuS
 		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
-	*fpgaAchiev
-		name:Bought your first FPGA
+	*fpgaAch
+		name:Bought your first FPGA.
 		desc:Have <b>1</b> FPGA.
 		req:1 fpga
 		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
-	*asicClassCAchiev
-		name:Bought your first ASIC class C
+	*asicClassCAch
+		name:Bought your first ASIC class C.
 		desc:Have <b>1</b> ASIC class C.
 		req:1 asicC
 		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
-	*asicClassBAchiev
-		name:Bought your first ASIC class B
+	*asicClassBAch
+		name:Bought your first ASIC class B.
 		desc:Have <b>1</b> ASIC class B.
 		req:1 asicB
 		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
-	*asicClassAchiev
-		name:Bought your first ASIC class A
+	*asicClassAch
+		name:Bought your first ASIC class A.
 		desc:Have <b>1</b> ASIC class A.
 		req:1 asicA
 		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
-	*asicClassSAchiev
-		name:Bought your first ASIC class S
+	*asicClassSAch
+		name:Bought your first ASIC class S.
 		desc:Have <b>1</b> ASIC class S.
 		req:1 asicS
 		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
-	*cloudAchiev
-		name:You are now working on the cloud
+	*cloudAch
+		// Este juego de palabras también es to bueno, on cloud nine significa muy feliz.
+		name:On Cloud nine.
 		desc:Have <b>1</b> Cloud.
 		req:1 cloud
 		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
-	*miningPoolAchiev
-		name:There's two people on your Mining Pool
-		desc:You have join a mining pool.
+	*miningPoolAch
+		name:Collaborative working.
+		desc:You have joined a mining pool.
 		req:1 miningPool
 		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
-	*dataCenterAchiev
-		name:You have created your first Calc Centre. 
+	/*
+	*dataCenterAch
+		name:Created your first Calc Centre. 
 		desc:Have <b>1</b> Calc Centre.
 		req:1 calcCentre
 		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
-
-	*satoshiAchiev
-		name:Satoshi Nakamoto wants to meet you. 
-		desc: You have <b>1M</b> Bitcoins. You are the person in the world that owns more Bitcoins.
-		req:1000000 (bitcoins:earned)
-		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
-	*allBitcoins
-		name: Congratulations! You have mined all the bitcoins that exist
-		desc: You have mined <b>1M</b> Bitcoins. 
-		req:21000000 (bitcoins:earned)
-		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+	*/

@@ -168,20 +168,90 @@ Resources
         is always:((dollars < 10) * 1 + (dollars >= 10 and dollars < 100) * 10 + (dollars >= 100) * 100)
         always hidden
 
-	*cloverTiming
+	*luckyTiming
 		always hidden
 		on tick:
-			if ((cloverTiming) > 1)
-		 		lose 1 cloverTiming
-			else if ((cloverTiming) <= 1)
-				if ((cloverUpgrade))
-					lose cloverUpgrade
-					multiply yield of tag:isBuilding by 0.5
-					lose 1 cloverTiming
-				end
+			if ((luckyTiming) > 1)
+				multiply yield of tag:isBuilding by 2
+		 		lose 1 luckyTiming
+			else if ((luckyTiming) is 1)
+				multiply yield of tag:isBuilding by 0.5
+				lose 1 luckyTiming
 			end
 		end
-		
+
+	*ineffTiming
+		always hidden
+		on tick:
+			if ((ineffTiming) > 1)
+				multiply yield of cpu by 10/11
+		 		lose 1 ineffTiming
+			else if ((ineffTiming) is 1)
+				multiply yield of cpu by 11/10
+				lose 1 ineffTiming
+			end
+		end
+	
+	*overTiming
+		always hidden
+		on tick:
+			if ((overTiming) > 1)
+				multiply yield of cpu by 5/6
+		 		lose 1 overTiming
+			else if ((overTiming) is 1)
+				multiply yield of cpu by 6/5
+				lose 1 overTiming
+			end
+		end
+
+	*malWTiming
+		always hidden
+		on tick:
+			if ((malWTiming) > 1)
+				multiply yield of tag:isBuilding by 2/3
+		 		lose 1 malWTiming
+			else if ((malWTiming) is 1)
+				multiply yield of tag:isBuilding by 3/2
+				lose 1 malWTiming
+			end
+		end
+	
+	*frozenTiming
+		always hidden
+		on tick:
+			if ((frozenTiming) > 1)
+				multiply yield of tag:isBuilding by 2/3
+		 		lose 1 frozenTiming
+			else if ((frozenTiming) is 1)
+				multiply yield of tag:isBuilding by 3/2
+				lose 1 frozenTiming
+			end
+		end
+
+	*cutTiming
+		always hidden
+		on tick:
+			if ((cutTiming) > 1)
+				multiply yield of tag:isBuilding by 10/17
+		 		lose 1 cutTiming
+			else if ((cutTiming) is 1)
+				multiply yield of tag:isBuilding by 17/10
+				lose 1 cutTiming
+			end
+		end
+
+	*electricTiming
+		always hidden
+		on tick:
+			if ((electricTiming) > 1)
+				multiply yield of tag:isBuilding by 10/11
+		 		lose 1 electricTiming
+			else if ((electricTiming) is 1)
+				multiply yield of tag:isBuilding by 11/10
+				lose 1 electricTiming
+			end
+		end
+
 Buildings
 	*TEMPLATE
 		on click:anim glow
@@ -415,23 +485,38 @@ Upgrades
 		passive:multiply yield of miningPool by 1.05
 		req:(miningPool >=1)
 
-	*cloverUpgrade
-		no buy
-		always hidden
-		passive:multiply yield of tag:isBuilding by 2
-
 Shinies
 	*luckyclover
 		movement:onRight moveLeft wiggle:0.25 growShrink
-		frequency:6
+		frequency:90
 		frequency variation:20
 		icon:https://upload.wikimedia.org/wikipedia/commons/5/53/Tr%C3%A9bol_de_4_hojas.svg
 		class:bigButton
 		on click:
-			yield 61 cloverTiming
-			toast Duplicate the productivity of your buildings and upgrades for 1 minute!
-			if (!(cloverUpgrade)) 
-				yield cloverUpgrade
+			$handicaps=random(0,5)
+			if (chance(70%))
+				yield 61 luckyTiming
+				toast You are lucky! Duplicate the productivity of your buildings for 1 minute
+			else
+				if ($handicaps=0)
+					yield 31 ineffTiming
+					toast You have installed an inefficient program. This decreases the productivity of your CPUs by 10% for 30 seconds.
+				else if ($handicaps=1)
+					yield 61 overTiming
+					toast Your CPU is overheated, so you need to power it off and wait. This decreases the productivity of your CPUs by 20% for 1 minute.
+				else if ($handicaps=2)
+					yield 61 malWTiming
+					toast You have a Malware! Somebody is stealing your resources. This decreases your total productivity by 50% for 1 minute.
+				else if ($handicaps=3)
+					yield 31 frozenTiming
+					toast Your system is frozen. You should reboot it. This decreases your total productivity by 50% for 30 seconds.
+				else if ($handicaps=4)
+					yield 11 cutTiming
+					toast A Power cut in your city causes you tremendous losses. This decreases your total productivity by 70% for 10 seconds.
+				else 
+					yield 121 electricTiming
+					toast The electricity price has raised this month, so your production is now less profitable. This decreases your total productivity by 10% for 2 minutes.
+				end
 			end
 		end
 

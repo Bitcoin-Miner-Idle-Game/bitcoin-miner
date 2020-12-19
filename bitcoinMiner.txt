@@ -448,7 +448,7 @@ Achievements
 //		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
 
 	*pickaxeUPAchiev
-		name:You have upgraded your pickaxes.//		desc:Have <b>1</b> pickaxeUpgrade.
+		name:You have upgraded your pickaxes.		desc:Have <b>1</b> pickaxeUpgrade.
 		req: 1 pickaxeUpgrade
 		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
 

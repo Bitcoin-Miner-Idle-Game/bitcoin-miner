@@ -295,8 +295,8 @@ Upgrades
 		passive:multiply yield of pickaxes by 2
 		req:(pickaxes >=1)
 	
-	*desinstallApps
-		name:Desinstall unuseful apps
+	*uninstallApps
+		name:Unsinstall unuseful apps
 		desc:Delete the apps you don't use from your computer.<//><b>Effect:</b><.>Increase the production of your CPUs by 10%.
 		//TODO icon:
 		cost:5000 microbitcoin
@@ -338,7 +338,16 @@ Upgrades
 		cost:1000000 microbitcoin
 		passive:multiply yield of fpgas by 1.5
 		req:(fpgas >=1)
- 
+	
+	*driversUpdate
+		name:Drivers Update
+		desc:Update your drivers optimizes the performance of your GPUs.<//><b>Effect:</b><.>Increase the production of all your FPGAs by 50%.
+		//TODO: new icon
+		icon:https://i.imgur.com/Ng884yH.png
+		cost:2000000 microbitcoin
+		passive:multiply yield of tag:isGPU by 1.5
+		req:(gpusC >=1)
+	
 	//TODO:revise when every other upgrade is done
 	*cheaperElectricity
 		name:Cheaper electricity

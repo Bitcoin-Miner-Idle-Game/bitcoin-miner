@@ -12,10 +12,30 @@ Settings
 	building cost refund:50%
     spritesheet:icons, 48 by 48, https://raw.githubusercontent.com/Bitcoin-Miner-Idle-Game/bitcoin-miner/main/img/icons_spritesheet.png
 	stylesheet:stuff/bigBlue.css
- 
+CSS
+	#box-achievs{
+		position:fixed;
+		top: 400px;
+		left: 0px;
+		width: 220px;
+		height: 200px;
+		overflow: scroll;
+	}
+	.achievs-text{
+		font-size:16x;
+	}
+
+
 Layout
 	use default
- 
+	*achievs
+		in:main
+		header: Achievements
+		icons:hide
+		names:show
+		tooltip origin:right
+		contains:Achievements
+	
 Buttons
 	*bitcoinButton
 		name:Computer
@@ -312,9 +332,128 @@ Upgrades
 Achievements
 	*TEMPLATE
 		on click:anim glow
- 
-	*bitcoinCount1
-		name:Gotta start from somewhere
-		desc:Have <b>1</b> microbitcoin.
-		req:1 microbitcoin
-		//icon:	
+    
+	*microbitcoinAchiev1
+		name:Gotta start from somewhere.
+		desc:Have <b>1</b> Microbitcoin.
+		req:1 (microbitcoin:earned)
+		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+	*microbitcoinAchiev2
+		name:You are great dude!
+		desc:Have <b>1000</b> Microbitcoin.
+		req:1000 (microbitcoins:earned)
+		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+	*microbitcoinAchiev3
+		name:You rock! You are nearer from your first Bitcoin
+		desc:Have <b>10000</b> Microbitcoin.
+		req:10000 (microbitcoins:earned)
+		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+
+	*clickAchiev1
+		name:You did it! You have publish your first block
+		desc:Click the computer once.
+		req:1 bitcoinButton clicks
+		icon:https://static.thenounproject.com/png/74554-200.png
+	*clickAchiev2
+		name:You are fast! You have publish 100 blocks
+		desc:Click the computer <b>100</b> times.
+		req:100 bitcoinButton clicks
+		icon:https://static.thenounproject.com/png/74554-200.png
+	*clickAchiev3
+		name:You have entered the cryptomarket to be the best! You have publish 1000 blocks
+		desc:Click the computer <b>1000</b> times.
+		req:1000 bitcoinButton clicks
+		icon:https://static.thenounproject.com/png/74554-200.png
+
+	*bitcoinAchiev1
+		name:You are getting better at this!
+		desc:Have <b>1</b> Bitcoin.
+		req:1 (bitcoin:earned)
+		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+	*bitcoinAchiev2
+		name:You are on a roll!
+		desc:Have <b>1000</b> Bitcoin.
+		req:1000 (bitcoins:earned)
+		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+	*bitcoinAchiev3
+		name:Continue mining like that!
+		desc:Have <b>10000</b> Bitcoin.
+		req:10000 (bitcoins:earned)
+		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+
+//	*cpuAchiev
+//		name:Bought your first CPU
+//		desc:Have <b>1</b> CPU.
+//		req:1 cpu
+//		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+//	*gpuClassCAchiev
+//		name:Bought your first GPU class C
+//		desc:Have <b>1</b> GPU class C.
+//		req:1 gpuC
+//		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+//	*gpuClassBAchiev
+//		name:Bought your first GPU class B
+//		desc:Have <b>1</b> GPU class B.
+//		req:1 gpuB
+//		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+//	*gpuClassAAchiev
+//		name:Bought your first GPU class A
+//		desc:Have <b>1</b> GPU class A.
+//		req:1 gpuA
+//		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+//	*gpuClassSAchiev
+//		name:Bought your first GPU class S
+//		desc:Have <b>1</b> GPU class S.
+//		req:1 gpuS
+//		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+//	*fpgaAchiev
+//		name:Bought your first FPGA
+//		desc:Have <b>1</b> FPGA.
+//		req:1 fpga
+//		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+//	*asicClassCAchiev
+//		name:Bought your first ASIC class C
+//		desc:Have <b>1</b> ASIC class C.
+//		req:1 asicC
+//		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+//	*asicClassBAchiev
+//		name:Bought your first ASIC class B
+//		desc:Have <b>1</b> ASIC class B.
+//		req:1 asicB
+//		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+//	*asicClassAchiev
+//		name:Bought your first ASIC class A
+//		desc:Have <b>1</b> ASIC class A.
+//		req:1 asicA
+//		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+//	*asicClassSAchiev
+//		name:Bought your first ASIC class S
+//		desc:Have <b>1</b> ASIC class S.
+//		req:1 asicS
+//		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+//	*cloudAchiev
+//		name:You are now working on the cloud
+//		desc:Have <b>1</b> Cloud.
+//		req:1 cloud
+//		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+//	*miningPoolAchiev
+//		name:There's two people on your Mining Pool
+//		desc:You have join a mining pool.
+//		req:1 miningPool
+//		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+//	*dataCenterAchiev
+//		name:You have created your first Calc Centre. 
+//		desc:Have <b>1</b> Calc Centre.
+//		req:1 calcCentre
+//		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+
+	*satoshiAchiev
+		name:Satoshi Nakamoto wants to meet you. 
+		desc: You have <b>1M</b> Bitcoins. You are the person in the world that owns more Bitcoins.
+		req:1000000 (bitcoins:earned)
+		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+	*allBitcoins
+		name: Congratulations! You have mined all the bitcoins that exist
+		desc: You have mined <b>1M</b> Bitcoins. 
+		req:21000000 (bitcoins:earned)
+		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png

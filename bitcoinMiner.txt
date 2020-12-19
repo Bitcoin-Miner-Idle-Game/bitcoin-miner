@@ -414,8 +414,8 @@ Upgrades
 	*cloverUpgrade
 		no buy
 		always hidden
-		passive:multiply yield of tag:isBuilding by 2
-		passive:multiply yield of tag:isUpgrade by 2
+		passive:multiply yield of tag:isBuilding by 1,1
+		passive:multiply yield of tag:isUpgrade by 1,1
 
 Shinies
 	*luckyclover
@@ -425,7 +425,7 @@ Shinies
 		icon:https://upload.wikimedia.org/wikipedia/commons/5/53/Tr%C3%A9bol_de_4_hojas.svg
 		class:bigButton
 		on click:
-			toast Double the productivity of your buildings and upgrades for the next minute!
+			toast The Productivity of your buildings and upgrades increases by 10%!
 			grant 60 cloverTiming
 			if (!(cloverUpgrade)) yield cloverUpgrade
 		end

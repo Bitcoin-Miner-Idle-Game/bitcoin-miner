@@ -177,7 +177,93 @@ Resources
     *dollarsExchangingBTC
         always hidden
         is always:(4.9 * pow(10, dollarsLog + 1))
- 
+
+
+	*luckyTiming
+		always hidden
+		on tick:
+			if ((luckyTiming) > 1)
+				multiply yield of tag:isBuilding by 2
+		 		lose 1 luckyTiming
+			else if ((luckyTiming) is 1)
+				multiply yield of tag:isBuilding by 0.5
+				lose 1 luckyTiming
+			end
+		end
+
+	*ineffTiming
+		always hidden
+		on tick:
+			if ((ineffTiming) > 1)
+				multiply yield of cpu by 10/11
+		 		lose 1 ineffTiming
+			else if ((ineffTiming) is 1)
+				multiply yield of cpu by 11/10
+				lose 1 ineffTiming
+			end
+		end
+	
+	*overTiming
+		always hidden
+		on tick:
+			if ((overTiming) > 1)
+				multiply yield of cpu by 5/6
+		 		lose 1 overTiming
+			else if ((overTiming) is 1)
+				multiply yield of cpu by 6/5
+				lose 1 overTiming
+			end
+		end
+
+	*malWTiming
+		always hidden
+		on tick:
+			if ((malWTiming) > 1)
+				multiply yield of tag:isBuilding by 2/3
+		 		lose 1 malWTiming
+			else if ((malWTiming) is 1)
+				multiply yield of tag:isBuilding by 3/2
+				lose 1 malWTiming
+			end
+		end
+	
+	*frozenTiming
+		always hidden
+		on tick:
+			if ((frozenTiming) > 1)
+				multiply yield of tag:isBuilding by 2/3
+		 		lose 1 frozenTiming
+			else if ((frozenTiming) is 1)
+				multiply yield of tag:isBuilding by 3/2
+				lose 1 frozenTiming
+			end
+		end
+
+	*cutTiming
+		always hidden
+		on tick:
+			if ((cutTiming) > 1)
+				multiply yield of tag:isBuilding by 10/17
+		 		lose 1 cutTiming
+			else if ((cutTiming) is 1)
+				multiply yield of tag:isBuilding by 17/10
+				lose 1 cutTiming
+			end
+		end
+
+	*electricTiming
+		always hidden
+		on tick:
+			if ((electricTiming) > 1)
+				multiply yield of tag:isBuilding by 10/11
+		 		lose 1 electricTiming
+			else if ((electricTiming) is 1)
+				multiply yield of tag:isBuilding by 11/10
+				lose 1 electricTiming
+			end
+		end
+    
+    
 Buildings
 	*TEMPLATE
 		on click:anim glow
@@ -327,7 +413,6 @@ Buildings
 		on tick:yield 100000 microbitcoins
 		req:1000 microbitcoins:earned
   */
- 
 Upgrades
 	*TEMPLATE
 		on click:anim glow
@@ -344,6 +429,7 @@ Upgrades
     *pickaxeUpgrade
 		name:Dual Wield Pickaxes
 		desc:Two hands work better than one.<//><b>Effect:</b><.>Double the production of your pickaxes.
+		tags:isUpgrade
 		// TODO icon:
 		cost:1000 microbitcoin
 		passive:multiply yield of pickaxes by 2
@@ -352,6 +438,7 @@ Upgrades
 	*uninstallApps
 		name:App Cleaning
 		desc:Delete the apps you don't use from your computer.<//><b>Effect:</b><.>Increase the production of your CPUs by 10%.
+		tags:isUpgrade
 		//TODO icon:
 		cost:5000 microbitcoin
 		passive:multiply yield of cpus by 1.1
@@ -360,7 +447,8 @@ Upgrades
 	*cpuOverclock
 		name:CPU Overclock
     	desc:Push your CPU further to the limit.<//><b>Effect:</b><.>Increase the production of your CPUs by 50%.
-    // TODO: new icon
+    	tags:isUpgrade
+		// TODO: new icon
 		icon:https://i.imgur.com/Ng884yH.png
 		cost:100000 microbitcoin
 		passive:multiply yield of cpus by 1.5
@@ -369,7 +457,8 @@ Upgrades
 	*gpuOverclock
 		name:GPU Overclock
 		desc:Push your GPUs further to the limit.<//><b>Effect:</b><.>Increase the production of all your GPUs by 50%.
-    // TODO: new icon
+    	tags:isUpgrade
+		// TODO: new icon
 		icon:https://i.imgur.com/Ng884yH.png
 		cost:100000 microbitcoin
 		passive:multiply yield of tag:isGPU by 1.5
@@ -378,7 +467,8 @@ Upgrades
 	*asicOverclock
 		name:ASIC Overclock
 		desc:Push your ASICs further to the limit.<//><b>Effect:</b><.>Increase the production of your ASICs by 50%.
-    // TODO: New icon
+    	tags:isUpgrade
+		// TODO: New icon
 		icon:https://i.imgur.com/Ng884yH.png
 		cost:1000000 microbitcoin
 		passive:multiply yield of tag:isASIC by 1.5
@@ -387,7 +477,8 @@ Upgrades
     *fpgaOverclock
 		name:FPGA Overclock
 		desc:Push your FPGAs further to the limit.<//><b>Effect:</b><.>Increase the production of all your FPGAs by 50%.
-    // TODO: new icon
+    	tags:isUpgrade
+		// TODO: new icon
 		icon:https://i.imgur.com/Ng884yH.png
 		cost:1000000 microbitcoin
 		passive:multiply yield of fpgas by 1.5
@@ -396,6 +487,7 @@ Upgrades
 	*driversUpdate
 		name:Drivers Update
 		desc:Updating your drivers optimizes the performance of your GPUs.<//><b>Effect:</b><.>Increase the production of all your GPUs by 50%.
+		tags:isUpgrade
 		//TODO: new icon
 		icon:https://i.imgur.com/Ng884yH.png
 		cost:2000000 microbitcoin
@@ -431,6 +523,41 @@ Upgrades
 		passive:multiply yield of tag:isBuilding by 1.1
 		// TODO
 		req:(poolRecruiting)
+
+Shinies
+	*luckyclover
+		movement:onRight moveLeft wiggle:0.25 growShrink
+		frequency:90
+		frequency variation:20
+		icon:https://upload.wikimedia.org/wikipedia/commons/5/53/Tr%C3%A9bol_de_4_hojas.svg
+		class:bigButton
+		on click:
+			$handicaps=random(0,5)
+			if (chance(70%))
+				yield 61 luckyTiming
+				toast You are lucky! Duplicate the productivity of your buildings for 1 minute
+			else
+				if ($handicaps=0)
+					yield 31 ineffTiming
+					toast You have installed an inefficient program. This decreases the productivity of your CPUs by 10% for 30 seconds.
+				else if ($handicaps=1)
+					yield 61 overTiming
+					toast Your CPU is overheated, so you need to power it off and wait. This decreases the productivity of your CPUs by 20% for 1 minute.
+				else if ($handicaps=2)
+					yield 61 malWTiming
+					toast You have a Malware! Somebody is stealing your resources. This decreases your total productivity by 50% for 1 minute.
+				else if ($handicaps=3)
+					yield 31 frozenTiming
+					toast Your system is frozen. You should reboot it. This decreases your total productivity by 50% for 30 seconds.
+				else if ($handicaps=4)
+					yield 11 cutTiming
+					toast A Power cut in your city causes you tremendous losses. This decreases your total productivity by 70% for 10 seconds.
+				else 
+					yield 121 electricTiming
+					toast The electricity price has raised this month, so your production is now less profitable. This decreases your total productivity by 10% for 2 minutes.
+				end
+			end
+		end
  
 Achievements
 	*TEMPLATE

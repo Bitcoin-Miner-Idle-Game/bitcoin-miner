@@ -129,6 +129,7 @@ Buttons
 Resources
 	*microbitcoin|microbitcoins
 		name:Microbitcoin|Microbitcoins
+		text: Microbitcoin: [microbitcoin] (+[microbitcoin:ps]/s)
 		desc: This is how many Microbitcoins are in your possesion. A Microbitcoin is worth 0.000001 Bitcoin. Become rich and dominate the cryptomarket!
 		icon:https://i.imgur.com/lmoXat0.png
 		class:noBackground
@@ -137,6 +138,7 @@ Resources
  
 	*bitcoin|bitcoins
 		name:Bitcoin|Bitcoins
+		text: Bitcoin: [bitcoin] (+[floor(microbitcoin:ps*0.000001)].[(microbitcoin:ps*0.000001*pow(10,3))%pow(10,3)]/s) 
 		desc: This is how many Bitcoins are in your possesion. Become rich and dominate the cryptomarket!
 		icon:https://i.imgur.com/lmoXat0.png
 		class:noBackground
@@ -146,6 +148,7 @@ Resources
  
 	*dollar|dollars
 		name:US Dollar|US Dollars
+		text: US Dollars: [dollar]
 		desc: Exchanging your Bitcoins to US dollars, this is how many dollars you will obtain if you sell your Bitcoins now.
 		icon:https://i.imgur.com/vfF2jpP.jpeg
 		class:noBackground

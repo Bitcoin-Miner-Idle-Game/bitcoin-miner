@@ -52,8 +52,10 @@ Buttons
  
     *bitcoin2Dollar
         name:Bitcoin exchanger
-        desc:Exchange all your microbitcoins for [bitcoinExchanging] dollars
+        desc:Exchange all your microbitcoins for [bitcoinExchanging] dollars (2% commission)
         on click:
+            hide bitcoin2Dollar
+            lose bitcoinExchangingAcc
             yield bitcoinExchanging dollars
             lose microbitcoins microbitcoins
         end
@@ -65,18 +67,20 @@ Buttons
         hidden
 
     *dollar2Bitcoin
-      name:Dollar exchanger
-      desc:Exchange all your dollars for [dollarsExchanging] microbitcoin
-      on click:
-              yield dollarsExchanging microbitcoins
-              lose dollars dollars
-          end
-          // TODO poner el icono que sea
-      icon:https://i.imgur.com/lmoXat0.png
-      icon class:shadowed
-      tooltip origin:bottom
-      tooltip class:red
-      hidden
+        name:Dollar exchanger
+        desc:Exchange all your dollars for [dollarsExchanging] microbitcoin (2% commission)
+        on click:
+            hide dollar2Bitcoin
+            lose dollarsExchangingAcc
+            yield dollarsExchanging microbitcoins
+            lose dollars dollars
+        end
+        // TODO poner el icono que sea
+        icon:https://i.imgur.com/lmoXat0.png
+        icon class:shadowed
+        tooltip origin:bottom
+        tooltip class:red
+        hidden
       
   //TODO botones para hacer trampas en fase de desarrollo, borrar antes de subir
     *cheat1000
@@ -155,22 +159,38 @@ Resources
         always hidden
         on tick:
             if (bitcoinExchanging > 0)
-                show bitcoin2Dollar
+                if (bitcoinExchangingAcc = 1)
+                    show bitcoin2Dollar
+                else
+                    yield 1 bitcoinExchangingAcc
+                end
             else
+                lose bitcoinExchangingAcc bitcoinExchangingAcc
                 hide bitcoin2Dollar
             end
         end
+    
+    *bitcoinExchangingAcc
+        always hidden
     
     *dollarsExchanging
         is always:(floor(dollars * pow(10, 6) / 20000) * 0.98)
         always hidden
         on tick:
             if (dollarsExchanging > 0)
-                show dollar2Bitcoin
+                if (dollarsExchangingAcc = 1)
+                    show dollar2Bitcoin
+                else
+                    yield 1 dollarsExchangingAcc
+                end
             else
+                lose dollarsExchangingAcc dollarsExchangingAcc
                 hide dollar2Bitcoin
             end
         end
+    
+    *dollarsExchangingAcc
+        always hidden
  
 Buildings
 	*TEMPLATE

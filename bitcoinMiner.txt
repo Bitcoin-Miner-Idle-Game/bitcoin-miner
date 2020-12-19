@@ -26,6 +26,20 @@ CSS
 	}
 
 
+CSS
+	#box-achievs{
+		position: absolute;
+        position-anchor: 0% 100%;
+		bottom: 0px;
+		left: 0px;
+		width: 220px;
+		height: 28%;
+		overflow: scroll;
+	}
+	.achievs-text{
+		font-size:16x;
+	}
+
 Layout
 	use default
 	*achievs
@@ -219,6 +233,7 @@ Buildings
   	name:ASIC chip type C|ASIC chips type C
     desc:A computarized device that was designed for the sole purpose of mining Bitcoin. It is able to mine Bitcoin in a more efficient way than a standard computer.<//><b>Effect:</b><.>Produces 70000 Microbitcoin every second.
     //TODO añadir icono
+	  tag:isASIC
     cost:500000000 microbitcoin
     on tick:yield 70000 microbitcoin
     req:(gpusC + gpusB + gpusA + gpusS >= 25)
@@ -227,6 +242,7 @@ Buildings
   	name:ASIC chip type B|ASIC chips type B
     desc:Its sole purpose is mining Bitcoin but much better.<//><b>Effect:</b><.>Produces 270000 Microbitcoin every second.
     //TODO añadir icono
+	  tag:isASIC
     cost:5300000000 microbitcoin
     on tick:yield 270000 microbitcoin
     req:(asicC >= 10)
@@ -235,6 +251,7 @@ Buildings
   	name:ASIC chip type A|ASIC chips type A
     desc:A Super Incredible Circuit.<//><b>Effect:</b><.>Produces 1.28 Bitcoin every second.
     //TODO añadir icono
+	  tag:isASIC
     cost:60000000000 microbitcoin
     on tick:yield 1280000 microbitcoin
     req:(asicB >= 10)
@@ -243,6 +260,7 @@ Buildings
   	name:ASIC chip type S|ASIC chips type S
     desc:You won't find a miner better than this one here.<//><b>Effect:</b><.>Produces 6.5 Bitcoin every second.
     //TODO añadir icono
+	  tag:isASIC
     cost:650000000000 microbitcoin
     on tick:yield 6500000 microbitcoin
     req:(asicA >= 10)
@@ -274,18 +292,34 @@ Buildings
 Upgrades
 	*TEMPLATE
 		on click:anim glow
-    
-  *pickaxeUpgrade
+
+    *mineFaster
+		name:Mine Faster
+		desc:Experience make perfection. <//><b>Effect:</b><.>Mine 10% more with each click.
+		//TODO icon:
+		cost:50 microbitcoin
+		passive:multiply yield of bitcoinButton by 1,1
+		req:(microbitcoin:earned > 200)
+	
+    *pickaxeUpgrade
 		name:Dual Wield Pickaxes
 		desc:Two hands work better than one.<//><b>Effect:</b><.>Double the production of your pickaxes.
 		// TODO icon:
 		cost:1000 microbitcoin
 		passive:multiply yield of pickaxes by 2
 		req:(pickaxes >=1)
- 
+
+	*uninstallApps
+		name:Unsinstall unuseful apps
+		desc:Delete the apps you don't use from your computer.<//><b>Effect:</b><.>Increase the production of your CPUs by 10%.
+		//TODO icon:
+		cost:5000 microbitcoin
+		passive:multiply yield of cpus by 1.1
+		req:(cpus >=1)
+
 	*cpuOverclock
 		name:CPU Overclock
-    desc:Push your CPU further to the limit.<//><b>Effect:</b><.>Increase the production of your CPUs by 50%.
+    	desc:Push your CPU further to the limit.<//><b>Effect:</b><.>Increase the production of your CPUs by 50%.
     // TODO: new icon
 		icon:https://i.imgur.com/Ng884yH.png
 		cost:100000 microbitcoin
@@ -301,7 +335,16 @@ Upgrades
 		passive:multiply yield of tag:isGPU by 1.5
 		req:(gpusC >=1)
     
-  *fpgaOverclock
+	*asicOverclock
+		name:ASIC Overclock 10%
+		desc:Push your ASICs further to the limit.<//><b>Effect:</b><.>Increase the production of your ASICs by 50%.
+    // TODO: New icon
+		icon:https://i.imgur.com/Ng884yH.png
+		cost:1000000 dollars
+		passive:multiply yield of tag:isASIC by 1.5
+		req:(asicC >=1)
+
+    *fpgaOverclock
 		name:FPGA Overclock
 		desc:Push your FPGAs further to the limit.<//><b>Effect:</b><.>Increase the production of all your FPGAs by 50%.
     // TODO: new icon
@@ -309,18 +352,17 @@ Upgrades
 		cost:1000000 microbitcoin
 		passive:multiply yield of fpgas by 1.5
 		req:(fpgas >=1)
- 
- /*
-	*asicOverclock1
-		name:ASIC Overclock 10%
-		desc:Push your ASICs further to the limit.<//><b>Effect:</b><.>Increase the production of your ASICs by 10%.
-    // TODO: New icon
+	
+	*driversUpdate
+		name:Drivers Update
+		desc:Update your drivers optimizes the performance of your GPUs.<//><b>Effect:</b><.>Increase the production of all your FPGAs by 50%.
+		//TODO: new icon
 		icon:https://i.imgur.com/Ng884yH.png
-		cost:10000 dollars
-		passive:multiply yield of bitcoinASIC by 1.1
-		req:(bitcoinASIC >=1)
-  */
- 
+		cost:2000000 microbitcoin
+		passive:multiply yield of tag:isGPU by 1.5
+		req:(gpusC >=1)
+	
+	//TODO:revise when every other upgrade is done
 	*cheaperElectricity
 		name:Cheaper electricity
 		desc:Your Mining Pool got an offer from the electric company. Mining is now more profitable. <//><b>Effect:</b><.>Increase the production of your Mining Pool by 5%.
@@ -381,71 +423,6 @@ Achievements
 		req:10000 (bitcoins:earned)
 		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
 
-//	*cpuAchiev
-//		name:Bought your first CPU
-//		desc:Have <b>1</b> CPU.
-//		req:1 cpu
-//		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
-//	*gpuClassCAchiev
-//		name:Bought your first GPU class C
-//		desc:Have <b>1</b> GPU class C.
-//		req:1 gpuC
-//		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
-//	*gpuClassBAchiev
-//		name:Bought your first GPU class B
-//		desc:Have <b>1</b> GPU class B.
-//		req:1 gpuB
-//		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
-//	*gpuClassAAchiev
-//		name:Bought your first GPU class A
-//		desc:Have <b>1</b> GPU class A.
-//		req:1 gpuA
-//		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
-//	*gpuClassSAchiev
-//		name:Bought your first GPU class S
-//		desc:Have <b>1</b> GPU class S.
-//		req:1 gpuS
-//		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
-//	*fpgaAchiev
-//		name:Bought your first FPGA
-//		desc:Have <b>1</b> FPGA.
-//		req:1 fpga
-//		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
-//	*asicClassCAchiev
-//		name:Bought your first ASIC class C
-//		desc:Have <b>1</b> ASIC class C.
-//		req:1 asicC
-//		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
-//	*asicClassBAchiev
-//		name:Bought your first ASIC class B
-//		desc:Have <b>1</b> ASIC class B.
-//		req:1 asicB
-//		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
-//	*asicClassAchiev
-//		name:Bought your first ASIC class A
-//		desc:Have <b>1</b> ASIC class A.
-//		req:1 asicA
-//		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
-//	*asicClassSAchiev
-//		name:Bought your first ASIC class S
-//		desc:Have <b>1</b> ASIC class S.
-//		req:1 asicS
-//		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
-//	*cloudAchiev
-//		name:You are now working on the cloud
-//		desc:Have <b>1</b> Cloud.
-//		req:1 cloud
-//		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
-//	*miningPoolAchiev
-//		name:There's two people on your Mining Pool
-//		desc:You have join a mining pool.
-//		req:1 miningPool
-//		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
-//	*dataCenterAchiev
-//		name:You have created your first Calc Centre. 
-//		desc:Have <b>1</b> Calc Centre.
-//		req:1 calcCentre
-//		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
 
 	*pickaxeUPAchiev
 		name:You have upgraded your pickaxes.		desc:Have <b>1</b> pickaxeUpgrade.
@@ -523,6 +500,72 @@ Achievements
 //		desc:Have <b>1</b> antivirusS. 
 //		req: 1 antivirusS
 //		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+
+	*cpuAchiev
+		name:Bought your first CPU
+		desc:Have <b>1</b> CPU.
+		req:1 cpu
+		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+	*gpuClassCAchiev
+		name:Bought your first GPU class C
+		desc:Have <b>1</b> GPU class C.
+		req:1 gpuC
+		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+	*gpuClassBAchiev
+		name:Bought your first GPU class B
+		desc:Have <b>1</b> GPU class B.
+		req:1 gpuB
+		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+	*gpuClassAAchiev
+		name:Bought your first GPU class A
+		desc:Have <b>1</b> GPU class A.
+		req:1 gpuA
+		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+	*gpuClassSAchiev
+		name:Bought your first GPU class S
+		desc:Have <b>1</b> GPU class S.
+		req:1 gpuS
+		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+	*fpgaAchiev
+		name:Bought your first FPGA
+		desc:Have <b>1</b> FPGA.
+		req:1 fpga
+		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+	*asicClassCAchiev
+		name:Bought your first ASIC class C
+		desc:Have <b>1</b> ASIC class C.
+		req:1 asicC
+		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+	*asicClassBAchiev
+		name:Bought your first ASIC class B
+		desc:Have <b>1</b> ASIC class B.
+		req:1 asicB
+		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+	*asicClassAchiev
+		name:Bought your first ASIC class A
+		desc:Have <b>1</b> ASIC class A.
+		req:1 asicA
+		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+	*asicClassSAchiev
+		name:Bought your first ASIC class S
+		desc:Have <b>1</b> ASIC class S.
+		req:1 asicS
+		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+	*cloudAchiev
+		name:You are now working on the cloud
+		desc:Have <b>1</b> Cloud.
+		req:1 cloud
+		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+	*miningPoolAchiev
+		name:There's two people on your Mining Pool
+		desc:You have join a mining pool.
+		req:1 miningPool
+		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+	*dataCenterAchiev
+		name:You have created your first Calc Centre. 
+		desc:Have <b>1</b> Calc Centre.
+		req:1 calcCentre
+		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
 
 	*satoshiAchiev
 		name:Satoshi Nakamoto wants to meet you. 

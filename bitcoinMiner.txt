@@ -794,10 +794,25 @@ Achievements
 		desc:You have joined a mining pool.
 		req:1 pool
 		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
-	/*
 	*dataCenterAch
 		name:Calculus Rhapsody. 
 		desc:Have <b>1</b> Calc Centre.
 		req:1 calcCentre
 		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
-	*/
+	//Shinies
+	*luckyClover1Ach
+		name:Little lucky. 
+		desc:Have clicked in <b>1</b> luckyClover.
+		req:1 luckyClover
+		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+	*luckyClover10Ach
+		name:Normal lucky. 
+		desc:Have clicked in <b>10</b> luckyClover.
+		req:1 luckyClover
+		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+	*luckyClover100Ach
+		name:Huge lucky. 
+		desc:Have clicked in <b>100</b> luckyClover.
+		req:1 luckyClover
+		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+	

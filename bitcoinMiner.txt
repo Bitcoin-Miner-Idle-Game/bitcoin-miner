@@ -335,11 +335,11 @@ Upgrades
     *mineFaster
 		// Sleight of Hand significa prestidigitación, lo veo un nombre más fancy que "Mine Faster"
 		name:Sleight of Hand
-		desc:Practice makes perfect. <//><b>Effect:</b><.>Mine 10% more with each click.
+		desc:Practice makes perfect. <//><b>Effect:</b><.>Mine twice as efficiently with each click.
 		//TODO icon:
 		cost:50 microbitcoin
-		passive:multiply yield of bitcoinButton by 1,1
-		req:(microbitcoin:earned > 200)
+		passive:multiply yield of bitcoinButton by 2
+		req:(microbitcoin:earned >= 200)
 	
     *pickaxeUpgrade
 		name:Dual Wield Pickaxes
@@ -401,15 +401,36 @@ Upgrades
 		cost:2000000 microbitcoin
 		passive:multiply yield of tag:isGPU by 1.5
 		req:(gpusC >=1)
+		
+	*compCleaning
+		name:Hardware cleaning.
+		desc:Just make sure not to use water.<//><b>Effect:</b><.>Increase the production of all your stuff by 10%.
+		//TODO: new icon
+		icon:https://i.imgur.com/Ng884yH.png
+		cost:1000000 microbitcoin
+		passive:multiply yield of tag:isBuilding by 1.1
+		// TODO
+		req:(driversUpdate)
+		
+	*poolRecruiting
+		name:Mining Pool Recruiting.
+		desc:More people are joining your mining pools.<//><b>Effect:</b><.>Increase the production of your mining pools by 50%.
+		//TODO: new icon
+		icon:https://i.imgur.com/Ng884yH.png
+		cost:1000000000000 microbitcoin
+		passive:multiply yield of pools by 1.5
+		// TODO
+		req:(pools >=1)
 	
 	//TODO:revise when every other upgrade is done
 	*cheaperElectricity
 		name:Cheaper Electricity.
-		desc:Your Mining Pool got an offer from the electric company. Mining is now more profitable. <//><b>Effect:</b><.>Increase the production of your Mining Pools by 5%.
+		desc:You just got an offer from the electric company. Mining is now more profitable. <//><b>Effect:</b><.>Increase the production of all your stuff by 10%.
 		icon:https://upload.wikimedia.org/wikipedia/commons/2/21/Electricity_warning_sign.svg
-		cost:40000 microbitcoin
-		passive:multiply yield of pool by 1.05
-		req:(pool >=1)
+		cost:2000000000000 microbitcoin
+		passive:multiply yield of tag:isBuilding by 1.1
+		// TODO
+		req:(poolRecruiting)
  
 Achievements
 	*TEMPLATE
@@ -580,29 +601,33 @@ Achievements
 
 	// Building achievements
 	// Faltan algunos de múltiplos de 10.
-
+	*pickaxeAch
+		name:Oldschool mining.
+		desc:Have <b>1</b> pickaxe.
+		req:1 pickaxe
+		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
 	*cpuAch
-		name:Bought your first CPU.
+		name:Technological revolution.
 		desc:Have <b>1</b> CPU.
 		req:1 cpu
 		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
 	*gpuClassCAch
-		name:Bought your first GPU class C.
+		name:Just need a monitor now.
 		desc:Have <b>1</b> GPU class C.
 		req:1 gpuC
 		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
 	*gpuClassBAch
-		name:Bought your first GPU class B.
+		name:Graphical mining.
 		desc:Have <b>1</b> GPU class B.
 		req:1 gpuB
 		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
 	*gpuClassAAch
-		name:Bought your first GPU class A.
+		name:Now with raytracing.
 		desc:Have <b>1</b> GPU class A.
 		req:1 gpuA
 		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
 	*gpuClassSAch
-		name:Bought your first GPU class S.
+		name:And it can run Crysis!
 		desc:Have <b>1</b> GPU class S.
 		req:1 gpuS
 		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
@@ -612,22 +637,22 @@ Achievements
 		req:1 fpga
 		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
 	*asicClassCAch
-		name:Bought your first ASIC class C.
+		name:Getting specialized.
 		desc:Have <b>1</b> ASIC class C.
 		req:1 asicC
 		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
 	*asicClassBAch
-		name:Bought your first ASIC class B.
+		name:bASIC Machine.
 		desc:Have <b>1</b> ASIC class B.
 		req:1 asicB
 		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
 	*asicClassAch
-		name:Bought your first ASIC class A.
+		name:A very Application-Specific Integrated Circuit.
 		desc:Have <b>1</b> ASIC class A.
 		req:1 asicA
 		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
 	*asicClassSAch
-		name:Bought your first ASIC class S.
+		name:One Purpose-Machine.
 		desc:Have <b>1</b> ASIC class S.
 		req:1 asicS
 		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
@@ -644,7 +669,7 @@ Achievements
 		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
 	/*
 	*dataCenterAch
-		name:Created your first Calc Centre. 
+		name:Calculus Rhapsody. 
 		desc:Have <b>1</b> Calc Centre.
 		req:1 calcCentre
 		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png

@@ -12,6 +12,19 @@ Settings
 	building cost refund:50%
     spritesheet:icons, 48 by 48, https://raw.githubusercontent.com/Bitcoin-Miner-Idle-Game/bitcoin-miner/main/img/icons_spritesheet.png
 	stylesheet:stuff/bigBlue.css
+CSS
+	#box-achievs{
+		position:fixed;
+		top: 400px;
+		left: 0px;
+		width: 220px;
+		height: 200px;
+		overflow: scroll;
+	}
+	.achievs-text{
+		font-size:16x;
+	}
+
 
 CSS
 	#box-achievs{
@@ -220,7 +233,7 @@ Buildings
   	name:ASIC chip type C|ASIC chips type C
     desc:A computarized device that was designed for the sole purpose of mining Bitcoin. It is able to mine Bitcoin in a more efficient way than a standard computer.<//><b>Effect:</b><.>Produces 70000 Microbitcoin every second.
     //TODO añadir icono
-	tag:isASIC
+	  tag:isASIC
     cost:500000000 microbitcoin
     on tick:yield 70000 microbitcoin
     req:(gpusC + gpusB + gpusA + gpusS >= 25)
@@ -229,7 +242,7 @@ Buildings
   	name:ASIC chip type B|ASIC chips type B
     desc:Its sole purpose is mining Bitcoin but much better.<//><b>Effect:</b><.>Produces 270000 Microbitcoin every second.
     //TODO añadir icono
-	tag:isASIC
+	  tag:isASIC
     cost:5300000000 microbitcoin
     on tick:yield 270000 microbitcoin
     req:(asicC >= 10)
@@ -238,7 +251,7 @@ Buildings
   	name:ASIC chip type A|ASIC chips type A
     desc:A Super Incredible Circuit.<//><b>Effect:</b><.>Produces 1.28 Bitcoin every second.
     //TODO añadir icono
-	tag:isASIC
+	  tag:isASIC
     cost:60000000000 microbitcoin
     on tick:yield 1280000 microbitcoin
     req:(asicB >= 10)
@@ -247,7 +260,7 @@ Buildings
   	name:ASIC chip type S|ASIC chips type S
     desc:You won't find a miner better than this one here.<//><b>Effect:</b><.>Produces 6.5 Bitcoin every second.
     //TODO añadir icono
-	tag:isASIC
+	  tag:isASIC
     cost:650000000000 microbitcoin
     on tick:yield 6500000 microbitcoin
     req:(asicA >= 10)
@@ -295,7 +308,7 @@ Upgrades
 		cost:1000 microbitcoin
 		passive:multiply yield of pickaxes by 2
 		req:(pickaxes >=1)
-	
+
 	*uninstallApps
 		name:Unsinstall unuseful apps
 		desc:Delete the apps you don't use from your computer.<//><b>Effect:</b><.>Increase the production of your CPUs by 10%.
@@ -409,6 +422,84 @@ Achievements
 		desc:Have <b>10000</b> Bitcoin.
 		req:10000 (bitcoins:earned)
 		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+
+
+	*pickaxeUPAchiev
+		name:You have upgraded your pickaxes.		desc:Have <b>1</b> pickaxeUpgrade.
+		req: 1 pickaxeUpgrade
+		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+
+	*uninstallAppsUPAchiev
+		name:You have uninstalled your unused apps.
+		desc:Have <b>1</b> uninstallApps. 
+		req: 1 pickaxeUpgrade
+		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+
+	*cpuOverclockUPAchiev
+		name:You have upgraded your CPUs.
+		desc:Have <b>1</b> cpuOverclock. 
+		req: 1 cpuOverclock
+		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+
+	*gpuOverclockUPAchiev
+		name:You have upgraded your GPUs.
+		desc:Have <b>1</b> gpuOverclock. 
+		req: 1 gpuOverclock
+		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+
+	*asicOverclockUPAchiev
+		name:You have upgraded your ASICs.
+		desc:Have <b>1</b> asicOverclock1. 
+		req: 1 asicOverclock1
+		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+
+	*fpgaOverclockUPAchiev
+		name:You have upgraded your FPGAs.
+		desc:You have pushed your FPGAs further to the limit.
+		req: 1 fpgaOverclock
+		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+
+	*cheaperElectricityUPAchiev
+		name:Your have upgraded your electricity plan.
+		desc:Have <b>1</b> cheaperElectricity. 
+		req: 1 cheaperElectricity
+		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+
+	*driversUpdateUPAchiev
+		name:Your have updated your drivers.
+		desc:Have <b>1</b> driversUpdate. 
+		req: 1 driversUpdate
+		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+
+//	*compCleaningUPAchiev
+//		name:Your have cleaned your electric components.
+//		desc:Have <b>1</b> compCleaning. 
+//		req: 1 compCleaning
+//		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+
+//	*antivirusCUPAchiev
+//		name:Your have upgraded your Antivirus C.
+//		desc:Have <b>1</b> antivirusC. 
+//		req: 1 antivirusC
+//		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+
+//	*antivirusBUPAchiev
+//		name:Your have  upgraded your Antivirus B.
+//		desc:Have <b>1</b> antivirusB. 
+//		req: 1 antivirusB
+//		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+
+//	*antivirusAUPAchiev
+//		name:Your have upgraded your Antivirus A.
+//		desc:Have <b>1</b> antivirusA. 
+//		req: 1 antivirusA
+//		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+
+//	*antivirusSUPAchiev
+//		name:Your have upgraded your Antivirus S.
+//		desc:Have <b>1</b> antivirusS. 
+//		req: 1 antivirusS
+//		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
 
 	*cpuAchiev
 		name:Bought your first CPU

@@ -12,19 +12,20 @@ Settings
 	building cost refund:50%
     spritesheet:icons, 48 by 48, https://raw.githubusercontent.com/Bitcoin-Miner-Idle-Game/bitcoin-miner/main/img/icons_spritesheet.png
 	stylesheet:stuff/bigBlue.css
+
 CSS
 	#box-achievs{
-		position:fixed;
-		top: 400px;
+		position: absolute;
+        position-anchor: 0% 100%;
+		bottom: 0px;
 		left: 0px;
 		width: 220px;
-		height: 200px;
+		height: 28%;
 		overflow: scroll;
 	}
 	.achievs-text{
 		font-size:16x;
 	}
-
 
 Layout
 	use default

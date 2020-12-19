@@ -23,9 +23,49 @@ CSS
 		height: 28%;
 		overflow: scroll;
 	}
+    
 	.achievs-text{
 		font-size:16x;
 	}
+    
+    // All buildings
+    #box-things-Buildings > div {
+        font-size: 12px;
+    }
+    
+    // Building hack
+    #box-things-Buildings > div {
+        text-align: left;
+        padding-left: 20px;
+        -webkit-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    
+    // Building text
+    #box-things-Buildings > div > .thing-text {
+        position: absolute;
+        top: 1px;
+        left: 74px;
+    }
+    
+    // Building count
+    #box-things-Buildings > div > .thing-text > div > b {
+        position: fixed;
+        position-anchor: 100% 50%;
+        font-size: 22px;
+        top: 18px;
+        right: 8px;
+    }
+    
+    // Building cost
+    #box-things-Buildings > div > .thing-costs {
+        position: absolute;
+        top: 18px;
+        left: 74px;
+    }
 
 Layout
 	use default
@@ -189,6 +229,7 @@ Buildings
   *pickaxe|pickaxes
   	name:Pickaxe|Pickaxes
     desc:A pickaxe will autoclick once every second.
+    text:Pickaxe <b>[pickaxes]</b>
     icon:icons[0,0]
     tags:isBuilding
     cost:25 microbitcoin

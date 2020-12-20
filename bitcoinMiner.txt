@@ -5,7 +5,7 @@ Let's make a game!
 	created:07/12/2020
 	updated:07/12/2020
 	version:0.1
-
+ 
 Settings
 	background:https://i.imgur.com/haH2ubb.jpg
 	building cost increase:115%
@@ -13,10 +13,72 @@ Settings
     spritesheet:icons, 48 by 48, https://raw.githubusercontent.com/Bitcoin-Miner-Idle-Game/bitcoin-miner/main/img/icons_spritesheet.png
 	stylesheet:stuff/bigBlue.css
 
+CSS
+	#box-achievs{
+		position: absolute;
+        position-anchor: 0% 100%;
+		bottom: 0px;
+		left: 0px;
+		width: 220px;
+		height: 28%;
+		overflow: scroll;
+	}
+    
+	.achievs-text{
+		font-size:16x;
+	}
+    
+    // All buildings
+    #box-things-Buildings > div {
+        font-size: 12px;
+    }
+    
+    // Building hack
+    #box-things-Buildings > div {
+        text-align: left;
+        padding-left: 20px;
+        -webkit-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    
+    // Building text
+    #box-things-Buildings > div > .thing-text {
+        position: absolute;
+        top: 0px;
+        left: 74px;
+    }
+    
+    // Building count
+    #box-things-Buildings > div > .thing-text > div > b {
+        position: fixed;
+        position-anchor: 100% 50%;
+        font-size: 22px;
+        top: 18px;
+        right: 8px;
+    }
+    
+    // Building cost
+    #box-things-Buildings > div > .thing-costs {
+        position: absolute;
+        top: 14px;
+        left: 74px;
+    }
+    
+    #box-things-Buildings > div > .thing-costs > .costTimeRemaining {
+        margin-top: -2px;
+    }
+
 Layout
 	use default
 	*achievs
 		in:main
+		header: Achievements
+		icons:hide
+		names:show
+		tooltip origin:right
 		contains:Achievements
 	
 Buttons
@@ -31,133 +93,787 @@ Buttons
 		icon class:shadowed
 		tooltip origin:bottom
 		tooltip class:red
-    
-	*bitcoin2Dollar
-		name:Bitcoin exchanger
-		desc:Exchange 50 microbitcoins for 1 dollar
-		on click:
-            if (microbitcoins >= 50)
-                lose 50 microbitcoins
-                yield 1 dollar
+ 
+    *bitcoin2Dollar
+        name:Bitcoin exchanger
+        desc:Exchange [bitcoinExchangingBTC] microbitcoin for [bitcoinExchangingDol] dollars
+        on click:
+            if (microbitcoins >= bitcoinExchangingBTC)
+                lose bitcoinExchangingBTC microbitcoins
+                yield bitcoinExchangingDol dollars
             end
         end
         // TODO poner el icono que sea
-		icon:https://i.imgur.com/lmoXat0.png
-		icon class:shadowed
-		tooltip origin:bottom
-		tooltip class:red
-    
-	*dollar2Bitcoin
-		name:Dollar exchanger
-		desc:Exchange 1 dollar for 45 microbitcoin
-		on click:
-            if (dollars >= 1)
-                lose 1 dollar
-                yield 45 microbitcoins
+        icon:https://i.imgur.com/lmoXat0.png
+        icon class:shadowed
+        tooltip origin:bottom
+        tooltip class:red
+
+    *dollar2Bitcoin
+        name:Dollar exchanger
+        desc:Exchange [dollarsExchangingDol] dollars for [dollarsExchangingBTC] microbitcoin
+        on click:
+            if (dollars >= dollarsExchangingDol)
+                lose dollarsExchangingDol dollars
+                yield dollarsExchangingBTC microbitcoins
             end
         end
         // TODO poner el icono que sea
-		icon:https://i.imgur.com/lmoXat0.png
-		icon class:shadowed
-		tooltip origin:bottom
-		tooltip class:red
-		
+        icon:https://i.imgur.com/lmoXat0.png
+        icon class:shadowed
+        tooltip origin:bottom
+        tooltip class:red
+      
+  //TODO botones para hacer trampas en fase de desarrollo, borrar antes de subir
+    *cheat1000
+    	name:CHEAT: 1000 uBTC
+      on click:yield 1000 microbitcoins
+      icon class:shadowed
+      
+    *cheat10000
+    	name:CHEAT: 10000 uBTC
+      on click:yield 10000 microbitcoins
+      icon class:shadowed
+      
+    *cheat100000
+    	name:CHEAT: 100000 uBTC
+      on click:yield 100000 microbitcoins
+      icon class:shadowed
+      
+    *cheat1000000
+    	name:CHEAT: 1 BTC
+      on click:yield 1000000 microbitcoins
+      icon class:shadowed
+      
+    *cheat100000000
+    	name:CHEAT: 100 BTC
+      on click:yield 100000000 microbitcoins
+      icon class:shadowed
+
+    *cheat1000000000
+    	name:CHEAT: 1000 BTC
+      on click:yield 1000000000 microbitcoins
+      icon class:shadowed
+
+    *cheat10000000000
+    	name:CHEAT: 10000 BTC
+      on click:yield 10000000000 microbitcoins
+      icon class:shadowed
+
+    *cheat100000000000
+    	name:CHEAT: 100000 BTC
+      on click:yield 100000000000 microbitcoins
+      icon class:shadowed
+
+    *cheat1000000000000
+    	name:CHEAT: 1000000 BTC
+      on click:yield 1000000000000 microbitcoins
+      icon class:shadowed
+ 
 Resources
 	*microbitcoin|microbitcoins
 		name:Microbitcoin|Microbitcoins
+		text: Microbitcoin: [microbitcoin] (+[microbitcoin:ps]/s)
 		desc: This is how many Microbitcoins are in your possesion. A Microbitcoin is worth 0.000001 Bitcoin. Become rich and dominate the cryptomarket!
 		icon:https://i.imgur.com/lmoXat0.png
 		class:noBackground
 		show earned
     req:(bitcoins<1)
-
+ 
 	*bitcoin|bitcoins
 		name:Bitcoin|Bitcoins
+		text: Bitcoin: [bitcoin] (+[floor(microbitcoin:ps*0.000001)].[(microbitcoin:ps*0.000001*pow(10,3))%pow(10,3)]/s) 
 		desc: This is how many Bitcoins are in your possesion. Become rich and dominate the cryptomarket!
 		icon:https://i.imgur.com/lmoXat0.png
 		class:noBackground
 		is always:microbitcoins*0.000001
 		show earned
     req:(bitcoins>=1)
-
+ 
 	*dollar|dollars
 		name:US Dollar|US Dollars
+		text: US Dollars: [dollar]
 		desc: Exchanging your Bitcoins to US dollars, this is how many dollars you will obtain if you sell your Bitcoins now.
 		icon:https://i.imgur.com/vfF2jpP.jpeg
 		class:noBackground
 		//is always:microbitcoins*20717.10*0.000001
 		show earned
+    
+    *microbitcoinLog
+        always hidden
+        // log10 of current uBTC using lim formula with n=10^9
+        is always:(max(0, (floor((pow(microbitcoins, pow(10, -9)) - 1) / (pow(10, pow(10, -9)) - 1)))))
+    
+    *dollarsLog
+        always hidden
+        // log10 of current $ using lim formula with n=10^9
+        is always:(max(0, (floor((pow(dollars, pow(10, -9)) - 1) / (pow(10, pow(10, -9)) - 1)))))
+    
+    *bitcoinExchangingBTC
+        always hidden
+        is always:max(100, pow(10, microbitcoinLog))
+    
+    *bitcoinExchangingDol
+        always hidden
+        is always:max(2, (2 * pow(10, microbitcoinLog - 2)))
+    
+    *dollarsExchangingDol
+        always hidden
+        is always:(pow(10, dollarsLog))
+    
+    *dollarsExchangingBTC
+        always hidden
+        is always:(4.9 * pow(10, dollarsLog + 1))
 
+
+	*luckyTiming
+		always hidden
+		on tick:
+			if ((luckyTiming) > 1)
+				multiply yield of tag:isBuilding by 2
+		 		lose 1 luckyTiming
+			else if ((luckyTiming) is 1)
+				multiply yield of tag:isBuilding by 0.5
+				lose 1 luckyTiming
+			end
+		end
+
+	*ineffTiming
+		always hidden
+		on tick:
+			if ((ineffTiming) > 1)
+				multiply yield of cpu by 10/11
+		 		lose 1 ineffTiming
+			else if ((ineffTiming) is 1)
+				multiply yield of cpu by 11/10
+				lose 1 ineffTiming
+			end
+		end
+	
+	*overTiming
+		always hidden
+		on tick:
+			if ((overTiming) > 1)
+				multiply yield of cpu by 5/6
+		 		lose 1 overTiming
+			else if ((overTiming) is 1)
+				multiply yield of cpu by 6/5
+				lose 1 overTiming
+			end
+		end
+
+	*malWTiming
+		always hidden
+		on tick:
+			if ((malWTiming) > 1)
+				multiply yield of tag:isBuilding by 2/3
+		 		lose 1 malWTiming
+			else if ((malWTiming) is 1)
+				multiply yield of tag:isBuilding by 3/2
+				lose 1 malWTiming
+			end
+		end
+	
+	*frozenTiming
+		always hidden
+		on tick:
+			if ((frozenTiming) > 1)
+				multiply yield of tag:isBuilding by 2/3
+		 		lose 1 frozenTiming
+			else if ((frozenTiming) is 1)
+				multiply yield of tag:isBuilding by 3/2
+				lose 1 frozenTiming
+			end
+		end
+
+	*cutTiming
+		always hidden
+		on tick:
+			if ((cutTiming) > 1)
+				multiply yield of tag:isBuilding by 10/17
+		 		lose 1 cutTiming
+			else if ((cutTiming) is 1)
+				multiply yield of tag:isBuilding by 17/10
+				lose 1 cutTiming
+			end
+		end
+
+	*electricTiming
+		always hidden
+		on tick:
+			if ((electricTiming) > 1)
+				multiply yield of tag:isBuilding by 10/11
+		 		lose 1 electricTiming
+			else if ((electricTiming) is 1)
+				multiply yield of tag:isBuilding by 11/10
+				lose 1 electricTiming
+			end
+		end
+    
+    
 Buildings
 	*TEMPLATE
 		on click:anim glow
-
+ 
 	//https://2cryptocalc.com/most-profitable-gpu https://www.nicehash.com/profitability-calculator
 	//The real cost of GPU is between $400-$1800
 	//It produces 0.00024400BTC/day ==> $4.74
+  
+  *pickaxe|pickaxes
+  	name:Pickaxe|Pickaxes
+    desc:A pickaxe will autoclick once every second.
+    text:Pickaxe<b>[pickaxes]</b>
+    icon:icons[0,0]
+    tags:isBuilding
+    cost:25 microbitcoin
+    on tick:yield 1 microbitcoins
+    unlocked
+    
+  *cpu|cpus
+  	name:CPU|CPUs
+    desc:Have you really been doing it by hand? <//><b>Effect:</b><.>Produces 3 Microbitcoin every second.
+    text:CPU<b>[cpus]</b>
+    icon:icons[1,0]
+    tags:isBuilding
+    cost:275 microbitcoin
+    on tick:yield 3 microbitcoin
+    unlocked
+  
+  *gpuC|gpusC
+	name:Graphics card type C|Graphics cards type C
+	desc:A graphics card will allow you to use its computing power to solve problems faster, and thus, mine faster.<//><b>Effect:</b><.>Produces 22 Microbitcoin every second.
+    text:Graphics card type C<b>[gpusC]</b>
+    icon:icons[2,0]
+    tags:isGPU isBuilding
+	cost:3000 microbitcoin
+	on tick:yield 22 microbitcoins
+	req:(cpus >= 10)
+    
+  *asicC|asicsC
+  	name:ASIC chip type C|ASIC chips type C
+    desc:A computarized device that was designed for the sole purpose of mining Bitcoin. It is able to mine Bitcoin in a more efficient way than a standard computer.<//><b>Effect:</b><.>Produces 130 Microbitcoin every second.
+    text:ASIC chip type C<b>[asicsC]</b>
+    icon:icons[3,1]
+    tags:isBuilding isAsic
+    cost:33000 microbitcoin
+    on tick:yield 130 microbitcoin
+    req:(gpusC >= 10)
+    
+  *fpga|fpgas
+  	name:FPGA|FPGAs
+    desc:An integrated circuit you can configure to help you mine. <//><b>Effect:</b><.>Produces 740 Microbitcoin every second.
+    text:FPGA<b>[fpgas]</b>
+    icon:icons[2,1]
+    tags:isBuilding
+    cost:370000 microbitcoin
+    on tick:yield 740 microbitcoin
+    req:(asicsC >= 10)
+    
+  *gpuB|gpusB
+  	name:Graphics card type B|Graphics cards type B
+    desc:A better graphics card solves problems even faster. <//><b>Effect:</b><.>Produces 4000 Microbitcoin every second.
+    text:Graphics card type B<b>[gpusB]</b>
+    icon:icons[3,0]
+    tags:isGPU isBuilding
+    cost:4000000 microbitcoin
+    on tick:yield 4000 microbitcoin
+    req:(gpusC >= 30)
+    
+  *asicB|asicsB
+  	name:ASIC chip type B|ASIC chips type B
+    desc:Its sole purpose is mining Bitcoin... but now much better.<//><b>Effect:</b><.>Produces 17500 Microbitcoin every second.
+    text:ASIC chip type B<b>[asicsB]</b>
+    icon:icons[0,2]
+    tags:isBuilding isAsic
+    cost:45000000 microbitcoin
+    on tick:yield 17500 microbitcoin
+    req:(asicC >= 30)
+    
+  *cloud|clouds
+    name:Cloud mining datacenter|Cloud mining datacenters
+    desc:It provides you with a service that allows you to mine in a remote datacenter with shared processing power.<//><b>Effect:</b><.>Produces 70000 Microbitcoin every second.
+    text:Cloud mining datacenter<b>[clouds]</b>
+    icon:icons[3,2]
+    tags:isBuilding
+    cost:500000000 microbitcoin
+    on tick:yield 70000 microbitcoin
+    req:(fpgas >= 30)
+    
+  *gpuA|gpusA
+  	name:Graphics card type A|Graphics cards type A
+    desc:There's always room for improvements. <//><b>Effect:</b><.>Produces 270000 Microbitcoin every second.
+    text:Graphics card type A<b>[gpusA]</b>
+    icon:icons[0,1]
+    tags:isGPU isBuilding
+    cost:5300000000 microbitcoin
+    on tick:yield 270000 microbitcoin
+    req:(gpusC + gpusB >= 50)
+    
+  *asicA|asicsA
+  	name:ASIC chip type A|ASIC chips type A
+    desc:A Super Incredible Circuit.<//><b>Effect:</b><.>Produces 1.28 Bitcoin every second.
+    text:ASIC chip type A<b>[asicsA]</b>
+    icon:icons[1,2]
+    tags:isBuilding isAsic
+    cost:60000000000 microbitcoin
+    on tick:yield 1280000 microbitcoin
+    req:(asicsC + asicsB >= 50)
+    
+  *pool|pools
+	name:Mining Pool | Mining Pools
+	desc:A mining pool is a joint group of cryptocurrency miners who combine their computational resources so that they can mine faster.<//><b>Effect:</b><.>Produces 6.5 Bitcoin every second. 
+	text:Mining Pool<b>[pools]</b>
+    icon:icons[0,3]
+	tags:isBuilding
+	cost:650000000000 microbitcoin
+	on tick:yield 6500000 microbitcoins
+	req:(asicA + asicB + asicC + fpga + gpuA + gpuB + gpuC + cpu + pickaxe + cloud >= 250)
+    
+  *gpuS|gpusS
+  	name:Graphics card type S|Graphics cards type S
+    desc:This one is the Aston Martin of graphics. <//><b>Effect:</b><.>Produces 33 Bitcoin every second.
+    text:Graphics card type S<b>[gpusS]</b>
+    icon:icons[1,1]
+    tags:isGPU isBuilding
+    cost:4000000 microbitcoin
+    on tick:yield 7100000000000 microbitcoin
+    req:(gpusA + gpusB + gpusC >= 100)
+    
+  *asicS|asicsS
+  	name:ASIC chip type S|ASIC chips type S
+    desc:You won't find a better miner than this one here.<//><b>Effect:</b><.>Produces 197 Bitcoin every second.
+    text:ASIC chip type S<b>[asicsS]</b>
+    icon:icons[2,2]
+    tags:isBuilding isAsic
+    cost:78000000000000 microbitcoin
+    on tick:yield 197000000 microbitcoin
+    req:(asicsA + asicsB + asicsC >= 100)
 
-	*gpu|gpus
-		name:Graphics card|Graphics cards
-		desc:A graphics card will allow you to use its computing power to solve problems faster, and thus, mine faster.<//><b>Effect:</b><.>Produces 100 Microbitcoin every 10 seconds.
-		icon:https://i.imgur.com/fzLKXDZ.png
-		cost:100 microbitcoin
-		on tick:yield 10 microbitcoins
-		unlocked
-
+  *calcCentre|calcCentres
+    name: Calculation Centre|Calculation Centres
+    desc: A high computacional capacity centre in which mining is as fast as possible.<//><b>Effect:</b><.>Produces 1187 Bitcoin every second.
+    text:Calculation Centre<b>[calcCentres]</b>
+    icon:icons[1,3]
+    tags:isBuilding
+    cost:860000000000000 microbitcoin
+    on tick:yield 1187000000 microbitcoin
+    req:(asicS + asicA + asicB + asicC + fpga + gpuS + gpuA + gpuB + gpuC + cpu + pickaxe + cloud + pool>= 500)
+  
+  // De aquí para abajo es antes de establecer la lista, pero se pueden reusar las descripciones, etc.
+ 
 	//https://www.asicminervalue.com/miners/innosilicon/a10-pro-ethminer-720mh
 	//The real cost of an ASIC machine is $5000
 	//It produces 0.0015BTC/day ==> $30.82
-
+ 
+ /*
 	*bitcoinASIC|bitcoinASICs
 		name:Bitcoin ASIC|Bitcoin ASICs
 		desc:The ASIC Bitcoin Miner is a computarized device that was designed for the sole purpose of mining Bitcoin. It is able to mine Bitcoin in a more efficient way than a standard computer.<//><b>Effect:</b><.>Produces 1000 Microbitcoin every 10 seconds.
 		icon:https://cdn.pixabay.com/photo/2017/10/14/22/20/farm-2852024_960_720.jpg
 		cost:1000 microbitcoin
-		on tick:yield 100 microbitcoins
+		on tick:yield 100000 microbitcoins
 		req:1000 microbitcoins:earned
-
-	*miningPool|miningPools
-		name:Mining Pool
-		desc:A mining pool is a joint group of cryptocurrency miners who combine their computational resources so that they can mine faster.<//><b>Effect:</b><.>Produces 10000 Microbitcoin every 10 seconds. 
-		icon:https://cdn.pixabay.com/photo/2014/04/02/16/27/crowd-307354__340.png
-		cost:1 bitcoin
-		on tick:yield 1000 microbitcoins
-		req:5 bitcoins:earned
-
+  */
 Upgrades
 	*TEMPLATE
 		on click:anim glow
-	
-	*gpuOverclock1
-		name:GPU Overclock 10%
-		desc:Push your graphics card further to the limit.<//><b>Effect:</b><.>Increase the production of your graphics cards by 10%.
-		icon:https://i.imgur.com/Ng884yH.png
-		cost:1000 dollars
-		passive:multiply yield of gpus by 1.1
-		req:(gpus >=1)
-	
-	*asicOverclock1
-		name:ASIC Overclock 10%
-		desc:Push your ASICs further to the limit.<//><b>Effect:</b><.>Increase the production of your ASICs by 10%.
-		icon:https://i.imgur.com/Ng884yH.png
-		cost:10000 dollars
-		passive:multiply yield of bitcoinASIC by 1.1
-		req:(bitcoinASIC >=1)
 
+    *mineFaster
+		// Sleight of Hand significa prestidigitación, lo veo un nombre más fancy que "Mine Faster"
+		name:Sleight of Hand
+		desc:Practice makes perfect. <//><b>Effect:</b><.>Mine twice as efficiently with each click.
+		//TODO icon:
+		cost:50 microbitcoin
+		passive:increase microbitcoins yield of bitcoinButton by 1
+		req:(microbitcoin:earned >= 200)
+	
+    *pickaxeUpgrade
+		name:Dual Wield Pickaxes
+		desc:Two hands work better than one.<//><b>Effect:</b><.>Double the production of your pickaxes.
+		tags:isUpgrade
+		// TODO icon:
+		cost:1000 microbitcoin
+		passive:multiply yield of pickaxes by 2
+		req:(pickaxes >=1)
+
+	*uninstallApps
+		name:App Cleaning
+		desc:Delete the apps you don't use from your computer.<//><b>Effect:</b><.>Increase the production of your CPUs by 10%.
+		tags:isUpgrade
+		//TODO icon:
+		cost:5000 microbitcoin
+		passive:multiply yield of cpus by 1.1
+		req:(cpus >=1)
+
+	*cpuOverclock
+		name:CPU Overclock
+    	desc:Push your CPU further to the limit.<//><b>Effect:</b><.>Increase the production of your CPUs by 50%.
+    	tags:isUpgrade
+		// TODO: new icon
+		icon:https://i.imgur.com/Ng884yH.png
+		cost:100000 microbitcoin
+		passive:multiply yield of cpus by 1.5
+		req:(cpus >=1) 
+ 
+	*gpuOverclock
+		name:GPU Overclock
+		desc:Push your GPUs further to the limit.<//><b>Effect:</b><.>Increase the production of all your GPUs by 50%.
+    	tags:isUpgrade
+		// TODO: new icon
+		icon:https://i.imgur.com/Ng884yH.png
+		cost:100000 microbitcoin
+		passive:multiply yield of tag:isGPU by 1.5
+		req:(gpusC >=1)
+    
+	*asicOverclock
+		name:ASIC Overclock
+		desc:Push your ASICs further to the limit.<//><b>Effect:</b><.>Increase the production of your ASICs by 50%.
+    	tags:isUpgrade
+		// TODO: New icon
+		icon:https://i.imgur.com/Ng884yH.png
+		cost:1000000 microbitcoin
+		passive:multiply yield of tag:isASIC by 1.5
+		req:(asicC >=1)
+
+    *fpgaOverclock
+		name:FPGA Overclock
+		desc:Push your FPGAs further to the limit.<//><b>Effect:</b><.>Increase the production of all your FPGAs by 50%.
+    	tags:isUpgrade
+		// TODO: new icon
+		icon:https://i.imgur.com/Ng884yH.png
+		cost:1000000 microbitcoin
+		passive:multiply yield of fpgas by 1.5
+		req:(fpgas >=1)
+	
+	*driversUpdate
+		name:Drivers Update
+		desc:Updating your drivers optimizes the performance of your GPUs.<//><b>Effect:</b><.>Increase the production of all your GPUs by 50%.
+		tags:isUpgrade
+		//TODO: new icon
+		icon:https://i.imgur.com/Ng884yH.png
+		cost:2000000 microbitcoin
+		passive:multiply yield of tag:isGPU by 1.5
+		req:(gpusC >=1)
+		
+	*compCleaning
+		name:Hardware cleaning.
+		desc:Just make sure not to use water.<//><b>Effect:</b><.>Increase the production of all your stuff by 10%.
+		//TODO: new icon
+		icon:https://i.imgur.com/Ng884yH.png
+		cost:1000000 microbitcoin
+		passive:multiply yield of tag:isBuilding by 1.1
+		// TODO
+		req:(driversUpdate)
+		
+	*poolRecruiting
+		name:Mining Pool Recruiting.
+		desc:More people are joining your mining pools.<//><b>Effect:</b><.>Increase the production of your mining pools by 50%.
+		//TODO: new icon
+		icon:https://i.imgur.com/Ng884yH.png
+		cost:1000000000000 microbitcoin
+		passive:multiply yield of pools by 1.5
+		// TODO
+		req:(pools >=1)
+	
+	//TODO:revise when every other upgrade is done
 	*cheaperElectricity
-		name:Cheaper electricity
-		desc:Your Mining Pool got an offer from the electric company. Mining is now more profitable. <//><b>Effect:</b><.>Increase the production of your Mining Pool by 5%.
+		name:Cheaper Electricity.
+		desc:You just got an offer from the electric company. Mining is now more profitable. <//><b>Effect:</b><.>Increase the production of all your stuff by 10%.
 		icon:https://upload.wikimedia.org/wikipedia/commons/2/21/Electricity_warning_sign.svg
-		cost:40000 dollars
-		passive:multiply yield of miningPool by 1.05
-		req:(miningPool >=1)
+		cost:2000000000000 microbitcoin
+		passive:multiply yield of tag:isBuilding by 1.1
+		// TODO
+		req:(poolRecruiting)
 
+Shinies
+	*luckyClover
+		movement:onRight moveLeft wiggle:0.25 growShrink
+		frequency:90
+		frequency variation:20
+		icon:https://upload.wikimedia.org/wikipedia/commons/5/53/Tr%C3%A9bol_de_4_hojas.svg
+		class:bigButton
+		on click:
+			$handicaps=random(0,5)
+			if (chance(70%))
+				yield 61 luckyTiming
+				toast You are lucky! Duplicate the productivity of your buildings for 1 minute
+			else
+				if ($handicaps=0)
+					yield 31 ineffTiming
+					toast You have installed an inefficient program. This decreases the productivity of your CPUs by 10% for 30 seconds.
+				else if ($handicaps=1)
+					yield 61 overTiming
+					toast Your CPU is overheated, so you need to power it off and wait. This decreases the productivity of your CPUs by 20% for 1 minute.
+				else if ($handicaps=2)
+					yield 61 malWTiming
+					toast You have a Malware! Somebody is stealing your resources. This decreases your total productivity by 50% for 1 minute.
+				else if ($handicaps=3)
+					yield 31 frozenTiming
+					toast Your system is frozen. You should reboot it. This decreases your total productivity by 50% for 30 seconds.
+				else if ($handicaps=4)
+					yield 11 cutTiming
+					toast A Power cut in your city causes you tremendous losses. This decreases your total productivity by 70% for 10 seconds.
+				else 
+					yield 121 electricTiming
+					toast The electricity price has raised this month, so your production is now less profitable. This decreases your total productivity by 10% for 2 minutes.
+				end
+			end
+		end
+ 
 Achievements
 	*TEMPLATE
 		on click:anim glow
 		
-	*bitcoinCount1
-		name:Gotta start from somewhere
-		desc:Have <b>1</b> microbitcoin.
-		req:1 microbitcoin
-		//icon:	
+	// Coin achievements
+    
+	*microbitcoinAchiev1
+		name:Gotta start from somewhere.
+		desc:Have <b>1</b> Microbitcoin.
+		req:1 (microbitcoin:earned)
+		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+	*microbitcoinAchiev2
+		name:Still not enough.
+		desc:Have <b>10</b> Microbitcoin.
+		req:10 (microbitcoin:earned)
+		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+	*microbitcoinAchiev3
+		name:100% ready to make money.
+		desc:Have <b>100</b> Microbitcoin.
+		req:100 (microbitcoin:earned)
+		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+	*microbitcoinAchiev4
+		name:Doing great!
+		desc:Have <b>1000</b> Microbitcoin.
+		req:1000 (microbitcoins:earned)
+		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+	*microbitcoinAchiev5
+		name:10K Magic.
+		desc:Have <b>10000</b> Microbitcoin.
+		req:10000 (microbitcoins:earned)
+		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+	*microbitcoinAchiev6
+		name:Closer to your first Bitcoin.
+		desc:Have <b>100000</b> Microbitcoin.
+		req:100000 (microbitcoins:earned)
+		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+	*microbitcoinAchiev7
+		name:Bit by Bit, you did it.
+		desc:Have <b>1000000</b> Microbitcoin (1 Bitcoin).
+		req:1000000 (microbitcoins:earned)
+		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+	*microbitcoinAchiev8
+		name:You are on a roll!
+		desc:Have <b>10</b> Bitcoin.
+		req:10000000 (microbitcoins:earned)
+		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+	*microbitcoinAchiev9
+		name:Keep on mining, baby!
+		desc:Have <b>100</b> Bitcoin.
+		req:100000000 (microbitcoins:earned)
+		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+	// Faltan más múltiplos
+	*satoshiAch
+		name:Satoshi Nakamoto wants to meet you. 
+		desc: You have <b>1M</b> Bitcoin. You are the person in the world that owns the most Bitcoins.
+		req:1000000000000 (microbitcoins:earned)
+		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+	*allBitcoins
+		name: Every bitcoin that actually exists in the world.
+		desc: You have mined <b>21000000</b> Bitcoin. 
+		req:21000000000000 (microbitcoins:earned)
+		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+		
+	// Click achievements
+
+	*clickAchiev1
+		name:You did it!
+		desc:Click the computer once. You have published your first block.
+		req:1 bitcoinButton clicks
+		icon:https://static.thenounproject.com/png/74554-200.png
+	*clickAchiev2
+		name:Getting clickier!
+		desc:Click the computer <b>10</b> times. You have published 10 blocks.
+		req:10 bitcoinButton clicks
+		icon:https://static.thenounproject.com/png/74554-200.png
+	*clickAchiev3
+		name:Working fast!
+		desc:Click the computer <b>100</b> times. You have published 100 blocks.
+		req:100 bitcoinButton clicks
+		icon:https://static.thenounproject.com/png/74554-200.png
+	*clickAchiev4
+		name:Entered the cryptomarket to be the best!
+		desc:Click the computer <b>1000</b> times. You have published 1000 blocks
+		req:1000 bitcoinButton clicks
+		icon:https://static.thenounproject.com/png/74554-200.png
+		
+	// Upgrade achievements
+
+	*pickaxeUpAch
+		name:Buying another pickaxe.
+		desc:Buy the <b>Dual Wield Pickaxes</b> upgrade.
+		req:1 pickaxeUpgrade
+		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+
+	*uninstAppsUpAch
+		name:A PC that feels new.
+		desc:Buy the <b>App Cleaning</b> upgrade. 
+		req:1 uninstallApps
+		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+
+	*cpuOverclockUpAch
+		name:Unleashed your CPUs.
+		desc:Buy the <b>CPU Overclock</b> upgrade. 
+		req:1 cpuOverclock
+		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+
+	*gpuOverclockUpAch
+		name:Unleashed your GPUs.
+		desc:Buy the <b>GPU Overclock</b> upgrade.
+		req:1 gpuOverclock
+		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+
+	*asicOverclockUpAch
+		name:Unleashed your ASICs.
+		desc:Buy the <b>ASIC Overclock</b> upgrade.
+		req:1 asicOverclock
+		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+
+	*fpgaOverclockUpAch
+		name:Unleashed your FPGAs.
+		desc:Buy the <b>FPGA Overclock</b> upgrade.
+		req:1 fpgaOverclock
+		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+
+	*cheaperElectUpAch
+		// Este juego de palabras es to buenardo, actual = current = corriente
+		name:Changed your current plan.
+		desc:Buy the <b>Cheaper Electricity</b> upgrade. 
+		req:1 cheaperElectricity
+		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+
+	*driversUpdateUpAch
+		name:Up to date.
+		desc:Buy the <b>Drivers Update</b> upgrade. 
+		req:1 driversUpdate
+		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+
+//	*compCleaningUpAch
+//		name:Hardware needs cleaning, too.
+//		desc:Buy the <b>???</b> upgrade. 
+//		req:1 compCleaning
+//		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+
+//	*antivirusCUpAch
+//		name:Safety first.
+//		desc:Buy the <b>???</b> upgrade. 
+//		req:1 antivirusC
+//		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+
+//	*antivirusBUpAch
+//		name:No more pesky ads.
+//		desc:Buy the <b>???</b> upgrade. 
+//		req:1 antivirusB
+//		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+
+//	*antivirusAUpAch
+//		name:Avoiding malware.
+//		desc:Buy the <b>???</b> upgrade. 
+//		req:1 antivirusA
+//		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+
+//	*antivirusSUpAch
+//		name:Your computer got vaccined.
+//		desc:Buy the <b>???</b> upgrade. 
+//		req:1 antivirusS
+//		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+
+	// Building achievements
+	// Faltan algunos de múltiplos de 10.
+	*pickaxeAch
+		name:Oldschool mining.
+		desc:Have <b>1</b> pickaxe.
+		req:1 pickaxe
+		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+	*cpuAch
+		name:Technological revolution.
+		desc:Have <b>1</b> CPU.
+		req:1 cpu
+		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+	*gpuClassCAch
+		name:Just need a monitor now.
+		desc:Have <b>1</b> GPU class C.
+		req:1 gpuC
+		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+	*gpuClassBAch
+		name:Graphical mining.
+		desc:Have <b>1</b> GPU class B.
+		req:1 gpuB
+		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+	*gpuClassAAch
+		name:Now with raytracing.
+		desc:Have <b>1</b> GPU class A.
+		req:1 gpuA
+		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+	*gpuClassSAch
+		name:And it can run Crysis!
+		desc:Have <b>1</b> GPU class S.
+		req:1 gpuS
+		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+	*fpgaAch
+		name:Bought your first FPGA.
+		desc:Have <b>1</b> FPGA.
+		req:1 fpga
+		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+	*asicClassCAch
+		name:Getting specialized.
+		desc:Have <b>1</b> ASIC class C.
+		req:1 asicC
+		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+	*asicClassBAch
+		name:bASIC Machine.
+		desc:Have <b>1</b> ASIC class B.
+		req:1 asicB
+		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+	*asicClassAch
+		name:A very Application-Specific Integrated Circuit.
+		desc:Have <b>1</b> ASIC class A.
+		req:1 asicA
+		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+	*asicClassSAch
+		name:One Purpose-Machine.
+		desc:Have <b>1</b> ASIC class S.
+		req:1 asicS
+		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+	*cloudAch
+		// Este juego de palabras también es to bueno, on cloud nine significa muy feliz.
+		name:On Cloud nine.
+		desc:Have <b>1</b> Cloud.
+		req:1 cloud
+		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+	*miningPoolAch
+		name:Collaborative working.
+		desc:You have joined a mining pool.
+		req:1 pool
+		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+	*dataCenterAch
+		name:Calculus Rhapsody. 
+		desc:Have <b>1</b> Calc Centre.
+		req:1 calcCentre
+		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+	//Shinies
+	*luckyClover1Ach
+		name:Little lucky. 
+		desc:Have clicked in <b>1</b> luckyClover.
+		req:1 luckyClover
+		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+	*luckyClover10Ach
+		name:Normal lucky. 
+		desc:Have clicked in <b>10</b> luckyClover.
+		req:1 luckyClover
+		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+	*luckyClover100Ach
+		name:Huge lucky. 
+		desc:Have clicked in <b>100</b> luckyClover.
+		req:1 luckyClover
+		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+	

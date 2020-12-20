@@ -519,28 +519,12 @@ Buildings
     cost:860000000000000 microbitcoin
     on tick:yield 1187000000 microbitcoin
     req:(asicS + asicA + asicB + asicC + fpga + gpuS + gpuA + gpuB + gpuC + cpu + pickaxe + cloud + pool>= 500)
-  
-  // De aquí para abajo es antes de establecer la lista, pero se pueden reusar las descripciones, etc.
- 
-	//https://www.asicminervalue.com/miners/innosilicon/a10-pro-ethminer-720mh
-	//The real cost of an ASIC machine is $5000
-	//It produces 0.0015BTC/day ==> $30.82
- 
- /*
-	*bitcoinASIC|bitcoinASICs
-		name:Bitcoin ASIC|Bitcoin ASICs
-		desc:The ASIC Bitcoin Miner is a computarized device that was designed for the sole purpose of mining Bitcoin. It is able to mine Bitcoin in a more efficient way than a standard computer.<//><b>Effect:</b><.>Produces 1000 Microbitcoin every 10 seconds.
-		icon:https://cdn.pixabay.com/photo/2017/10/14/22/20/farm-2852024_960_720.jpg
-		cost:1000 microbitcoin
-		on tick:yield 100000 microbitcoins
-		req:1000 microbitcoins:earned
-  */
+
 Upgrades
 	*TEMPLATE
 		on click:anim glow
 
     *mineFaster
-		// Sleight of Hand significa prestidigitación, lo veo un nombre más fancy que "Mine Faster"
 		name:Sleight of Hand
 		desc:Practice makes perfect. <//><b>Effect:</b><.>Mine twice as efficiently with each click.
 		icon:icons[0,4]
@@ -620,7 +604,7 @@ Upgrades
 		req:(gpusC >=1)
 		
 	*compCleaning
-		name:Hardware cleaning.
+		name:Hardware Cleaning
 		desc:Just make sure not to use water.<//><b>Effect:</b><.>Increase the production of all your stuff by 10%.
 		icon:icons[0,6]
 		cost:1000000 microbitcoin
@@ -630,7 +614,7 @@ Upgrades
 		req:(driversUpdate)
 		
 	*poolRecruiting
-		name:Mining Pool Recruiting.
+		name:Mining Pool Recruiting
 		desc:More people are joining your mining pools.<//><b>Effect:</b><.>Increase the production of your mining pools by 50%.
 		icon:icons[1,6]
 		cost:1000000000000 microbitcoin
@@ -639,7 +623,6 @@ Upgrades
 		// TODO
 		req:(pools >=1)
 	
-	//TODO:revise when every other upgrade is done
 	*cheaperElectricity
 		name:Cheaper Electricity.
 		desc:You just got an offer from the electric company. Mining is now more profitable. <//><b>Effect:</b><.>Increase the production of all your stuff by 10%.
@@ -661,14 +644,14 @@ Shinies
 			$handicaps=random(0,5)
 			if (chance(70%))
 				yield 61 luckyTiming
-				toast You are lucky! Duplicate the productivity of your buildings for 1 minute
+				toast You got lucky! Duplicate the productivity of your buildings for 1 minute.
 			else
 				if ($handicaps=0)
 					yield 31 ineffTiming
 					toast You have installed an inefficient program. This decreases the productivity of your CPUs by 10% for 30 seconds.
 				else if ($handicaps=1)
 					yield 61 overTiming
-					toast Your CPU is overheated, so you need to power it off and wait. This decreases the productivity of your CPUs by 20% for 1 minute.
+					toast Your CPU is overheating, so you need to power it off and wait. This decreases the productivity of your CPUs by 20% for 1 minute.
 				else if ($handicaps=2)
 					yield 61 malWTiming
 					toast You have a Malware! Somebody is stealing your resources. This decreases your total productivity by 50% for 1 minute.
@@ -677,10 +660,10 @@ Shinies
 					toast Your system is frozen. You should reboot it. This decreases your total productivity by 50% for 30 seconds.
 				else if ($handicaps=4)
 					yield 11 cutTiming
-					toast A Power cut in your city causes you tremendous losses. This decreases your total productivity by 70% for 10 seconds.
+					toast A power cut in your city causes you tremendous losses. This decreases your total productivity by 70% for 10 seconds.
 				else 
 					yield 121 electricTiming
-					toast The electricity price has raised this month, so your production is now less profitable. This decreases your total productivity by 10% for 2 minutes.
+					toast The electricity price has been raised this month, so your production is now less profitable. This decreases your total productivity by 10% for 2 minutes.
 				end
 			end
 		end
@@ -693,71 +676,60 @@ Achievements
     
 	*microbitcoinAchiev1
 		name:Gotta start from somewhere.
-		desc:Have <b>1</b> Microbitcoin.
+		desc:Mine <b>1</b> Microbitcoin.
 		req:1 (microbitcoin:earned)
-		//icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
         icon:icons[0,7]
 /*	*microbitcoinAchiev2
 		name:Still not enough.
-		desc:Have <b>10</b> Microbitcoin.
+		desc:Mine <b>10</b> Microbitcoin.
 		req:10 (microbitcoin:earned)
-		//icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
         icon:icons[1,7] 
 */
 	*microbitcoinAchiev3
 		name:100% ready to make money.
-		desc:Have <b>100</b> Microbitcoin.
+		desc:Mine <b>100</b> Microbitcoin.
 		req:100 (microbitcoin:earned)
-		//icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
         icon:icons[2,7]
 	*microbitcoinAchiev4
 		name:Doing great!
-		desc:Have <b>1000</b> Microbitcoin.
+		desc:Mine <b>1000</b> Microbitcoin.
 		req:1000 (microbitcoins:earned)
-		//icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
         icon:icons[3,7]
 	*microbitcoinAchiev5
 		name:10K Magic.
-		desc:Have <b>10000</b> Microbitcoin.
+		desc:Mine <b>10000</b> Microbitcoin.
 		req:10000 (microbitcoins:earned)
-		//icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
         icon:icons[0,8]
 	*microbitcoinAchiev6
 		name:Closer to your first Bitcoin.
-		desc:Have <b>100000</b> Microbitcoin.
+		desc:Mine <b>100000</b> Microbitcoin.
 		req:100000 (microbitcoins:earned)
-		//icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
         icon:icons[1,8]
 	*microbitcoinAchiev7
 		name:Bit by Bit, you did it.
-		desc:Have <b>1000000</b> Microbitcoin (1 Bitcoin).
+		desc:Mine <b>1000000</b> Microbitcoin (1 Bitcoin).
 		req:1000000 (microbitcoins:earned)
-		//icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
         icon:icons[2,8]
 	*microbitcoinAchiev8
 		name:You are on a roll!
-		desc:Have <b>10</b> Bitcoin.
+		desc:Mine <b>10</b> Bitcoin.
 		req:10000000 (microbitcoins:earned)
-		//icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
         icon:icons[3,8]
 	*microbitcoinAchiev9
 		name:Keep on mining, baby!
-		desc:Have <b>100</b> Bitcoin.
+		desc:Mine <b>100</b> Bitcoin.
 		req:100000000 (microbitcoins:earned)
-		//icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
         icon:icons[0,9]
 	// Faltan más múltiplos
 	*satoshiAch
 		name:Satoshi Nakamoto wants to meet you. 
-		desc: You have <b>1M</b> Bitcoin. You are the person in the world that owns the most Bitcoins.
+		desc: You have mined <b>1M</b> Bitcoin. You are the person in the world that owns the most Bitcoins.
 		req:1000000000000 (microbitcoins:earned)
-		//icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
         icon:icons[1,9]
 	*allBitcoins
 		name: Every bitcoin that actually exists in the world.
 		desc: You have mined <b>21000000</b> Bitcoin. 
 		req:21000000000000 (microbitcoins:earned)
-		//icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
         icon:icons[2,9]
 		
 	// Click achievements
@@ -789,6 +761,12 @@ Achievements
         icon:icons[2,10]
 		
 	// Upgrade achievements
+	
+	*mineFasterUpAch
+		name:Working out.
+		desc:Buy the <b>Sleight of Hand</b> upgrade.
+		req:1 mineFaster
+		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
 
 	*pickaxeUpAch
 		name:Buying another pickaxe.
@@ -827,7 +805,6 @@ Achievements
 		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
 
 	*cheaperElectUpAch
-		// Este juego de palabras es to buenardo, actual = current = corriente
 		name:Changed your current plan.
 		desc:Buy the <b>Cheaper Electricity</b> upgrade. 
 		req:1 cheaperElectricity
@@ -839,11 +816,11 @@ Achievements
 		req:1 driversUpdate
 		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
 
-//	*compCleaningUpAch
-//		name:Hardware needs cleaning, too.
-//		desc:Buy the <b>???</b> upgrade. 
-//		req:1 compCleaning
-//		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+	*compCleaningUpAch
+		name:Hardware needs cleaning, too.
+		desc:Buy the <b>Hardware Cleaning</b> upgrade. 
+		req:1 compCleaning
+		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
 
 //	*antivirusCUpAch
 //		name:Safety first.
@@ -875,21 +852,18 @@ Achievements
 		name:Oldschool mining.
 		desc:Have <b>1</b> pickaxe.
 		req:1 pickaxe
-		//icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
         icon:icons[3,10]
         
 	*cpuAch
 		name:Technological revolution.
 		desc:Have <b>1</b> CPU.
 		req:1 cpu
-		//icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
         icon:icons[0,11]
         
 	*gpuClassCAch
 		name:Just need a monitor now.
 		desc:Have <b>1</b> GPU class C.
 		req:1 gpuC
-		//icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
         icon:icons[1,11]
 
 	*gpuClassBAch
@@ -933,7 +907,6 @@ Achievements
 		req:1 asicS
 		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
 	*cloudAch
-		// Este juego de palabras también es to bueno, on cloud nine significa muy feliz.
 		name:On Cloud nine.
 		desc:Have <b>1</b> Cloud.
 		req:1 cloud
@@ -951,23 +924,20 @@ Achievements
 
 	//Shinies
 	*luckyClover1Ach
-		name:Little lucky. 
-		desc:Have clicked in <b>1</b> luckyClover.
+		name:You're feeling lucky. 
+		desc:You have clicked <b>1</b> Lucky Clover.
 		req:1 luckyClover clicks
-		//icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
         icon:icons[2,11]
         
 	*luckyClover10Ach
-		name:Normal lucky. 
-		desc:Have clicked in <b>10</b> luckyClover.
+		name:Luck didn't leaf you. 
+		desc:You have clicked <b>10</b> Lucky Clovers.
 		req:10 luckyClover clicks 
-		//icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
         icon:icons[3,11]
         
 	*luckyClover100Ach
-		name:Huge lucky. 
-		desc:Have clicked in <b>100</b> luckyClover.
+		name:Clover Lover. 
+		desc:You have clicked <b>100</b> Lucky Clovers.
 		req:100 luckyClover clicks
-		//icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
         icon:icons[0,12]
 	

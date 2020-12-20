@@ -666,10 +666,10 @@ Shinies
 					toast Your system is frozen. You should reboot it. This decreases your total productivity by 50% for 30 seconds.
 				else if ($handicaps=4)
 					yield 11 cutTiming
-					toast A Power cut in your city causes you tremendous losses. This decreases your total productivity by 70% for 10 seconds.
+					toast A power cut in your city causes you tremendous losses. This decreases your total productivity by 70% for 10 seconds.
 				else 
 					yield 121 electricTiming
-					toast The electricity price has raised this month, so your production is now less profitable. This decreases your total productivity by 10% for 2 minutes.
+					toast The electricity price has been raised this month, so your production is now less profitable. This decreases your total productivity by 10% for 2 minutes.
 				end
 			end
 		end

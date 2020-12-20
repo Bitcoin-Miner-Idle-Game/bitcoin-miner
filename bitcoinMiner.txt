@@ -163,31 +163,25 @@ Buttons
  
     *bitcoin2Dollar
         name:Bitcoin exchanger
-        desc:Exchange [bitcoinExchangingBTC] microbitcoin for [bitcoinExchangingDol] dollars
+        desc:Exchange [?bitcoinExchangingBTC < pow(10, 6)|[bitcoinExchangingBTC] microbitcoin|[bitcoinExchangingBTC * pow(10, -6)] Bitcoin] for [bitcoinExchangingDol] dollar[?bitcoinExchangingDol = 1||s]
         on click:
             if (microbitcoins >= bitcoinExchangingBTC)
                 lose bitcoinExchangingBTC microbitcoins
                 yield bitcoinExchangingDol dollars
             end
         end
-        // TODO poner el icono que sea
-        //icon:https://i.imgur.com/lmoXat0.png
-        //icon class:shadowed
         tooltip origin:bottom
         tooltip class:red
 
     *dollar2Bitcoin
         name:Dollar exchanger
-        desc:Exchange [dollarsExchangingDol] dollars for [dollarsExchangingBTC] microbitcoin
+        desc:Exchange [dollarsExchangingDol] dollar[?dollarsExchangingDol = 1||s] for [?dollarsExchangingBTC < pow(10, 6)|[dollarsExchangingBTC] microbitcoin|[dollarsExchangingBTC * pow(10, -6)] Bitcoin]
         on click:
             if (dollars >= dollarsExchangingDol)
                 lose dollarsExchangingDol dollars
                 yield dollarsExchangingBTC microbitcoins
             end
         end
-        // TODO poner el icono que sea
-        //icon:https://i.imgur.com/lmoXat0.png
-        //icon class:shadowed
         tooltip origin:bottom
         tooltip class:red
       

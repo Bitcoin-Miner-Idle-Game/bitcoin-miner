@@ -25,8 +25,9 @@ CSS
         background: rgba(0,0,0,0.3);
 	}
     
-	.achievs-text{
-		font-size:16x;
+	.thing.achiev > .things-text {
+        overflow-wrap: break-word;
+        word-wrap: break-word;
 	}
     
     #box-upgrades {
@@ -35,9 +36,7 @@ CSS
     }
     
     #box-upgrads {
-        overflow: scroll;
-        height: 50%;
-        width: 50%;
+        display: none;
     }
     
     #box-upgrades::-webkit-scrollbar:horizontal {
@@ -70,9 +69,11 @@ CSS
     
     .thing.upgrade, .thing.achiev {
         width: 98%;
-        display: block;
+        display: inline;
         margin-left: auto;
         margin-right: auto;
+        text-align: left;
+        float: left;
     }
     
     // All buildings
@@ -141,9 +142,9 @@ Layout
 		contains:Achievements
         
     *upgrads
-        in:store
+        //in:store
         contains:Upgrades
-        header:Upgrades
+        header:<t>Upgrades</t>
         costs:hide
         names:show
 	

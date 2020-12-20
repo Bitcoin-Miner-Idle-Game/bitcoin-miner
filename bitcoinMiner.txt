@@ -703,12 +703,13 @@ Achievements
 		req:1 (microbitcoin:earned)
 		//icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
         icon:icons[0,7]
-	*microbitcoinAchiev2
+/*	*microbitcoinAchiev2
 		name:Still not enough.
 		desc:Have <b>10</b> Microbitcoin.
 		req:10 (microbitcoin:earned)
 		//icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
-        icon:icons[1,7]
+        icon:icons[1,7] 
+*/
 	*microbitcoinAchiev3
 		name:100% ready to make money.
 		desc:Have <b>100</b> Microbitcoin.
@@ -773,12 +774,13 @@ Achievements
 		req:1 bitcoinButton clicks
 		//icon:https://static.thenounproject.com/png/74554-200.png
         icon:icons[3,9]
-	*clickAchiev2
+/*	*clickAchiev2
 		name:Getting clickier!
 		desc:Click the computer <b>10</b> times. You have published 10 blocks.
 		req:10 bitcoinButton clicks
 		//icon:https://static.thenounproject.com/png/74554-200.png
         icon:icons[0,10]
+*/
 	*clickAchiev3
 		name:Working fast!
 		desc:Click the computer <b>100</b> times. You have published 100 blocks.
@@ -793,7 +795,7 @@ Achievements
         icon:icons[2,10]
 		
 	// Upgrade achievements
-    /*
+
 	*pickaxeUpAch
 		name:Buying another pickaxe.
 		desc:Buy the <b>Dual Wield Pickaxes</b> upgrade.
@@ -842,8 +844,6 @@ Achievements
 		desc:Buy the <b>Drivers Update</b> upgrade. 
 		req:1 driversUpdate
 		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
-        
-    */
 
 //	*compCleaningUpAch
 //		name:Hardware needs cleaning, too.
@@ -897,7 +897,7 @@ Achievements
 		req:1 gpuC
 		//icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
         icon:icons[1,11]
-    /*
+
 	*gpuClassBAch
 		name:Graphical mining.
 		desc:Have <b>1</b> GPU class B.
@@ -954,7 +954,7 @@ Achievements
 		desc:Have <b>1</b> Calc Centre.
 		req:1 calcCentre
 		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
-    */
+
 	//Shinies
 	*luckyClover1Ach
 		name:Little lucky. 

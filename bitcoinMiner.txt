@@ -16,11 +16,11 @@ Settings
 CSS
 	#box-achievs{
 		position: absolute;
-        position-anchor: 0% 100%;
+        position-anchor: 100% 100%;
 		bottom: 0px;
-		left: 0px;
-		width: 220px;
-		height: 28%;
+		right: 0px;
+		width: 50%;
+		height: 50%;
 		overflow: scroll;
 	}
     
@@ -74,11 +74,11 @@ CSS
 Layout
 	use default
 	*achievs
-		in:main
+		in:store
 		header: Achievements
 		icons:hide
 		names:show
-		tooltip origin:right
+		tooltip origin:left
 		contains:Achievements
 	
 Buttons
@@ -875,16 +875,16 @@ Achievements
 	*luckyClover1Ach
 		name:Little lucky. 
 		desc:Have clicked in <b>1</b> luckyClover.
-		req:1 luckyClover
+		req:1 luckyClover clicks
 		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
 	*luckyClover10Ach
 		name:Normal lucky. 
 		desc:Have clicked in <b>10</b> luckyClover.
-		req:1 luckyClover
+		req:10 luckyClover clicks 
 		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
 	*luckyClover100Ach
 		name:Huge lucky. 
 		desc:Have clicked in <b>100</b> luckyClover.
-		req:1 luckyClover
+		req:100 luckyClover clicks
 		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
 	

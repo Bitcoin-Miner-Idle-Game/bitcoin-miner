@@ -22,6 +22,7 @@ CSS
 		width: 50%;
 		height: 50%;
 		overflow-y: scroll;
+        background: rgba(0,0,0,0.3);
 	}
     
 	.achievs-text{
@@ -29,7 +30,22 @@ CSS
 	}
     
     #box-upgrades {
-		overflow-y: scroll;
+		overflow: scroll;
+        height: 50%;
+    }
+    
+    #box-upgrades::-webkit-scrollbar:horizontal {
+        height: 17px;
+    }
+    
+    #box-upgrades::-webkit-scrollbar-thumb:horizontal {
+        background: #ccc;
+        box-shadow: 0px 0px 0px 1px #333 inset, 0px 0px 0px 3px #999 inset, 1px 1px 1px 3px #fff inset;
+    }
+    
+    #box-upgrades::-webkit-scrollbar-corner {
+        background-color: #ccc;
+        box-shadow: 0px 0px 0px 1px #333 inset, 0px 0px 0px 3px #999 inset, 1px 1px 1px 3px #fff inset;
     }
     
     .thing.upgrade, .thing.achiev {
@@ -94,7 +110,7 @@ Layout
 	use default
 	*achievs
 		in:store
-		header: Achievements
+		header:<t>Achievements</t>
 		icons:hide
 		names:show
 		tooltip origin:left

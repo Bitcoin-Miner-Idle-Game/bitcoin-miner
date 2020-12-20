@@ -236,7 +236,7 @@ Resources
 		icon:https://i.imgur.com/vfF2jpP.jpeg
 		class:noBackground
 		//is always:microbitcoins*20717.10*0.000001
-		show earned
+		//show earned
     
     *microbitcoinLog
         always hidden

@@ -21,12 +21,23 @@ CSS
 		right: 0px;
 		width: 50%;
 		height: 50%;
-		overflow: scroll;
+		overflow-y: scroll;
 	}
     
 	.achievs-text{
 		font-size:16x;
 	}
+    
+    #box-upgrades {
+		overflow-y: scroll;
+    }
+    
+    .thing.upgrade, .thing.achiev {
+        width: 98%;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
     
     // All buildings
     #box-things-Buildings > div {
@@ -69,6 +80,14 @@ CSS
     
     #box-things-Buildings > div > .thing-costs > .costTimeRemaining {
         margin-top: -2px;
+    }
+    
+    #box-buttons {
+        margin-top: 50px;
+    }
+    
+    #box-res.fullWidth {
+        top: 12px;
     }
 
 Layout

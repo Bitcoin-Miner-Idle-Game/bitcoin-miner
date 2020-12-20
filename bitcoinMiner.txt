@@ -875,16 +875,15 @@ Achievements
 	*luckyClover1Ach
 		name:Little lucky. 
 		desc:Have clicked in <b>1</b> luckyClover.
-		req:1 luckyClover
+		req:1 luckyClover clicks
 		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
 	*luckyClover10Ach
 		name:Normal lucky. 
 		desc:Have clicked in <b>10</b> luckyClover.
-		req:10 luckyClover
+		req:10 luckyClover clicks 
 		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
 	*luckyClover100Ach
 		name:Huge lucky. 
 		desc:Have clicked in <b>100</b> luckyClover.
-		req:100 luckyClover
+		req:100 luckyClover clicks
 		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
-	

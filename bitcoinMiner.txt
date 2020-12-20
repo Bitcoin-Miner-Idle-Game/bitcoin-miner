@@ -586,7 +586,7 @@ Upgrades
 		req:(poolRecruiting)
 
 Shinies
-	*luckyclover
+	*luckyClover
 		movement:onRight moveLeft wiggle:0.25 growShrink
 		frequency:90
 		frequency variation:20

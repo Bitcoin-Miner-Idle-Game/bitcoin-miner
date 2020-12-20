@@ -81,6 +81,14 @@ CSS
     #box-things-Buildings > div > .thing-costs > .costTimeRemaining {
         margin-top: -2px;
     }
+    
+    #box-buttons {
+        margin-top: 50px;
+    }
+    
+    #box-res.fullWidth {
+        top: 12px;
+    }
 
 Layout
 	use default

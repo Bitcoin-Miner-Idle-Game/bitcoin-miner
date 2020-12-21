@@ -139,7 +139,7 @@ CSS
             border-style: none solid solid none;
             border-width: 17px;
             border-image-width: 17px;
-            border-image: url(https://github.com/Bitcoin-Miner-Idle-Game/bitcoin-miner/blob/feature_fix_moz/img/border.png?raw=true) 21 round;
+            border-image: url(https://github.com/Bitcoin-Miner-Idle-Game/bitcoin-miner/blob/developer/img/border.png?raw=true) 21 round;
         }
         
         #box-buildings, #box-achievs {

@@ -200,7 +200,7 @@ Layout
 	
 Buttons
 	*bitcoinButton
-		name:Computer
+		name:Coin
 		desc:Click here to mine bitcoins!
 		on click:anim icon wobble
 		on click:yield 1 microbitcoin
@@ -733,17 +733,17 @@ Achievements
 
 	*clickAchiev1
 		name:You did it!
-		desc:Click the computer once. You have published your first block.
+		desc:Click the coin once. You have published your first block.
 		req:1 bitcoinButton clicks
         icon:icons[3,3]
 	*clickAchiev3
 		name:Working fast!
-		desc:Click the computer <b>[100]</b> times. You have published [100] blocks.
+		desc:Click the coin <b>[100]</b> times. You have published [100] blocks.
 		req:100 bitcoinButton clicks
         icon:icons[3,3]
 	*clickAchiev4
 		name:Entered the cryptomarket to be the best!
-		desc:Click the computer <b>[1000]</b> times. You have published [1000] blocks
+		desc:Click the coin <b>[1000]</b> times. You have published [1000] blocks
 		req:1000 bitcoinButton clicks
         icon:icons[3,3]
 		

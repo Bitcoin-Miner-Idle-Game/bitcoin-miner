@@ -130,6 +130,22 @@ CSS
     .thing.res > .thing-text > div > q {
         font-size: 10px;
     }
+    
+    @-moz-document url-prefix() {
+        // Style for Mozilla only
+        #box-upgrades, #box-achievs, #box-buildings {
+            overflow: scroll;
+            scrollbar-width: none;
+            border-style: none solid solid none;
+            border-width: 17px;
+            border-image-width: 17px;
+            border-image: url(https://github.com/Bitcoin-Miner-Idle-Game/bitcoin-miner/blob/developer/img/border.png?raw=true) 21 round;
+        }
+        
+        #box-buildings, #box-achievs {
+            border-style: none solid none none;
+        }
+    }
 
 Layout
 	use default

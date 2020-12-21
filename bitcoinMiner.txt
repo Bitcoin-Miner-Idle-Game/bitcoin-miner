@@ -22,6 +22,12 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
+/*
+This game was made for the Ethics, Legislation and Proffesion subject imparted in the
+Universidad Complutense de Madrid. Please visit the link below for more information on the project.
+https://wikis.fdi.ucm.es/ELP/Trabajo:Bitcoin_Miner
+*/
+
 Let's make a game!
 	name:Bitcoin Miner
 	by:BitcoinMiner Team

@@ -23,7 +23,7 @@ SOFTWARE.
 */
 
 /*
-This game was made for the Ethics, Legislation and Proffesion subject imparted in the
+This game was made for the Ethics, Legislation and Profession subject imparted in the
 Universidad Complutense de Madrid. Please visit the link below for more information on the project.
 https://wikis.fdi.ucm.es/ELP/Trabajo:Bitcoin_Miner
 */

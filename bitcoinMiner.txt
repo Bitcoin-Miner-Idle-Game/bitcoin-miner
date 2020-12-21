@@ -163,7 +163,6 @@ Layout
 		contains:Achievements
         
     *upgrads
-        //in:store
         contains:Upgrades
         header:<t>Upgrades</t>
         costs:hide
@@ -206,7 +205,7 @@ Buttons
         tooltip origin:bottom
         tooltip class:red
       
-  //TODO botones para hacer trampas en fase de desarrollo, borrar antes de subir
+  // TODO botones para hacer trampas en fase de desarrollo, borrar antes de subir
     *cheat1000
     	name:CHEAT: 1k μBTC
       on click:yield 1000 microbitcoins
@@ -699,12 +698,6 @@ Achievements
 		desc:Mine <b>[1]</b> μBitcoin.
 		req:1 (microbitcoin:earned)
         icon:icons[3,3]
-/*	*microbitcoinAchiev2
-		name:Still not enough.
-		desc:Mine <b>[10]</b> μBitcoin.
-		req:10 (microbitcoin:earned)
-        icon:icons[3,3]
-*/
 	*microbitcoinAchiev3
 		name:100% ready to make money.
 		desc:Mine <b>[100]</b> μBitcoin.
@@ -759,12 +752,6 @@ Achievements
 		desc:Click the computer once. You have published your first block.
 		req:1 bitcoinButton clicks
         icon:icons[3,3]
-/*	*clickAchiev2
-		name:Getting clickier!
-		desc:Click the computer <b>[10]</b> times. You have published [10] blocks.
-		req:10 bitcoinButton clicks
-        icon:icons[3,3]
-*/
 	*clickAchiev3
 		name:Working fast!
 		desc:Click the computer <b>[100]</b> times. You have published [100] blocks.
@@ -837,30 +824,6 @@ Achievements
 		desc:Buy the <b>Hardware Cleaning</b> upgrade. 
 		req:1 compCleaning
         icon:icons[3,3]
-
-//	*antivirusCUpAch
-//		name:Safety first.
-//		desc:Buy the <b>???</b> upgrade. 
-//		req:1 antivirusC
-//      icon:icons[3,3]
-
-//	*antivirusBUpAch
-//		name:No more pesky ads.
-//		desc:Buy the <b>???</b> upgrade. 
-//		req:1 antivirusB
-//      icon:icons[3,3]
-
-//	*antivirusAUpAch
-//		name:Avoiding malware.
-//		desc:Buy the <b>???</b> upgrade. 
-//		req:1 antivirusA
-//      icon:icons[3,3]
-
-//	*antivirusSUpAch
-//		name:Your computer got vaccined.
-//		desc:Buy the <b>???</b> upgrade. 
-//		req:1 antivirusS
-//      icon:icons[3,3]
 
 	// Building achievements
 	// Faltan algunos de múltiplos de 10.
@@ -938,7 +901,7 @@ Achievements
 		req:1 calcCentre
         icon:icons[3,3]
 
-	//Shinies
+	// Shinies
 	*luckyClover1Ach
 		name:You're feeling lucky. 
 		desc:You have clicked <b>[1]</b> Lucky Clover.

@@ -257,7 +257,7 @@ Resources
 		name:μBitcoin|μBitcoins
 		text:μBitcoin: [microbitcoin] (+[microbitcoin:ps]/s)</><q>(total earned: [microbitcoins:earned])</q>
 		desc:This is how many Microbitcoins are in your possesion. A Microbitcoin is worth 0.000001 Bitcoin. Become rich and dominate the cryptomarket!
-		icon:https://i.imgur.com/lmoXat0.png
+		icon:icons[2,15]
 		class:noBackground
 		//show earned
         req:(bitcoins<1)
@@ -266,7 +266,7 @@ Resources
 		name:Bitcoin|Bitcoins
 		text:Bitcoin: [bitcoin] (+[floor(microbitcoin:ps*0.000001)][?(bitcoins >= 1000)||.[(microbitcoin:ps*0.000001*pow(10,3))%pow(10,3)]]/s)</><q>(total earned: [microbitcoins:earned * 0.000001])</q>
 		desc:This is how many Bitcoins are in your possesion. Become rich and dominate the cryptomarket!
-		icon:https://i.imgur.com/lmoXat0.png
+		icon:icons[2,15]
 		class:noBackground
 		is always:microbitcoins*0.000001
 		//show earned
@@ -276,7 +276,7 @@ Resources
 		name:US Dollar|US Dollars
 		text:US Dollars: [dollar]</><q>(total earned: [dollars:earned])</q>
 		desc:Exchanging your Bitcoins to US dollars, this is how many dollars you will obtain if you sell your Bitcoins now.
-		icon:https://i.imgur.com/vfF2jpP.jpeg
+		icon:icons[1,15]
 		class:noBackground
 		//show earned
     
@@ -658,7 +658,7 @@ Shinies
 		movement:onRight moveLeft wiggle:0.25 growShrink
 		frequency:90
 		frequency variation:20
-		icon:icons[3,15]
+		icon:https://raw.githubusercontent.com/Bitcoin-Miner-Idle-Game/bitcoin-miner/main/img/lucky_clover_256bits.png
 		class:bigButton
 		on click:
 			$handicaps=random(0,5)

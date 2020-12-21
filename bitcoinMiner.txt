@@ -25,9 +25,9 @@ CSS
         background: rgba(0,0,0,0.3);
 	}
     
-	.thing.achiev > .things-text {
-        overflow-wrap: break-word;
-        word-wrap: break-word;
+	.thing.achiev > .thing-text {
+        position: absolute;
+        bottom: 0px;
 	}
     
     #box-upgrades {

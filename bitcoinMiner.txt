@@ -7,13 +7,18 @@ Let's make a game!
 	version:0.1
  
 Settings
-	background:https://i.imgur.com/haH2ubb.jpg
+	background:https://raw.githubusercontent.com/Bitcoin-Miner-Idle-Game/bitcoin-miner/main/img/background_fuzzy.png
 	building cost increase:115%
 	building cost refund:50%
     spritesheet:icons, 48 by 48, https://raw.githubusercontent.com/Bitcoin-Miner-Idle-Game/bitcoin-miner/main/img/icons_spritesheet.png
 	stylesheet:stuff/bigBlue.css
 
 CSS
+    .thing.bigButton {
+        top: 52%;
+        left: 51.1%;
+    }
+    
 	#box-achievs{
 		position: absolute;
         position-anchor: 100% 100%;
@@ -170,7 +175,7 @@ Buttons
 		desc:Click here to mine bitcoins!
 		on click:anim icon wobble
 		on click:yield 1 microbitcoin
-		icon:https://i.imgur.com/Fv200ZH.png
+		icon:https://raw.githubusercontent.com/Bitcoin-Miner-Idle-Game/bitcoin-miner/main/img/notsobigbutton.png
 		no text
 		class:bigButton hasFlares
 		icon class:shadowed
@@ -543,7 +548,7 @@ Upgrades
     *mineFaster
 		name:Sleight of Hand
 		desc:Practice makes perfect. <//><b>Effect:</b><.>Mine twice as efficiently with each click.
-		icon:icons[0,4]
+        icon:icons[2,3]
 		cost:50 microbitcoin
 		passive:increase microbitcoins yield of bitcoinButton by 1
         on earn:hide mineFaster
@@ -553,7 +558,7 @@ Upgrades
 		name:Dual Wield Pickaxes
 		desc:Two hands work better than one.<//><b>Effect:</b><.>Double the production of your pickaxes.
 		tags:isUpgrade
-		icon:icons[1,4]
+        icon:icons[2,3]
 		cost:1000 microbitcoin
 		passive:multiply yield of pickaxes by 2
         on earn:hide pickaxeUpgrade
@@ -563,7 +568,7 @@ Upgrades
 		name:App Cleaning
 		desc:Delete the apps you don't use from your computer.<//><b>Effect:</b><.>Increase the production of your CPUs by 10%.
 		tags:isUpgrade
-		icon:icons[2,4]
+        icon:icons[2,3]
 		cost:5000 microbitcoin
 		passive:multiply yield of cpus by 1.1
         on earn:hide uninstallApps
@@ -573,7 +578,7 @@ Upgrades
 		name:CPU Overclock
     	desc:Push your CPU further to the limit.<//><b>Effect:</b><.>Increase the production of your CPUs by 50%.
     	tags:isUpgrade
-		icon:icons[3,4]
+        icon:icons[2,3]
 		cost:100000 microbitcoin
 		passive:multiply yield of cpus by 1.5
         on earn:hide cpuOverclock
@@ -583,7 +588,7 @@ Upgrades
 		name:GPU Overclock
 		desc:Push your GPUs further to the limit.<//><b>Effect:</b><.>Increase the production of all your GPUs by 50%.
     	tags:isUpgrade
-		icon:icons[0,5]
+        icon:icons[2,3]
 		cost:100000 microbitcoin
 		passive:multiply yield of tag:isGPU by 1.5
         on earn:hide gpuOverclock
@@ -593,7 +598,7 @@ Upgrades
 		name:ASIC Overclock
 		desc:Push your ASICs further to the limit.<//><b>Effect:</b><.>Increase the production of your ASICs by 50%.
     	tags:isUpgrade
-		icon:icons[1,5]
+        icon:icons[2,3]
 		cost:1000000 microbitcoin
 		passive:multiply yield of tag:isASIC by 1.5
         on earn:hide asicOverclock
@@ -603,7 +608,7 @@ Upgrades
 		name:FPGA Overclock
 		desc:Push your FPGAs further to the limit.<//><b>Effect:</b><.>Increase the production of all your FPGAs by 50%.
     	tags:isUpgrade
-		icon:icons[2,5]
+        icon:icons[2,3]
 		cost:1000000 microbitcoin
 		passive:multiply yield of fpgas by 1.5
         on earn:hide fpgaOverclock
@@ -613,7 +618,7 @@ Upgrades
 		name:Drivers Update
 		desc:Updating your drivers optimizes the performance of your GPUs.<//><b>Effect:</b><.>Increase the production of all your GPUs by 50%.
 		tags:isUpgrade
-		icon:icons[3,5]
+        icon:icons[2,3]
 		cost:2000000 microbitcoin
 		passive:multiply yield of tag:isGPU by 1.5
         on earn:hide driversUpdate
@@ -622,7 +627,7 @@ Upgrades
 	*compCleaning
 		name:Hardware Cleaning
 		desc:Just make sure not to use water.<//><b>Effect:</b><.>Increase the production of all your stuff by 10%.
-		icon:icons[0,6]
+        icon:icons[2,3]
 		cost:1000000 microbitcoin
 		passive:multiply yield of tag:isBuilding by 1.1
         on earn:hide compCleaning
@@ -632,7 +637,7 @@ Upgrades
 	*poolRecruiting
 		name:Mining Pool Recruiting
 		desc:More people are joining your mining pools.<//><b>Effect:</b><.>Increase the production of your mining pools by 50%.
-		icon:icons[1,6]
+        icon:icons[2,3]
 		cost:1000000000000 microbitcoin
 		passive:multiply yield of pools by 1.5
         on earn:hide poolRecruiting
@@ -642,7 +647,7 @@ Upgrades
 	*cheaperElectricity
 		name:Cheaper Electricity.
 		desc:You just got an offer from the electric company. Mining is now more profitable. <//><b>Effect:</b><.>Increase the production of all your stuff by 10%.
-		icon:icons[2,6]
+        icon:icons[2,3]
 		cost:2000000000000 microbitcoin
 		passive:multiply yield of tag:isBuilding by 1.1
         on earn:hide cheaperElectricity
@@ -654,7 +659,7 @@ Shinies
 		movement:onRight moveLeft wiggle:0.25 growShrink
 		frequency:90
 		frequency variation:20
-		icon:https://upload.wikimedia.org/wikipedia/commons/5/53/Tr%C3%A9bol_de_4_hojas.svg
+		icon:icons[3,15]
 		class:bigButton
 		on click:
 			$handicaps=random(0,5)
@@ -694,59 +699,59 @@ Achievements
 		name:Gotta start from somewhere.
 		desc:Mine <b>1</b> Microbitcoin.
 		req:1 (microbitcoin:earned)
-        icon:icons[0,7]
+        icon:icons[3,3]
 /*	*microbitcoinAchiev2
 		name:Still not enough.
 		desc:Mine <b>10</b> Microbitcoin.
 		req:10 (microbitcoin:earned)
-        icon:icons[1,7] 
+        icon:icons[3,3]
 */
 	*microbitcoinAchiev3
 		name:100% ready to make money.
 		desc:Mine <b>100</b> Microbitcoin.
 		req:100 (microbitcoin:earned)
-        icon:icons[2,7]
+        icon:icons[3,3]
 	*microbitcoinAchiev4
 		name:Doing great!
 		desc:Mine <b>1000</b> Microbitcoin.
 		req:1000 (microbitcoins:earned)
-        icon:icons[3,7]
+        icon:icons[3,3]
 	*microbitcoinAchiev5
 		name:10K Magic.
 		desc:Mine <b>10000</b> Microbitcoin.
 		req:10000 (microbitcoins:earned)
-        icon:icons[0,8]
+        icon:icons[3,3]
 	*microbitcoinAchiev6
 		name:Closer to your first Bitcoin.
 		desc:Mine <b>100000</b> Microbitcoin.
 		req:100000 (microbitcoins:earned)
-        icon:icons[1,8]
+        icon:icons[3,3]
 	*microbitcoinAchiev7
 		name:Bit by Bit, you did it.
 		desc:Mine <b>1000000</b> Microbitcoin (1 Bitcoin).
 		req:1000000 (microbitcoins:earned)
-        icon:icons[2,8]
+        icon:icons[3,3]
 	*microbitcoinAchiev8
 		name:You are on a roll!
 		desc:Mine <b>10</b> Bitcoin.
 		req:10000000 (microbitcoins:earned)
-        icon:icons[3,8]
+        icon:icons[3,3]
 	*microbitcoinAchiev9
 		name:Keep on mining, baby!
 		desc:Mine <b>100</b> Bitcoin.
 		req:100000000 (microbitcoins:earned)
-        icon:icons[0,9]
+        icon:icons[3,3]
 	// Faltan más múltiplos
 	*satoshiAch
 		name:Satoshi Nakamoto wants to meet you. 
 		desc: You have mined <b>1M</b> Bitcoin. You are the person in the world that owns the most Bitcoins.
 		req:1000000000000 (microbitcoins:earned)
-        icon:icons[1,9]
+        icon:icons[3,3]
 	*allBitcoins
 		name: Every bitcoin that actually exists in the world.
 		desc: You have mined <b>21000000</b> Bitcoin. 
 		req:21000000000000 (microbitcoins:earned)
-        icon:icons[2,9]
+        icon:icons[3,3]
 		
 	// Click achievements
 
@@ -754,27 +759,23 @@ Achievements
 		name:You did it!
 		desc:Click the computer once. You have published your first block.
 		req:1 bitcoinButton clicks
-		//icon:https://static.thenounproject.com/png/74554-200.png
-        icon:icons[3,9]
+        icon:icons[3,3]
 /*	*clickAchiev2
 		name:Getting clickier!
 		desc:Click the computer <b>10</b> times. You have published 10 blocks.
 		req:10 bitcoinButton clicks
-		//icon:https://static.thenounproject.com/png/74554-200.png
-        icon:icons[0,10]
+        icon:icons[3,3]
 */
 	*clickAchiev3
 		name:Working fast!
 		desc:Click the computer <b>100</b> times. You have published 100 blocks.
 		req:100 bitcoinButton clicks
-		//icon:https://static.thenounproject.com/png/74554-200.png
-        icon:icons[1,10]
+        icon:icons[3,3]
 	*clickAchiev4
 		name:Entered the cryptomarket to be the best!
 		desc:Click the computer <b>1000</b> times. You have published 1000 blocks
 		req:1000 bitcoinButton clicks
-		//icon:https://static.thenounproject.com/png/74554-200.png
-        icon:icons[2,10]
+        icon:icons[3,3]
 		
 	// Upgrade achievements
 	
@@ -782,85 +783,85 @@ Achievements
 		name:Working out.
 		desc:Buy the <b>Sleight of Hand</b> upgrade.
 		req:1 mineFaster
-		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+        icon:icons[3,3]
 
 	*pickaxeUpAch
 		name:Buying another pickaxe.
 		desc:Buy the <b>Dual Wield Pickaxes</b> upgrade.
 		req:1 pickaxeUpgrade
-		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+        icon:icons[3,3]
 
 	*uninstAppsUpAch
 		name:A PC that feels new.
 		desc:Buy the <b>App Cleaning</b> upgrade. 
 		req:1 uninstallApps
-		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+        icon:icons[3,3]
 
 	*cpuOverclockUpAch
 		name:Unleashed your CPUs.
 		desc:Buy the <b>CPU Overclock</b> upgrade. 
 		req:1 cpuOverclock
-		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+        icon:icons[3,3]
 
 	*gpuOverclockUpAch
 		name:Unleashed your GPUs.
 		desc:Buy the <b>GPU Overclock</b> upgrade.
 		req:1 gpuOverclock
-		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+        icon:icons[3,3]
 
 	*asicOverclockUpAch
 		name:Unleashed your ASICs.
 		desc:Buy the <b>ASIC Overclock</b> upgrade.
 		req:1 asicOverclock
-		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+        icon:icons[3,3]
 
 	*fpgaOverclockUpAch
 		name:Unleashed your FPGAs.
 		desc:Buy the <b>FPGA Overclock</b> upgrade.
 		req:1 fpgaOverclock
-		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+        icon:icons[3,3]
 
 	*cheaperElectUpAch
 		name:Changed your current plan.
 		desc:Buy the <b>Cheaper Electricity</b> upgrade. 
 		req:1 cheaperElectricity
-		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+        icon:icons[3,3]
 
 	*driversUpdateUpAch
 		name:Up to date.
 		desc:Buy the <b>Drivers Update</b> upgrade. 
 		req:1 driversUpdate
-		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+        icon:icons[3,3]
 
 	*compCleaningUpAch
 		name:Hardware needs cleaning, too.
 		desc:Buy the <b>Hardware Cleaning</b> upgrade. 
 		req:1 compCleaning
-		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+        icon:icons[3,3]
 
 //	*antivirusCUpAch
 //		name:Safety first.
 //		desc:Buy the <b>???</b> upgrade. 
 //		req:1 antivirusC
-//		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+//      icon:icons[3,3]
 
 //	*antivirusBUpAch
 //		name:No more pesky ads.
 //		desc:Buy the <b>???</b> upgrade. 
 //		req:1 antivirusB
-//		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+//      icon:icons[3,3]
 
 //	*antivirusAUpAch
 //		name:Avoiding malware.
 //		desc:Buy the <b>???</b> upgrade. 
 //		req:1 antivirusA
-//		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+//      icon:icons[3,3]
 
 //	*antivirusSUpAch
 //		name:Your computer got vaccined.
 //		desc:Buy the <b>???</b> upgrade. 
 //		req:1 antivirusS
-//		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+//      icon:icons[3,3]
 
 	// Building achievements
 	// Faltan algunos de múltiplos de 10.
@@ -868,92 +869,92 @@ Achievements
 		name:Oldschool mining.
 		desc:Have <b>1</b> pickaxe.
 		req:1 pickaxe
-        icon:icons[3,10]
+        icon:icons[3,3]
         
 	*cpuAch
 		name:Technological revolution.
 		desc:Have <b>1</b> CPU.
 		req:1 cpu
-        icon:icons[0,11]
+        icon:icons[3,3]
         
 	*gpuClassCAch
 		name:Just need a monitor now.
 		desc:Have <b>1</b> GPU class C.
 		req:1 gpuC
-        icon:icons[1,11]
+        icon:icons[3,3]
 
 	*gpuClassBAch
 		name:Graphical mining.
 		desc:Have <b>1</b> GPU class B.
 		req:1 gpuB
-		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+        icon:icons[3,3]
 	*gpuClassAAch
 		name:Now with raytracing.
 		desc:Have <b>1</b> GPU class A.
 		req:1 gpuA
-		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+        icon:icons[3,3]
 	*gpuClassSAch
 		name:And it can run Crysis!
 		desc:Have <b>1</b> GPU class S.
 		req:1 gpuS
-		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+        icon:icons[3,3]
 	*fpgaAch
 		name:Bought your first FPGA.
 		desc:Have <b>1</b> FPGA.
 		req:1 fpga
-		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+        icon:icons[3,3]
 	*asicClassCAch
 		name:Getting specialized.
 		desc:Have <b>1</b> ASIC class C.
 		req:1 asicC
-		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+        icon:icons[3,3]
 	*asicClassBAch
 		name:bASIC Machine.
 		desc:Have <b>1</b> ASIC class B.
 		req:1 asicB
-		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+        icon:icons[3,3]
 	*asicClassAch
 		name:A very Application-Specific Integrated Circuit.
 		desc:Have <b>1</b> ASIC class A.
 		req:1 asicA
-		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+        icon:icons[3,3]
 	*asicClassSAch
 		name:One Purpose-Machine.
 		desc:Have <b>1</b> ASIC class S.
 		req:1 asicS
-		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+        icon:icons[3,3]
 	*cloudAch
 		name:On Cloud nine.
 		desc:Have <b>1</b> Cloud.
 		req:1 cloud
-		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+        icon:icons[3,3]
 	*miningPoolAch
 		name:Collaborative working.
 		desc:You have joined a mining pool.
 		req:1 pool
-		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+        icon:icons[3,3]
 	*dataCenterAch
 		name:Calculus Rhapsody. 
 		desc:Have <b>1</b> Calc Centre.
 		req:1 calcCentre
-		icon:https://cdn.pixabay.com/photo/2013/07/12/18/29/trophy-153395_1280.png
+        icon:icons[3,3]
 
 	//Shinies
 	*luckyClover1Ach
 		name:You're feeling lucky. 
 		desc:You have clicked <b>1</b> Lucky Clover.
 		req:1 luckyClover clicks
-        icon:icons[2,11]
+        icon:icons[3,3]
         
 	*luckyClover10Ach
 		name:Luck didn't leaf you. 
 		desc:You have clicked <b>10</b> Lucky Clovers.
 		req:10 luckyClover clicks 
-        icon:icons[3,11]
+        icon:icons[3,3]
         
 	*luckyClover100Ach
 		name:Clover Lover. 
 		desc:You have clicked <b>100</b> Lucky Clovers.
 		req:100 luckyClover clicks
-        icon:icons[0,12]
+        icon:icons[3,3]
 	

@@ -1,10 +1,40 @@
+/*
+MIT License
+
+Copyright (c) 2020 Bitcoin Miner
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+*/
+
+/*
+This game was made for the Ethics, Legislation and Profession subject imparted in the
+Universidad Complutense de Madrid. Please visit the link below for more information on the project.
+https://wikis.fdi.ucm.es/ELP/Trabajo:Bitcoin_Miner
+*/
+
 Let's make a game!
 	name:Bitcoin Miner
 	by:BitcoinMiner Team
 	desc:This is an idle game made to show the basics of bitcoin mining and blockchain.<//>Become rich by unleashing the power of technology!
 	created:07/12/2020
-	updated:07/12/2020
-	version:0.1
+	updated:21/12/2020
+	version:0.9
  
 Settings
 	background:https://raw.githubusercontent.com/Bitcoin-Miner-Idle-Game/bitcoin-miner/main/img/background_fuzzy.png
@@ -144,7 +174,7 @@ CSS
             border-style: none solid solid none;
             border-width: 17px;
             border-image-width: 17px;
-            border-image: url(https://github.com/Bitcoin-Miner-Idle-Game/bitcoin-miner/blob/developer/img/border.png?raw=true) 21 round;
+            border-image: url(https://github.com/Bitcoin-Miner-Idle-Game/bitcoin-miner/blob/main/img/border.png?raw=true) 21 round;
         }
         
         #box-buildings, #box-achievs {
@@ -170,7 +200,7 @@ Layout
 	
 Buttons
 	*bitcoinButton
-		name:Computer
+		name:Coin
 		desc:Click here to mine bitcoins!
 		on click:anim icon wobble
 		on click:yield 1 microbitcoin
@@ -204,52 +234,6 @@ Buttons
         end
         tooltip origin:bottom
         tooltip class:red
-      
-  // TODO botones para hacer trampas en fase de desarrollo, borrar antes de subir
-    *cheat1000
-    	name:CHEAT: 1k μBTC
-      on click:yield 1000 microbitcoins
-      icon class:shadowed
-      
-    *cheat10000
-    	name:CHEAT: 10k μBTC
-      on click:yield 10000 microbitcoins
-      icon class:shadowed
-      
-    *cheat100000
-    	name:CHEAT: 100k μBTC
-      on click:yield 100000 microbitcoins
-      icon class:shadowed
-      
-    *cheat1000000
-    	name:CHEAT: 1 BTC
-      on click:yield 1000000 microbitcoins
-      icon class:shadowed
-      
-    *cheat100000000
-    	name:CHEAT: 100 BTC
-      on click:yield 100000000 microbitcoins
-      icon class:shadowed
-
-    *cheat1000000000
-    	name:CHEAT: 1k BTC
-      on click:yield 1000000000 microbitcoins
-      icon class:shadowed
-
-    *cheat10000000000
-    	name:CHEAT: 10k BTC
-      on click:yield 10000000000 microbitcoins
-      icon class:shadowed
-
-    *cheat100000000000
-    	name:CHEAT: 100k BTC
-      on click:yield 100000000000 microbitcoins
-      icon class:shadowed
-
-    *cheat1000000000000
-    	name:CHEAT: 1M BTC
-      on click:yield 1000000000000 microbitcoins
-      icon class:shadowed
  
 Resources
 	*microbitcoin|microbitcoins
@@ -515,8 +499,8 @@ Buildings
     text:Graphics card type S<b>[gpusS]</b>
     icon:icons[1,1]
     tags:isGPU isBuilding
-    cost:4000000 microbitcoin
-    on tick:yield 7100000000000 microbitcoin
+    cost:7100000000000 microbitcoin
+    on tick:yield 33000000 microbitcoin
     req:(gpusA + gpusB + gpusC >= 100)
     
   *asicS|asicsS
@@ -749,17 +733,17 @@ Achievements
 
 	*clickAchiev1
 		name:You did it!
-		desc:Click the computer once. You have published your first block.
+		desc:Click the coin once. You have published your first block.
 		req:1 bitcoinButton clicks
         icon:icons[3,3]
 	*clickAchiev3
 		name:Working fast!
-		desc:Click the computer <b>[100]</b> times. You have published [100] blocks.
+		desc:Click the coin <b>[100]</b> times. You have published [100] blocks.
 		req:100 bitcoinButton clicks
         icon:icons[3,3]
 	*clickAchiev4
 		name:Entered the cryptomarket to be the best!
-		desc:Click the computer <b>[1000]</b> times. You have published [1000] blocks
+		desc:Click the coin <b>[1000]</b> times. You have published [1000] blocks
 		req:1000 bitcoinButton clicks
         icon:icons[3,3]
 		

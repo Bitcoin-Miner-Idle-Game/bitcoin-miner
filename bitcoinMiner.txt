@@ -234,6 +234,52 @@ Buttons
         end
         tooltip origin:bottom
         tooltip class:red
+
+  // TODO botones para hacer trampas en fase de desarrollo, borrar antes de subir
+    *cheat1000
+    	name:CHEAT: 1k μBTC
+      on click:yield 1000 microbitcoins
+      icon class:shadowed
+      
+    *cheat10000
+    	name:CHEAT: 10k μBTC
+      on click:yield 10000 microbitcoins
+      icon class:shadowed
+      
+    *cheat100000
+    	name:CHEAT: 100k μBTC
+      on click:yield 100000 microbitcoins
+      icon class:shadowed
+      
+    *cheat1000000
+    	name:CHEAT: 1 BTC
+      on click:yield 1000000 microbitcoins
+      icon class:shadowed
+      
+    *cheat100000000
+    	name:CHEAT: 100 BTC
+      on click:yield 100000000 microbitcoins
+      icon class:shadowed
+
+    *cheat1000000000
+    	name:CHEAT: 1k BTC
+      on click:yield 1000000000 microbitcoins
+      icon class:shadowed
+
+    *cheat10000000000
+    	name:CHEAT: 10k BTC
+      on click:yield 10000000000 microbitcoins
+      icon class:shadowed
+
+    *cheat100000000000
+    	name:CHEAT: 100k BTC
+      on click:yield 100000000000 microbitcoins
+      icon class:shadowed
+
+    *cheat1000000000000
+    	name:CHEAT: 1M BTC
+      on click:yield 1000000000000 microbitcoins
+      icon class:shadowed
  
 Resources
 	*microbitcoin|microbitcoins
@@ -242,18 +288,24 @@ Resources
 		desc:This is how many Microbitcoins are in your possesion. A Microbitcoin is worth 0.000001 Bitcoin. Become rich and dominate the cryptomarket!
 		icon:icons[2,15]
 		class:noBackground
-		//show earned
-        req:(bitcoins<1)
  
 	*bitcoin|bitcoins
 		name:Bitcoin|Bitcoins
-		text:Bitcoin: [bitcoin] (+[floor(microbitcoin:ps*0.000001)][?(bitcoins >= 1000)||.[(microbitcoin:ps*0.000001*pow(10,3))%pow(10,3)]]/s)</><q>(total earned: [microbitcoins:earned * 0.000001])</q>
+		text:Bitcoin: [?(bitcoin>=1000)|[bitcoins]|[floor(bitcoins)].[floor(bitcoins*10)%10][floor(bitcoins*100)%10]] (+[floor(microbitcoin:ps*pow(10,-6))][?(microbitcoin:ps>=pow(10,9))||.[floor((microbitcoins:ps*pow(10,-5))%10)][floor((microbitcoins:ps*pow(10,-4))%10)][floor((microbitcoins:ps*pow(10,-3))%10)]]/s)</><q>(total earned: [microbitcoins:earned*pow(10,-6)])</q>
 		desc:This is how many Bitcoins are in your possesion. Become rich and dominate the cryptomarket!
 		icon:icons[2,15]
 		class:noBackground
-		is always:microbitcoins*0.000001
-		//show earned
-        req:(bitcoins>=1)
+		is always:microbitcoins*pow(10,-6)
+        hidden
+        on tick:
+            if (bitcoins >= 1)
+                hide microbitcoins
+                show bitcoins
+             else
+                hide bitcoins
+                show microbitcoins
+            end
+         end
  
 	*dollar|dollars
 		name:US Dollar|US Dollars

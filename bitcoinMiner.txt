@@ -291,11 +291,12 @@ Resources
  
 	*bitcoin|bitcoins
 		name:Bitcoin|Bitcoins
-		text:Bitcoin: [?(bitcoin>=1000)|[bitcoins]|[floor(bitcoins)].[floor(microbitcoins)*pow(10,-5)%10][floor(microbitcoins)*pow(10,-4)%10]] (+[floor(microbitcoin:ps*pow(10,-6))][?(microbitcoin:ps>=pow(10,9))||.[floor((microbitcoins:ps*pow(10,-5))%10)][floor((microbitcoins:ps*pow(10,-4))%10)][floor((microbitcoins:ps*pow(10,-3))%10)]]/s)</><q>(total earned: [microbitcoins:earned*pow(10,-6)])</q>
+		text:Bitcoin: [?(bitcoin>=1000)|[bitcoins]|[floor(bitcoins)].[floor(bitcoins*10)%10][floor(bitcoins*100)%10]] (+[floor(microbitcoin:ps*pow(10,-6))][?(microbitcoin:ps>=pow(10,9))||.[floor((microbitcoins:ps*pow(10,-5))%10)][floor((microbitcoins:ps*pow(10,-4))%10)][floor((microbitcoins:ps*pow(10,-3))%10)]]/s)</><q>(total earned: [microbitcoins:earned*pow(10,-6)])</q>
 		desc:This is how many Bitcoins are in your possesion. Become rich and dominate the cryptomarket!
 		icon:icons[2,15]
 		class:noBackground
-		is always:microbitcoins*0.000001
+		is always:microbitcoins*pow(10,-6)
+        hidden
         on tick:
             if (bitcoins >= 1)
                 hide microbitcoins

@@ -166,6 +166,45 @@ CSS
         font-size: 10px;
     }
     
+    #box-educational {
+        position: absolute;
+        left: 0;
+        width: 20%;
+        height: 60%;
+        background: linear-gradient(to left,rgba(0,0,0,0) 0%,rgba(0,0,0,0.25) 20%);
+    }
+    
+    #box-things-edu {
+        height: 100%;
+    }
+    
+    .edu-text, .edu-text:hover {
+        width: 100%;
+        cursor: auto;
+        background: rgba(0,0,0,0);
+        box-shadow: initial;
+        text-align: left;
+    }
+    
+    #box-eduControl {
+        position: absolute;
+        bottom: 0;
+        width: 90%;
+    }
+    
+    .edu-back, .edu-next {
+        display: inline-block;
+        width: 40%;
+    }
+    
+    .edu-back {
+        float: left;
+    }
+    
+    .edu-next {
+        float: right;
+    }
+    
     @-moz-document url-prefix() {
         // Style for Mozilla only
         #box-upgrades, #box-achievs, #box-buildings {
@@ -197,6 +236,16 @@ Layout
         header:<t>Upgrades</t>
         costs:hide
         names:show
+    
+    *educational
+        contains:tag:edu
+        names:show
+        in:buttons
+    
+    *eduControl
+        contains:tag:eduControl
+        names:show
+        in:educational
 	
 Buttons
 	*bitcoinButton
@@ -234,6 +283,67 @@ Buttons
         end
         tooltip origin:bottom
         tooltip class:red
+    
+    *edu0
+        text:Muhco texto mucho texto mucho<//>texto mucho texto mucho texto mucho texto mucho textomucho textomucho texto mucho texto mucho texto mucho texto mucho texto mucho texto
+        tag:edu
+        no tooltip
+        class:edu-text
+        
+    *edu1
+        text:<#f00>Hola</#> gominola
+        tag:edu
+        no tooltip
+        class:edu-text
+        hidden
+        
+    *edu2
+        text:<i>Hola</i> caracola
+        tag:edu
+        no tooltip
+        class:edu-text
+        hidden
+    
+    /*
+        Para añadir un cartelito educacional nuevo copia el anterior, cambia el id, pon el texto que quieras
+        y modifica eduBack y eduNext para que se muestre en el orden correcto. Y las líneas hide eduBack,
+        show eduNext, etc., tienen que estar siempre en el primer y último if de la forma en que están ahora.
+    */
+    
+    *eduBack
+        name:Back
+        tag:eduControl
+        no tooltip
+        class:edu-back
+        on click:
+            if (eduNext:clicks - eduBack:clicks = 0)
+                hide edu1
+                show edu0
+                hide eduBack
+             else if (eduNext:clicks - eduBack:clicks = 1)
+                hide edu2
+                show edu1
+                show eduNext
+            end
+        end
+        hidden
+    
+    *eduNext
+        name:Next
+        tag:eduControl
+        no tooltip
+        class:edu-next
+        on click:
+            if (eduNext:clicks - eduBack:clicks = 1)
+                hide edu0
+                show edu1
+                show eduBack
+             else if (eduNext:clicks - eduBack:clicks = 2)
+                hide edu1
+                show edu2
+                hide eduNext
+            end
+        end
 
   // TODO botones para hacer trampas en fase de desarrollo, borrar antes de subir
     *cheat1000

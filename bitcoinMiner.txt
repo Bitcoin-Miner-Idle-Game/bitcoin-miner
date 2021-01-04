@@ -297,21 +297,21 @@ Buttons
         class:edu-text
         
     *edu1
-        text:<b><i><#fff875>So mining bitcoin and blockchain are the same thing?</#></i></b><//></>No, but they are related. The important thing to understand is that you can use bitcoin transactions and not mine at all, or be dedicated to mining but not use bitcoin for nothing (though if you succeed in your mining, you’re paid in bitcoins). Naturally, you can mine and use transactions.
+        text:<b><i><#fff875>So mining bitcoin and blockchain are the same thing?</#></i></b><//></>No, but they are related. The important thing to understand is that you can use bitcoin transactions and not mine at all, or be dedicated to mining but not using bitcoin for anything (though if you succeed in your mining, you’re paid in bitcoins). Naturally, you can both mine and use transactions.
         tag:edu
         no tooltip
         class:edu-text
         hidden
         
     *edu2
-        text:<b><i><#fff875>If there’s no one checking things are going well… Blockchain is not secure?</#></i></b><//></>Quite the opposite. Blockchain transactions are completely secured.
+        text:<b><i><#fff875>If there’s no one checking things are going well… Is Blockchain not secure?</#></i></b><//></>Quite the opposite. Blockchain transactions are completely secured.
         tag:edu
         no tooltip
         class:edu-text
         hidden
 
 	*edu3
-        text:<b><i><#fff875>And... how so?</#></i></b><//></>For starters, we use a certain ciphering method: SHA-256 functions. When we cipher something, we say we hash it. We call the ciphered message the hash. Its advantages are mainly two: <//></> - If you cipher something, it is impossible to decipher it back. So you can throw your hash over the internet, no one would know what did you cipher to get it.
+        text:<b><i><#fff875>And... how so?</#></i></b><//></>For starters, we use a certain ciphering method: SHA-256 functions. When we cipher something, we say we hash it. We call the ciphered message the hash. Its advantages are mainly two: <//></> - If you cipher something, it is impossible to decipher it back. So it doesn't matter if people see your hash over the internet, no one would know the original message.
         tag:edu
         no tooltip
         class:edu-text
@@ -537,7 +537,7 @@ Buttons
         name:Back
         tag:eduControl
         class:edu-back
-        show clicks
+        no tooltip
         on click:
             if (eduNext:clicks - eduBack:clicks = 0)
                 hide edu1
@@ -652,7 +652,7 @@ Buttons
         name:Next
         tag:eduControl
         class:edu-next
-        show clicks
+        no tooltip
         on click:
             if (eduNext:clicks - eduBack:clicks = 1)
                 hide edu0
@@ -963,7 +963,7 @@ Buildings
   
   *pickaxe|pickaxes
   	name:Pickaxe|Pickaxes
-    desc:A pickaxe will autoclick once every second.
+    desc:A pickaxe will autoclick once every second. <//><b>Effect:</b><.>Produces [1] μBitcoin every second.
     text:Pickaxe<b>[pickaxes]</b>
     icon:icons[0,0]
     tags:isBuilding

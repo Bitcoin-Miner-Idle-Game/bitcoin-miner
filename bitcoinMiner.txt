@@ -1481,4 +1481,3 @@ Achievements
 		desc:You have clicked <b>[100]</b> Lucky Clovers.
 		req:100 luckyClover clicks
         icon:icons[3,3]
-	

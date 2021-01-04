@@ -33,8 +33,8 @@ Let's make a game!
 	by:BitcoinMiner Team
 	desc:This is an idle game made to show the basics of bitcoin mining and blockchain.<//>Become rich by unleashing the power of technology!
 	created:07/12/2020
-	updated:21/12/2020
-	version:0.9
+	updated:04/01/2020
+	version:1
  
 Settings
 	background:https://raw.githubusercontent.com/Bitcoin-Miner-Idle-Game/bitcoin-miner/main/img/background_fuzzy.png
@@ -265,30 +265,6 @@ Buttons
 		icon class:shadowed
 		tooltip origin:bottom
 		tooltip class:red
- 
-    *bitcoin2Dollar
-        name:Bitcoin exchanger
-        desc:Exchange [?bitcoinExchangingBTC < pow(10, 6)|[bitcoinExchangingBTC] μBitcoin|[bitcoinExchangingBTC * pow(10, -6)] Bitcoin] for [bitcoinExchangingDol] dollar[?bitcoinExchangingDol = 1||s]
-        on click:
-            if (microbitcoins >= bitcoinExchangingBTC)
-                lose bitcoinExchangingBTC microbitcoins
-                yield bitcoinExchangingDol dollars
-            end
-        end
-        tooltip origin:bottom
-        tooltip class:red
-
-    *dollar2Bitcoin
-        name:Dollar exchanger
-        desc:Exchange [dollarsExchangingDol] dollar[?dollarsExchangingDol = 1||s] for [?dollarsExchangingBTC < pow(10, 6)|[dollarsExchangingBTC] μBitcoin|[dollarsExchangingBTC * pow(10, -6)] Bitcoin]
-        on click:
-            if (dollars >= dollarsExchangingDol)
-                lose dollarsExchangingDol dollars
-                yield dollarsExchangingBTC microbitcoins
-            end
-        end
-        tooltip origin:bottom
-        tooltip class:red
     
     *edu0
        text:<b><i><#fff875>Hey hey, this mining thing reminds me of a blocksomething word I've heard somewhere...</#></i></b><//></>Hi there. Blockchain technology removes the intermediaries in transactions. I.e., those people who check the veracity, validity and security of it, as banks for financial transactions.
@@ -760,52 +736,6 @@ Buttons
                 hide eduNext
             end
         end
-
-  // TODO botones para hacer trampas en fase de desarrollo, borrar antes de subir
-    *cheat1000
-    	name:CHEAT: 1k μBTC
-      on click:yield 1000 microbitcoins
-      icon class:shadowed
-      
-    *cheat10000
-    	name:CHEAT: 10k μBTC
-      on click:yield 10000 microbitcoins
-      icon class:shadowed
-      
-    *cheat100000
-    	name:CHEAT: 100k μBTC
-      on click:yield 100000 microbitcoins
-      icon class:shadowed
-      
-    *cheat1000000
-    	name:CHEAT: 1 BTC
-      on click:yield 1000000 microbitcoins
-      icon class:shadowed
-      
-    *cheat100000000
-    	name:CHEAT: 100 BTC
-      on click:yield 100000000 microbitcoins
-      icon class:shadowed
-
-    *cheat1000000000
-    	name:CHEAT: 1k BTC
-      on click:yield 1000000000 microbitcoins
-      icon class:shadowed
-
-    *cheat10000000000
-    	name:CHEAT: 10k BTC
-      on click:yield 10000000000 microbitcoins
-      icon class:shadowed
-
-    *cheat100000000000
-    	name:CHEAT: 100k BTC
-      on click:yield 100000000000 microbitcoins
-      icon class:shadowed
-
-    *cheat1000000000000
-    	name:CHEAT: 1M BTC
-      on click:yield 1000000000000 microbitcoins
-      icon class:shadowed
  
 Resources
 	*microbitcoin|microbitcoins
@@ -832,24 +762,11 @@ Resources
                 show microbitcoins
             end
          end
- 
-	*dollar|dollars
-		name:US Dollar|US Dollars
-		text:US Dollars: [dollar]</><q>(total earned: [dollars:earned])</q>
-		desc:Exchanging your Bitcoins to US dollars, this is how many dollars you will obtain if you sell your Bitcoins now.
-		icon:icons[1,15]
-		class:noBackground
-		//show earned
     
     *microbitcoinLog
         always hidden
         // log10 of current uBTC using lim formula with n=10^9
         is always:(max(0, (floor((pow(microbitcoins, pow(10, -9)) - 1) / (pow(10, pow(10, -9)) - 1)))))
-    
-    *dollarsLog
-        always hidden
-        // log10 of current $ using lim formula with n=10^9
-        is always:(max(0, (floor((pow(dollars, pow(10, -9)) - 1) / (pow(10, pow(10, -9)) - 1)))))
     
     *bitcoinExchangingBTC
         always hidden
@@ -858,15 +775,6 @@ Resources
     *bitcoinExchangingDol
         always hidden
         is always:max(2, (2 * pow(10, microbitcoinLog - 2)))
-    
-    *dollarsExchangingDol
-        always hidden
-        is always:(pow(10, dollarsLog))
-    
-    *dollarsExchangingBTC
-        always hidden
-        is always:(4.9 * pow(10, dollarsLog + 1))
-
 
 	*luckyTiming
 		always hidden

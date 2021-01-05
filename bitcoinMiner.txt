@@ -366,8 +366,8 @@ Buttons
         end
         hidden
     
-    *edu0
-       text:<b><i><#fff875>Hey hey, this mining thing reminds me of a blocksomething word I've heard somewhere...</#></i></b><//></>Hi there. Blockchain technology removes the intermediaries in transactions. I.e., those people who check the veracity, validity and security of it, as banks for financial transactions.
+        *edu0
+        text:<b><i><#fff875>Hi there. You can learn about the elements involved in the Bitcoin mining process through playing. However, if you're also interested in knowing a bit more about what's behind this technology, check this box once in a while.</#></i></b><//></>
         tag:edu
         no tooltip
         class:edu-text
@@ -379,13 +379,14 @@ Buttons
                 hide edu0
             end
         end
-        
+    
+    
+    
     *edu1
-        text:<b><i><#fff875>So mining bitcoin and blockchain are the same thing?</#></i></b><//></>No, but they are related. The important thing to understand is that you can use bitcoin transactions and not mine at all, or be dedicated to mining but not using bitcoin for anything (though if you succeed in your mining, you’re paid in bitcoins). Naturally, you can both mine and use transactions.
+       text:<b><i><#fff875>Bitcoin mining is related to blockchain technology</#></i></b><//></>Blockchain technology removes the intermediaries in transactions. I.e., those people who check the veracity, validity and security of it, as banks for financial transactions.
         tag:edu
         no tooltip
         class:edu-text
-        hidden
         on close:hide edu1
         on change:
             if ($eduCount = 1)
@@ -396,7 +397,7 @@ Buttons
         end
         
     *edu2
-        text:<b><i><#fff875>If there’s no one checking things are going well… Is Blockchain not secure?</#></i></b><//></>Quite the opposite. Blockchain transactions are completely secured.
+        text:<b><i><#fff875>Mining ≠ Blockchain</#></i></b><//></>The important thing to understand is that you can use bitcoin transactions and not mine at all, or be dedicated to mining but not using bitcoin for anything (though if you succeed in your mining, you’re paid in bitcoins). Naturally, you can both mine and use transactions.
         tag:edu
         no tooltip
         class:edu-text
@@ -409,10 +410,10 @@ Buttons
                 hide edu2
             end
         end
-
-	*edu3
-        text:<b><i><#fff875>And... how so?</#></i></b><//></>For starters, we use a certain ciphering method: SHA-256 functions. When we cipher something, we say we hash it. We call the ciphered message the hash. Its advantages are mainly two: <//></> - If you cipher something, it is impossible to decipher it back. So it doesn't matter if people see your hash over the internet, no one would know the original message.
-        tag:edu
+        
+    *edu3
+        text:<b><i><#fff875>although there’s no one checking things are going well, blockchain is secure</#></i></b><//></>For starters, we use a certain ciphering method: SHA-256 functions. When we cipher something, we say we hash it. We call the ciphered message the hash. Its advantages are mainly two: <//></> 1. If you cipher something, it is impossible to decipher it back. So it doesn't matter if people see your hash over the internet, no one would know the original message.
+        tag:edu3
         no tooltip
         class:edu-text
         hidden
@@ -425,8 +426,9 @@ Buttons
             end
         end
 
+
 	*edu4
-        text:<b><i><#fff875>And... how so?</#></i></b><//></>-Two very similar texts result in very different hashes. Ciphering “Hello, Anne” would result in, for example, “f35cg2”. But “Hello, Ane”, would get “j8v9ah”. Nothing alike.<//></>This is what is used worldwide for regular online transactions. So, as you may have noticed, it’s extremely secure.
+        text:<b><i><#fff875>More on security hash issues</#></i></b><//></>2. Two very similar texts result in very different hashes. Ciphering “Hello, Anne” would result in, for example, “f35cg2”. But “Hello, Ane”, would get “j8v9ah”. Nothing alike.<//></>This is what is used worldwide for regular online transactions. So, as you may have noticed, it’s extremely secure.
         tag:edu
         no tooltip
         class:edu-text
@@ -441,7 +443,7 @@ Buttons
         end
 
 	*edu5
-        text:<b><i><#fff875>But online transactions need intermediaries…</#></i></b><//></>In order to do this without a third party, we need some clever system over this ciphering. The system works by making a chain of consecutive blocks (thus the name Blockchain).
+        text:<b><i><#fff875>How do we use this secure transactions without a third party?</#></i></b><//></>We need some clever system over this ciphering. The system works by making a chain of consecutive blocks (thus the name Blockchain).
         tag:edu
         no tooltip
         class:edu-text
@@ -456,7 +458,7 @@ Buttons
         end
 
 	*edu6
-        text:<b><i><#fff875>Surprising name indeed. But are we building toy houses or something? What’s a block?</#></i></b><//></>A block is just the name given to a bunch of text organized in a certain way. This information includes:<//></>1. Block number. e.g, 314. It’s unique for each block. Once a block is created, it has a new unused number assigned to it.
+        text:<b><i><#fff875>What’s a block? Block numbers</#></i></b><//></>A block is just the name given to a bunch of text organized in a certain way. This information includes:<//></>1. Block number. e.g, 314. It’s unique for each block. Once a block is created, it has a new unused number assigned to it.
 		tag:edu
         no tooltip
         class:edu-text
@@ -471,7 +473,7 @@ Buttons
         end
 
 	*edu7
-        text:<b><i><#fff875>Surprising name indeed. But are we building toy houses or something? What’s a block?</#></i></b><//></>2. Previous block’s hash (it’s not the previous ID number (313), this is something very simple and remember, we want things to be secure).
+        text:<b><i><#fff875>What’s a block? The chain</#></i></b><//></>2. Previous block’s hash (it’s not the previous ID number (313), this is something very simple and remember, we want things to be secure). This is the reason why the blocks are said to form a chain.
 		tag:edu
         no tooltip
         class:edu-text
@@ -486,7 +488,7 @@ Buttons
         end
 
 	*edu8
-        text:<b><i><#fff875>Surprising name indeed. But are we building toy houses or something? What’s a block?</#></i></b><//></>3. Transaction list. A transaction is just something simple in the format: (money, sender, receiver, signature). e.g, (10, Gandalf, Bilbo, 28391huibivy126). Names are unique IDs just as your twitter @ is. Just that in this case you’re represented by a bunch of apparently random characters (Gandalf would be 788123ybuibvf6328, for example).
+        text:<b><i><#fff875>What’s a block? Information</#></i></b><//></>3. Transaction list. A transaction is just something simple in the format: (money, sender, receiver, signature). e.g, (10, Gandalf, Bilbo, 28391huibivy126). Names are unique IDs just as your twitter @ is. Just that in this case you’re represented by a bunch of apparently random characters (Gandalf would be 788123ybuibvf6328, for example).
 		tag:edu
         no tooltip
         class:edu-text
@@ -501,7 +503,7 @@ Buttons
         end
 
 	*edu9
-        text:<b><i><#fff875>Surprising name indeed. But are we building toy houses or something? What’s a block?</#></i></b><//></>The transaction signature is something built with what is called a private or secret key. When you authorize a transaction, you sign it with this password only you know (just like your bank account password).
+        text:<b><i><#fff875>Transaction security: signatures</#></i></b><//></>The transaction signature is something built with what is called a private or secret key. When you authorize a transaction, you sign it with this password only you know (just like your bank account password).
 		tag:edu
         no tooltip
         class:edu-text
@@ -516,7 +518,7 @@ Buttons
         end
 
 	*edu10
-        text:<b><i><#fff875>Surprising name indeed. But are we building toy houses or something? What’s a block?</#></i></b><//></>Thing is, when you sign, you return a text that has been ciphered depending on this private key and the other things involved such as the receiver’s ID and the money you are sending. That would result in the 28391huibivy126 in our example.
+        text:<b><i><#fff875>Transaction security: ciphering</#></i></b><//></>Thing is, when you sign, you return a text that has been ciphered depending on this private key and the other things involved such as the receiver’s ID and the money you are sending. That would result in the 28391huibivy126 in our example.
 		tag:edu
         no tooltip
         class:edu-text
@@ -531,7 +533,7 @@ Buttons
         end
 
 	*edu11
-        text:<b><i><#fff875>Surprising name indeed. But are we building toy houses or something? What’s a block?</#></i></b><//></>Now remember the hash properties: if the money is 20 instead of 10, the signature would be nothing close to the one with 10. e.g, uiasd7817guibdsa.
+        text:<b><i><#fff875>Transaction security: small changes make big differences</#></i></b><//></>Now remember the hash properties: if the money is 20 instead of 10, the signature would be nothing close to the one with 10. e.g, uiasd7817guibdsa.
 		tag:edu
         no tooltip
         class:edu-text
@@ -546,7 +548,7 @@ Buttons
         end
 
 	*edu12
-        text:<b><i><#fff875>Surprising name indeed. But are we building toy houses or something? What’s a block?</#></i></b><//></>Signatures are validated by using your public key. This is another number, but one that everyone else is allowed to know. With this number we can check if the signature is really legitimate.
+        text:<b><i><#fff875>Transaction security: how to validate</#></i></b><//></>Signatures are validated by using your public key. This is another number, but one that everyone else is allowed to know. With this number we can check if the signature is really legitimate.
 		tag:edu
         no tooltip
         class:edu-text
@@ -561,7 +563,7 @@ Buttons
         end
 
 	*edu13
-        text:<b><i><#fff875>Surprising name indeed. But are we building toy houses or something? What’s a block?</#></i></b><//></>So a block contains a list formed by a lot of these transactions between different users.
+        text:<b><i><#fff875>What’s a block? Information (summarized)</#></i></b><//></>A block contains a list formed by a lot of these transactions between different users.
 		tag:edu
         no tooltip
         class:edu-text
@@ -576,7 +578,7 @@ Buttons
         end
 
 	*edu14
-        text:<b><i><#fff875>Surprising name indeed. But are we building toy houses or something? What’s a block?</#></i></b><//></>4. Block hash. At this point this is easy to explain. It’s just the hash formed from the block content. So, this is also a bunch of characters that makes no sense (to the human eye).
+        text:<b><i><#fff875>What’s a block? Hashing everything</#></i></b><//></>4. Block hash. At this point this is easy to explain. It’s just the hash formed from the block content. So, this is also a bunch of characters that makes no sense (to the human eye).
 		tag:edu
         no tooltip
         class:edu-text
@@ -591,7 +593,7 @@ Buttons
         end
 
 	*edu15
-        text:<b><i><#fff875>Surprising name indeed. But are we building toy houses or something? What’s a block?</#></i></b><//></>5. Nonce. This is the tricky part and where mining comes into action. As it is part of the block, it affects to the hash.
+        text:<b><i><#fff875>What’s a block? The magic number</#></i></b><//></>5. Nonce. This is just a number, but is where mining comes into action. Remember that, as the nonce is part of the block, it affects to the hash.
 		tag:edu
         no tooltip
         class:edu-text
@@ -606,7 +608,7 @@ Buttons
         end
 
 	*edu16
-        text:<b><i><#fff875>Surprising name indeed. But are we building toy houses or something? What’s a block?</#></i></b><//></>The particular thing of the nonce it’s that it has to ensure that the block’s hash starts by a certain number of 0’s. So, if we have a block, our work as miners is to find that nonce.
+        text:<b><i><#fff875>The trick of the nonce</#></i></b><//></>The particular thing of the nonce it’s that it has to ensure that the block’s hash starts by a certain number of 0’s. So, if we have a block, our work as miners is to find the specific nonce that satisfies this.
 		tag:edu
         no tooltip
         class:edu-text
@@ -621,7 +623,7 @@ Buttons
         end
 
 	*edu17
-        text:<b><i><#fff875>Oookayyy…</#></i></b><//></>This is not as complicated as these words may sound. Say we need our blocks to have 4 zeros at the beginning of their hash. And we want to send 10BTC to someone. So we take an existing block with its list and add our transaction. This, naturally, alters the block. So we need to hash it again. This is the work done by the miners.
+        text:<b><i><#fff875>What the miners do: find the nonce</#></i></b><//></>Say we need our blocks to have 4 zeros at the beginning of their hash. And we want to send 10BTC to someone. So we take an existing block with its list and add our transaction. This, naturally, alters the block. So we need to hash it again. This is the work done by the miners.
 		tag:edu
         no tooltip
         class:edu-text
@@ -636,7 +638,7 @@ Buttons
         end
 
 	*edu18
-        text:<b><i><#fff875>So mining is finding a number? Easy!</#></i></b><//></>Well no, it isn’t. We are treating here with quite large numbers, with more digits that you can imagine. Also, remember what these hash functions are about: tricky maths. There is no known way to find these numbers other than by trial and error.
+        text:<b><i><#fff875>What the miners don't: easily find the nonce</#></i></b><//></>We are treating here with quite large numbers, with more digits that you can imagine. Also, remember what these hash functions are about: tricky maths. There is no known way to find these numbers other than by trial and error.
 		tag:edu
         no tooltip
         class:edu-text
@@ -651,7 +653,7 @@ Buttons
         end
 
 	*edu19
-        text:<b><i><#fff875>What? So robots can dance but a computer can’t find a number efficiently?</#></i></b><//></>Exactly. Cryptographic issues are no simple tasks for today’s technology.
+        text:<b><i><#fff875>1 month = 0.1 BTC of profit</#></i></b><//></>Cryptographic issues are no simple tasks for today’s technology. So setups are insanely expensive (and the electricity bill is too). 
 		tag:edu
         no tooltip
         class:edu-text
@@ -666,7 +668,7 @@ Buttons
         end
 
 	*edu20
-        text:<b><i><#fff875>Well then… Why do I have to find this tricky number for them? What’s in for me?</#></i></b><//></>You’re not the only one doing so. When a new block is sent, every miner currently active in the world is trying to find the nonce. If you are the first to succeed in the task, you get some bitcoin! That’s how your work is rewarded.
+        text:<b><i><#fff875>What’s in for me if I consider to find this nonce?</#></i></b><//></>You’re not going to be the only one doing so. When a new block is sent, every miner currently active in the world is trying to find the nonce. If you are the first to succeed in the task, you get some bitcoin! That’s how your work is rewarded.
 		tag:edu
         no tooltip
         class:edu-text
@@ -681,7 +683,7 @@ Buttons
         end
 
 	*edu21
-        text:<b><i><#fff875>Some bitcoin? Do people give their money to others?</#></i></b><//></>It’s not people’s money. It’s an auto-generated quantity by the system. Did you know that there can only be 21 million bitcoins around? So in order to try not to reach this number, each time the money you earn for mining is lower. And that’s also why as time passes, there are more bitcoins around.
+        text:<b><i><#fff875>Your reward ≠ Other's money</#></i></b><//></>It’s not people’s money. It’s an auto-generated quantity by the system. Did you know that there can only be 21 million bitcoins around? So in order to try not to reach this number, each time the money you earn for mining is lower. And that’s also why as time passes, there are more bitcoins around.
 		tag:edu
         no tooltip
         class:edu-text
@@ -696,7 +698,7 @@ Buttons
         end
 
 	*edu22
-        text:<b><i><#fff875>Seems quite cool… But why do they actually need people doing that mining work?</#></i></b><//></>Let’s get back to the security and veracity of the transactions. As there are a lot of people checking and hashing the blocks, if you alter one, you’ll be the one with the altered copy, so you’ll need to fool everyone else into thinking that’s the real one.
+        text:<b><i><#fff875>Why so many people are needed for doing the mining work?</#></i></b><//></>Let’s get back to the security and veracity of the transactions. As there are a lot of people checking and hashing the blocks, if you alter one, you’ll be the one with the altered copy, so you’ll need to fool everyone else into thinking that’s the real one.
 		tag:edu
         no tooltip
         class:edu-text
@@ -711,7 +713,7 @@ Buttons
         end
 
 	*edu23
-        text:<b><i><#fff875>Fool?</#></i></b><//></>Yes, so people will consider it a valid block and then add it to the chain. Remember, changing an intermediate block of the chain implies hashing again all the consecutive ones, as a block’s hash depends on its previous one.
+        text:<b><i><#fff875>Fooling = everyone considers your malicious block part of the chain</#></i></b><//></>No easy task. Changing an intermediate block of the chain implies hashing again all the consecutive ones, as a block’s hash depends on its previous one.
 		tag:edu
         no tooltip
         class:edu-text
@@ -726,7 +728,7 @@ Buttons
         end
 
 	*edu24
-        text:<b><i><#fff875>Fool?</#></i></b><//></>So considering you are the only one mining that fake chain, it would take you a really long time. Similarly, if you change the most recent block you have, you’ll have to hash it on your own. If several people are working on the same problem, it will be solved much faster.
+        text:<b><i><#fff875>Fooling takes a long time for an individual</#></i></b><//></>You have nobody helping you mine the same thing. Similarly, if you change the most recent block you have, you’ll have to hash it on your own. If several people are working on the same problem, it will be solved much faster.
 		tag:edu
         no tooltip
         class:edu-text
@@ -741,7 +743,7 @@ Buttons
         end
 
 	*edu25
-        text:<b><i><#fff875>But say I’m super lucky and I hash fake blocks quite quickly.</#></i></b><//></>Say your malicious hash is Z. You will be the only obtaining it. There will be other miners, honest ones, that took that block and obtained all the same hash, say A.
+        text:<b><i><#fff875>Groups > Individual luck</#></i></b><//></>Say your incredibly quick and malicious hash is Z. You will be the only obtaining it. There will be other miners, honest ones, that took that block and obtained all the same hash, say A.
 		tag:edu
         no tooltip
         class:edu-text
@@ -756,7 +758,7 @@ Buttons
         end
 
 	*edu26
-        text:<b><i><#fff875>But say I’m super lucky and I hash fake blocks quite quickly.</#></i></b><//></>So there will be, for example, 500 people saying “yes, it’s A”, but only you saying “no, it’s Z”. When discrepancies occur, construction of the chain awaits and then favors the most “voted” hash. In this case, A. Democracy.
+        text:<b><i><#fff875>Block democracy</#></i></b><//></>So there will be, for example, 500 people saying “yes, it’s A”, but only you saying “no, it’s Z”. When discrepancies occur, construction of the chain awaits and then favors the most “voted” hash. In this case, A. Democracy.
 		tag:edu
         no tooltip
         class:edu-text
@@ -771,7 +773,7 @@ Buttons
         end
 
 	*edu27
-        text:<b><i><#fff875>That’s a clever way to validate transactions!</#></i></b><//></>Yes, and, in addition, you have the security provided by the private key/public key explained before. Remember it?
+        text:<b><i><#fff875>Extra security</#></i></b><//></>In addition to this democracy, you also have the security provided by the private key/public key explained before. Remember it?
 		tag:edu
         no tooltip
         class:edu-text
@@ -786,7 +788,7 @@ Buttons
         end
 
 	*edu28
-        text:<b><i><#fff875>That’s a clever way to validate transactions!</#></i></b><//></>Basically, we have a secret password or secret key. Hashing it though one of these complicated functions will return our safe-to-publish public key, as the hash guarantees we can’t obtain the secret key associated with it. Then, we sign an operation op with it, and anyone else can verify it using our public key.
+        text:<b><i><#fff875>Secret Key/Public Key</#></i></b><//></>Basically, we have a secret password or secret key. Hashing it though one of these complicated functions will return our safe-to-publish public key, as the hash guarantees we can’t obtain the secret key associated with it. Then, we sign an operation op with it, and anyone else can verify it using our public key.
 		tag:edu
         no tooltip
         class:edu-text
@@ -801,7 +803,7 @@ Buttons
         end
 
 	*edu29
-        text:<b><i><#fff875>That’s a clever way to validate transactions!</#></i></b><//></>Summarizing:<//></>hash(skey) = pkey<//></>Sign operation: sign(op, skey) = signature<//></>Validate operation: verify(op, pkey) = Valid/Not valid
+        text:<b><i><#fff875>Summarizing sk/pk systems</#></i></b><//></><//></>hash(skey) = pkey<//></>Sign operation: sign(op, skey) = signature<//></>Validate operation: verify(op, pkey) = Valid/Not valid
 		tag:edu
         no tooltip
         class:edu-text
@@ -831,7 +833,7 @@ Buttons
         end
 
 	*edu31
-        text:<b><i><#fff875>Why are you telling me all of this again?</#></i></b><//></>So now it won’t pass the verification of the public key, and it won’t be recognized that person X signed that modified transaction A with their unknown secret key. This will be marked as unauthorized and the block will be discarded without further verification.
+        text:<b><i><#fff875>Discarding invalid modifications</#></i></b><//></>Now it won’t pass the verification of the public key, and it won’t be recognized that person X signed that modified transaction A with their unknown secret key. This will be marked as unauthorized and the block will be discarded without further verification.
 		tag:edu
         no tooltip
         class:edu-text
@@ -846,7 +848,7 @@ Buttons
         end
 
 	*edu32
-        text:<b><i><#fff875>So it’s another way of guaranteeing security.</#></i></b><//></>It is, but it’s different from the principles of blockchain. It’s additional security, and public key/secret key cryptosystems are used in a lot of other things apart from blockchain.
+        text:<b><i><#fff875>Several ways of guaranteeing security</#></i></b><//></>Public key/secret key systems are different from the principles of blockchain. It’s additional security, and this cryptosystems are used in a lot of other things apart from blockchain.
 		tag:edu
         no tooltip
         class:edu-text

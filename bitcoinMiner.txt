@@ -333,6 +333,10 @@ Buttons
         tooltip origin:bottom
         tooltip class:red
     
+    *cheatEdu
+        name:1 Tip
+        on click:yield 1 eduMax
+    
     *eduClose
         text:<b><</b>
         tag:eduControl
@@ -351,11 +355,12 @@ Buttons
         tag:eduControl
         class:edu-open
         no tooltip
-        on click:
+        on click:do open with eduOpen
+        on open:
             hide eduOpen
-            $eduCount = eduNext:clicks - eduBack:clicks
+            $eduCount = eduNext:clicks - eduBack:clicks + eduOffset
             if ($eduCount > 0) show eduBack
-            if ($eduCount < 33) show eduNext
+            if ($eduCount < eduMax) show eduNext
             do change with tag:edu
             show eduClose
         end
@@ -870,16 +875,31 @@ Buttons
             end
         end
     
+    *eduFinal
+        text:<#fff875>Keep playing to learn more things about Bitcoin! :D</#>
+        tag:edu
+        no tooltip
+        class:edu-text-extra
+        hidden
+        on close:hide eduFinal
+        on change:
+            if ($eduCount = eduMax and !($eduCount = 33))
+                show eduFinal
+            else
+                hide eduFinal
+            end
+        end
+    
     *eduBack
         name:Back
         tag:eduControl
         class:edu-back
         no tooltip
         on click:
-            $eduCount = eduNext:clicks - eduBack:clicks
+            $eduCount = eduNext:clicks - eduBack:clicks + eduOffset
             if ($eduCount = 0)
                 hide eduBack
-            else if ($eduCount = 32)
+            else if ($eduCount = eduMax - 1)
                 show eduNext
             end
             do change with tag:edu
@@ -892,8 +912,8 @@ Buttons
         class:edu-next
         no tooltip
         on click:
-            $eduCount = eduNext:clicks - eduBack:clicks
-            if ($eduCount = 33)
+            $eduCount = eduNext:clicks - eduBack:clicks + eduOffset
+            if ($eduCount = eduMax)
                 hide eduNext
             else if ($eduCount = 1)
                 show eduBack
@@ -1091,6 +1111,20 @@ Resources
 				lose 1 electricTiming
 			end
 		end
+    
+    *eduMax
+        name:Tip
+        always hidden
+        on earn:
+            yield (eduMax - (eduNext:clicks - eduBack:clicks + (eduOffset))) eduOffset
+            do open with eduOpen
+            hide eduNext
+            show eduBack
+        end
+        start with:5
+    
+    *eduOffset
+        always hidden
     
 Buildings
 	*TEMPLATE

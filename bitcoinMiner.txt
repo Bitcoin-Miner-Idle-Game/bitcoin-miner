@@ -1104,15 +1104,6 @@ Buildings
 Upgrades
 	*TEMPLATE
 		on click:anim glow
-
-    *mineFaster
-		name:Sleight of Hand
-		desc:Practice makes perfect. <//><b>Effect:</b><.>Mine twice as efficiently with each click.
-        icon:icons[2,3]
-		cost:50 microbitcoin
-		passive:increase microbitcoins yield of bitcoinButton by 1
-        on earn:hide mineFaster
-		req:(microbitcoin:earned >= 200)
 	
     *pickaxeUpgrade
 		name:Dual Wield Pickaxes
@@ -1213,6 +1204,116 @@ Upgrades
         on earn:hide cheaperElectricity
 		// TODO
 		req:(poolRecruiting)
+	
+	// clicking x2
+	*TEMPLATE
+		on click:anim glow
+		desc:Practice makes perfect. <//><b>Effect:</b><.>Mine twice as efficiently with each click.
+		passive:multiply yield of bitcoinButton by 2
+		
+	*mineFaster
+		name:Sleight of Hand
+        icon:icons[2,3]
+		cost:50 microbitcoin
+        on earn:hide mineFaster
+		req:(microbitcoin:earned >= 200)
+		
+	*mineFaster2
+		name:Fast Hand
+        icon:icons[2,3]
+		cost:100 microbitcoin
+        on earn:hide mineFaster2
+		req:(microbitcoin:earned >= 500)
+		
+	*mineFaster3
+		name:Quick Hand
+        icon:icons[2,3]
+		cost:1000 microbitcoin
+        on earn:hide mineFaster3
+		req:(microbitcoin:earned >= 2500)
+		
+	*mineFaster4
+		name:Rapid Hand
+        icon:icons[2,3]
+		cost:10000 microbitcoin
+        on earn:hide mineFaster4
+		req:(microbitcoin:earned >= 25000)
+		
+	*mineFaster5
+		name:Swift Hand
+        icon:icons[2,3]
+		cost:50000 microbitcoin
+        on earn:hide mineFaster5
+		req:(microbitcoin:earned >= 75000)
+		
+	*mineFaster6
+		name:Speedy Hand
+        icon:icons[2,3]
+		cost:100000 microbitcoin
+        on earn:hide mineFaster6
+		req:(microbitcoin:earned >= 200000)
+		
+	*mineFaster7
+		name:Nimble Hand
+        icon:icons[2,3]
+		cost:1000000 microbitcoin
+        on earn:hide mineFaster7
+		req:(microbitcoin:earned >= 2000000)
+		
+	// clicking gets 10% of bps
+	*TEMPLATE
+		on click:anim glow
+		desc:Knowledge is power. <//><b>Effect:</b><.>Clicking grants you an extra 10% of your current bitcoins per second.
+		passive:increase microbitcoin yield of bitcoinButton by (microbitcoin:ps * 0.1)
+		
+	*mineSmarter
+		name:Clever Hand
+        icon:icons[2,3]
+		cost:500 microbitcoin
+        on earn:hide mineSmarter
+		req:(microbitcoin:earned >= 1000)
+		
+	*mineSmarter2
+		name:Smart Hand
+        icon:icons[2,3]
+		cost:1000 microbitcoin
+        on earn:hide mineSmarter2
+		req:(microbitcoin:earned >= 3500)
+		
+	*mineSmarter3
+		name:Intelligent Hand
+        icon:icons[2,3]
+		cost:5000 microbitcoin
+        on earn:hide mineSmarter3
+		req:(microbitcoin:earned >= 10000)
+		
+	*mineSmarter4
+		name:Bright Hand
+        icon:icons[2,3]
+		cost:12500 microbitcoin
+        on earn:hide mineSmarter4
+		req:(microbitcoin:earned >= 30000)
+		
+	*mineSmarter5
+		name:Erudite Hand
+        icon:icons[2,3]
+		cost:50000 microbitcoin
+        on earn:hide mineSmarter5
+		req:(microbitcoin:earned >= 75000)
+		
+	*mineSmarter6
+		name:Gifted Hand
+        icon:icons[2,3]
+		cost:125000 microbitcoin
+        on earn:hide mineSmarter6
+		req:(microbitcoin:earned >= 250000)
+		
+	*mineSmarter7
+		name:Proficient Hand
+        icon:icons[2,3]
+		cost:1500000 microbitcoin
+        on earn:hide mineSmarter6
+		req:(microbitcoin:earned >= 3000000)
 
 Shinies
 	*luckyClover

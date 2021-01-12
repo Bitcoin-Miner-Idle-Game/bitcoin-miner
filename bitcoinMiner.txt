@@ -335,7 +335,7 @@ Buttons
     
     *cheatEdu
         name:1 Tip
-        on click:yield 1 eduMax
+        on click:do unlock with eduMax
     
     *eduClose
         text:<b><</b>
@@ -355,10 +355,13 @@ Buttons
         tag:eduControl
         class:edu-open
         no tooltip
-        on click:do open with eduOpen
+        on click:do open
         on open:
             hide eduOpen
             $eduCount = eduNext:clicks - eduBack:clicks + eduOffset
+            // Just in case
+            hide eduBack
+            hide eduNext
             if ($eduCount > 0) show eduBack
             if ($eduCount < eduMax) show eduNext
             do change with tag:edu
@@ -366,7 +369,7 @@ Buttons
         end
         hidden
     
-        *edu0
+    *edu0
         text:<b><i><#fff875>Hi there. You can learn about the elements involved in the Bitcoin mining process through playing. However, if you're also interested in knowing a bit more about what's behind this technology, check this box once in a while.</#></i></b><//></>
         tag:edu
         no tooltip
@@ -380,13 +383,12 @@ Buttons
             end
         end
     
-    
-    
     *edu1
        text:<b><i><#fff875>Bitcoin mining is related to blockchain technology</#></i></b><//></>Blockchain technology removes the intermediaries in transactions. I.e., those people who check the veracity, validity and security of it, as banks for financial transactions.
         tag:edu
         no tooltip
         class:edu-text
+        hidden
         on close:hide edu1
         on change:
             if ($eduCount = 1)
@@ -412,8 +414,8 @@ Buttons
         end
         
     *edu3
-        text:<b><i><#fff875>although there’s no one checking things are going well, blockchain is secure</#></i></b><//></>For starters, we use a certain ciphering method: SHA-256 functions. When we cipher something, we say we hash it. We call the ciphered message the hash. Its advantages are mainly two: <//></> 1. If you cipher something, it is impossible to decipher it back. So it doesn't matter if people see your hash over the internet, no one would know the original message.
-        tag:edu3
+        text:<b><i><#fff875>Although there’s no one checking things are going well, blockchain is secure</#></i></b><//></>For starters, we use a certain ciphering method: SHA-256 functions. When we cipher something, we say we hash it. We call the ciphered message the hash. Its advantages are mainly two: <//></> 1. If you cipher something, it is impossible to decipher it back. So it doesn't matter if people see your hash over the internet, no one would know the original message.
+        tag:edu
         no tooltip
         class:edu-text
         hidden
@@ -425,7 +427,6 @@ Buttons
                 hide edu3
             end
         end
-
 
 	*edu4
         text:<b><i><#fff875>More on security hash issues</#></i></b><//></>2. Two very similar texts result in very different hashes. Ciphering “Hello, Anne” would result in, for example, “f35cg2”. But “Hello, Ane”, would get “j8v9ah”. Nothing alike.<//></>This is what is used worldwide for regular online transactions. So, as you may have noticed, it’s extremely secure.
@@ -876,6 +877,8 @@ Buttons
                 hide edu33
             end
         end
+        
+    // If new edu tip is added modify eduLimit resource to match new number of tips
     
     *eduFinal
         text:<#fff875>Keep playing to learn more things about Bitcoin! :D</#>
@@ -885,7 +888,7 @@ Buttons
         hidden
         on close:hide eduFinal
         on change:
-            if ($eduCount = eduMax and !($eduCount = 33))
+            if ($eduCount = eduMax and !($eduCount = eduLimit))
                 show eduFinal
             else
                 hide eduFinal
@@ -1114,18 +1117,47 @@ Resources
 			end
 		end
     
+    *allBuildings
+        always hidden
+        // Don't forget to add buildings here if more are added
+        is always:asicS + asicA + asicB + asicC + fpga + gpuS + gpuA + gpuB + gpuC + cpu + pickaxe + cloud + pool + calcCentre
+    
+    *eduLimit
+        always hidden
+        is always:33
+    
     *eduMax
         name:Tip
         always hidden
+        on unlock:if (eduMax < eduLimit) yield 1 eduMax
         on earn:
             yield (eduMax - (eduNext:clicks - eduBack:clicks + (eduOffset))) eduOffset
             do open with eduOpen
-            hide eduNext
-            show eduBack
         end
-        start with:5
+        on tick:
+            if (allBuildings >= edu2Unlock)
+                // In case of a previously saved game
+                if (!(edu2Unlock = 0)) do unlock
+                yield (allBuildings + 5 - (edu2Unlock)) edu2Unlock
+            end
+        end
+        start with:4
     
     *eduOffset
+        always hidden
+        can be negative
+        // Start with negative offset if anyone loads a game from the previous version
+        // and they had a (now) locked tip open
+        // We don't want to break anyone's saved game
+        on load:
+            $diff = eduNext:clicks - eduBack:clicks
+            if ($diff > eduMax)
+                lose (eduOffset + $diff) eduOffset
+                do open with eduOpen
+            end
+        end
+
+    *edu2Unlock
         always hidden
     
 Buildings

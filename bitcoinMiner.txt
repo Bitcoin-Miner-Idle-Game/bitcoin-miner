@@ -258,7 +258,7 @@ Buttons
 		name:Coin
 		desc:Click here to mine bitcoins!
 		on click:anim icon wobble
-		on click:yield 1 microbitcoin
+		on click:yield (1 + (bpsUpgrades*microbitcoin:ps)) microbitcoin
 		icon:https://raw.githubusercontent.com/Bitcoin-Miner-Idle-Game/bitcoin-miner/main/img/notsobigbutton.png
 		no text
 		class:bigButton hasFlares
@@ -952,7 +952,9 @@ Resources
 			end
 		end
     
-    
+    *bpsUpgrades
+		always hidden
+	
 Buildings
 	*TEMPLATE
 		on click:anim glow
@@ -1214,57 +1216,57 @@ Upgrades
 	*mineFaster
 		name:Sleight of Hand
         icon:icons[2,3]
-		cost:50 microbitcoin
+		cost:100 microbitcoin
         on earn:hide mineFaster
-		req:(microbitcoin:earned >= 200)
+		req:(microbitcoin:earned >= 500)
 		
 	*mineFaster2
 		name:Fast Hand
         icon:icons[2,3]
-		cost:100 microbitcoin
+		cost:1000 microbitcoin
         on earn:hide mineFaster2
-		req:(microbitcoin:earned >= 500)
+		req:(microbitcoin:earned >= 5000)
 		
 	*mineFaster3
 		name:Quick Hand
         icon:icons[2,3]
-		cost:1000 microbitcoin
+		cost:10000 microbitcoin
         on earn:hide mineFaster3
-		req:(microbitcoin:earned >= 2500)
+		req:(microbitcoin:earned >= 50000)
 		
 	*mineFaster4
 		name:Rapid Hand
         icon:icons[2,3]
-		cost:10000 microbitcoin
+		cost:100000 microbitcoin
         on earn:hide mineFaster4
-		req:(microbitcoin:earned >= 25000)
+		req:(microbitcoin:earned >= 500000)
 		
 	*mineFaster5
 		name:Swift Hand
         icon:icons[2,3]
-		cost:50000 microbitcoin
+		cost:1000000 microbitcoin
         on earn:hide mineFaster5
-		req:(microbitcoin:earned >= 75000)
+		req:(microbitcoin:earned >= 5000000)
 		
 	*mineFaster6
 		name:Speedy Hand
         icon:icons[2,3]
-		cost:100000 microbitcoin
+		cost:10000000 microbitcoin
         on earn:hide mineFaster6
-		req:(microbitcoin:earned >= 200000)
+		req:(microbitcoin:earned >= 50000000)
 		
 	*mineFaster7
 		name:Nimble Hand
         icon:icons[2,3]
-		cost:1000000 microbitcoin
+		cost:100000000 microbitcoin
         on earn:hide mineFaster7
-		req:(microbitcoin:earned >= 2000000)
+		req:(microbitcoin:earned >= 500000000)
 		
-	// clicking gets 10% of bps
+	// clicking gets 2% of bps
 	*TEMPLATE
 		on click:anim glow
-		desc:Knowledge is power. <//><b>Effect:</b><.>Clicking grants you an extra 10% of your current bitcoins per second.
-		passive:increase microbitcoin yield of bitcoinButton by (microbitcoin:ps * 0.1)
+		desc:Knowledge is power. <//><b>Effect:</b><.>Clicking grants you an extra 2% of your current bitcoins per second.
+		on earn:yield 0.02 bpsUpgrades
 		
 	*mineSmarter
 		name:Clever Hand
@@ -1274,46 +1276,46 @@ Upgrades
 		req:(microbitcoin:earned >= 1000)
 		
 	*mineSmarter2
-		name:Smart Hand
-        icon:icons[2,3]
-		cost:1000 microbitcoin
-        on earn:hide mineSmarter2
-		req:(microbitcoin:earned >= 3500)
-		
-	*mineSmarter3
 		name:Intelligent Hand
         icon:icons[2,3]
 		cost:5000 microbitcoin
-        on earn:hide mineSmarter3
+        on earn:hide mineSmarter2
 		req:(microbitcoin:earned >= 10000)
 		
-	*mineSmarter4
-		name:Bright Hand
-        icon:icons[2,3]
-		cost:12500 microbitcoin
-        on earn:hide mineSmarter4
-		req:(microbitcoin:earned >= 30000)
-		
-	*mineSmarter5
+	*mineSmarter3
 		name:Erudite Hand
         icon:icons[2,3]
 		cost:50000 microbitcoin
-        on earn:hide mineSmarter5
-		req:(microbitcoin:earned >= 75000)
+        on earn:hide mineSmarter3
+		req:(microbitcoin:earned >= 100000)
 		
-	*mineSmarter6
+	*mineSmarter4
 		name:Gifted Hand
         icon:icons[2,3]
-		cost:125000 microbitcoin
-        on earn:hide mineSmarter6
-		req:(microbitcoin:earned >= 250000)
+		cost:500000 microbitcoin
+        on earn:hide mineSmarter4
+		req:(microbitcoin:earned >= 1000000)
 		
-	*mineSmarter7
+	*mineSmarter5
 		name:Proficient Hand
         icon:icons[2,3]
-		cost:1500000 microbitcoin
+		cost:5000000 microbitcoin
+        on earn:hide mineSmarter5
+		req:(microbitcoin:earned >= 10000000)
+		
+	*mineSmarter6
+		name:Smart Hand
+        icon:icons[2,3]
+		cost:50000000 microbitcoin
         on earn:hide mineSmarter6
-		req:(microbitcoin:earned >= 3000000)
+		req:(microbitcoin:earned >= 100000000)
+		
+	*mineSmarter7
+		name:Bright Hand
+        icon:icons[2,3]
+		cost:500000000 microbitcoin
+        on earn:hide mineSmarter7
+		req:(microbitcoin:earned >= 1000000000)
 
 Shinies
 	*luckyClover

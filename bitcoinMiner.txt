@@ -1207,11 +1207,11 @@ Upgrades
 		// TODO
 		req:(poolRecruiting)
 	
-	// clicking x2
+	// clicking x1.5
 	*TEMPLATE
 		on click:anim glow
-		desc:Practice makes perfect. <//><b>Effect:</b><.>Mine twice as efficiently with each click.
-		passive:multiply yield of bitcoinButton by 2
+		desc:Practice makes perfect. <//><b>Effect:</b><.>Mine 50% more with each click.
+		passive:multiply yield of bitcoinButton by 1.5
 		
 	*mineFaster
 		name:Sleight of Hand
@@ -1262,11 +1262,11 @@ Upgrades
         on earn:hide mineFaster7
 		req:(microbitcoin:earned >= 500000000)
 		
-	// clicking gets 2% of bps
+	// clicking gets 1% of bps
 	*TEMPLATE
 		on click:anim glow
-		desc:Knowledge is power. <//><b>Effect:</b><.>Clicking grants you an extra 2% of your current bitcoins per second.
-		on earn:yield 0.02 bpsUpgrades
+		desc:Knowledge is power. <//><b>Effect:</b><.>Clicking grants you an extra 1% of your current bitcoins per second.
+		on earn:yield 0.01 bpsUpgrades
 		
 	*mineSmarter
 		name:Clever Hand

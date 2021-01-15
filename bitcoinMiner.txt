@@ -1207,23 +1207,22 @@ Upgrades
 		// TODO
 		req:(poolRecruiting)
 	
-	// clicking x1.5
-	*TEMPLATE
-		on click:anim glow
-		desc:Practice makes perfect. <//><b>Effect:</b><.>Mine 50% more with each click.
-		passive:multiply yield of bitcoinButton by 1.5
+	// clicking multipliers
 		
 	*mineFaster
 		name:Sleight of Hand
         icon:icons[2,3]
 		cost:100 microbitcoin
+		desc:Practice makes perfect. <//><b>Effect:</b><.>Mine 100% more with each click.
+		passive:multiply yield of bitcoinButton by 2
         on earn:hide mineFaster
-		req:(microbitcoin:earned >= 500)
 		
 	*mineFaster2
 		name:Fast Hand
         icon:icons[2,3]
 		cost:1000 microbitcoin
+		desc:Practice makes perfect. <//><b>Effect:</b><.>Mine 50% more with each click.
+		passive:multiply yield of bitcoinButton by 1.5
         on earn:hide mineFaster2
 		req:(microbitcoin:earned >= 5000)
 		
@@ -1231,6 +1230,8 @@ Upgrades
 		name:Quick Hand
         icon:icons[2,3]
 		cost:10000 microbitcoin
+		desc:Practice makes perfect. <//><b>Effect:</b><.>Mine 33% more with each click.
+		passive:multiply yield of bitcoinButton by 1.33
         on earn:hide mineFaster3
 		req:(microbitcoin:earned >= 50000)
 		
@@ -1238,6 +1239,8 @@ Upgrades
 		name:Rapid Hand
         icon:icons[2,3]
 		cost:100000 microbitcoin
+		desc:Practice makes perfect. <//><b>Effect:</b><.>Mine 25% more with each click.
+		passive:multiply yield of bitcoinButton by 1.25
         on earn:hide mineFaster4
 		req:(microbitcoin:earned >= 500000)
 		
@@ -1245,6 +1248,8 @@ Upgrades
 		name:Swift Hand
         icon:icons[2,3]
 		cost:1000000 microbitcoin
+		desc:Practice makes perfect. <//><b>Effect:</b><.>Mine 20% more with each click.
+		passive:multiply yield of bitcoinButton by 1.2
         on earn:hide mineFaster5
 		req:(microbitcoin:earned >= 5000000)
 		
@@ -1252,6 +1257,8 @@ Upgrades
 		name:Speedy Hand
         icon:icons[2,3]
 		cost:10000000 microbitcoin
+		desc:Practice makes perfect. <//><b>Effect:</b><.>Mine 15% more with each click.
+		passive:multiply yield of bitcoinButton by 1.15
         on earn:hide mineFaster6
 		req:(microbitcoin:earned >= 50000000)
 		
@@ -1259,8 +1266,19 @@ Upgrades
 		name:Nimble Hand
         icon:icons[2,3]
 		cost:100000000 microbitcoin
+		desc:Practice makes perfect. <//><b>Effect:</b><.>Mine 12% more with each click.
+		passive:multiply yield of bitcoinButton by 1.12
         on earn:hide mineFaster7
 		req:(microbitcoin:earned >= 500000000)
+		
+	*mineFaster8
+		name:Supersonic Hand
+        icon:icons[2,3]
+		cost:1000000000 microbitcoin
+		desc:Practice makes perfect. <//><b>Effect:</b><.>Mine 10% more with each click.
+		passive:multiply yield of bitcoinButton by 1.1
+        on earn:hide mineFaster8
+		req:(microbitcoin:earned >= 5000000000)
 		
 	// clicking gets 1% of bps
 	*TEMPLATE

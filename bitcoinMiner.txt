@@ -1638,6 +1638,16 @@ Upgrades
         passive:multiply yield of tag:isHardware by 1.1
         on earn:hide coolingSystem
         req:(cpus >= 20 and gpusC + gpusB + gpusA + gpusS >= 50 and asicsA + asicsB + asicsC + asicsS >= 50 and fpgas >= 20)
+        
+    *ramExpansion
+        name:RAM Expansion
+        desc:Upgrading to a bigger RAM memory will make everything faster.<//><b>Effect:</b><.>Increase the production of all CPUs by 10%.
+        tag:isUpgrade
+        icon:icons[2,3]
+        cost:10000000 microbitcoin
+        passive:multiply yield of cpus by 1.1
+        //TODO
+        req:(cpus >= 40)
 		
 	*compCleaning
 		name:Hardware Cleaning
@@ -1972,6 +1982,12 @@ Achievements
         name:Be cool
         desc:Buy the <b>Cooling System</b> upgrade.
         req:1 coolingSystem
+        icon:icons[3,3]
+        
+    *ramExpansionUpAch
+        name:Elephants never forget
+        desc:Buy the <b>RAM Expansion</b> upgrade.
+        req:1 ramExpansion
         icon:icons[3,3]
 
 	*compCleaningUpAch

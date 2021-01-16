@@ -1400,7 +1400,7 @@ Upgrades
     	desc:Push your CPU further to the limit.<//><b>Effect:</b><.>Increase the production of your CPUs by 50%.
     	tags:isUpgrade
         icon:icons[2,3]
-		cost:100000 microbitcoin
+		cost:50000 microbitcoin
 		passive:multiply yield of cpus by 1.5
         on earn:hide cpuOverclock
 		req:(cpus >=1)
@@ -1410,7 +1410,7 @@ Upgrades
     	desc:Push your CPU further to the limit.<//><b>Effect:</b><.>Increase the production of your CPUs by 50%.
     	tags:isUpgrade
         icon:icons[2,3]
-		cost:10000000 microbitcoin
+		cost:5000000 microbitcoin
 		passive:multiply yield of cpus by 1.5
         on earn:hide cpuOverclock2
 		req:(cpus >= 1 and cpuOverclock)
@@ -1420,7 +1420,7 @@ Upgrades
     	desc:Push your CPU further to the limit.<//><b>Effect:</b><.>Increase the production of your CPUs by 50%.
     	tags:isUpgrade
         icon:icons[2,3]
-		cost:100000000 microbitcoin
+		cost:50000000 microbitcoin
 		passive:multiply yield of cpus by 1.5
         on earn:hide cpuOverclock3
 		req:(cpus >= 1 and cpuOverclock2)
@@ -1430,7 +1430,7 @@ Upgrades
 		desc:Push your GPUs further to the limit.<//><b>Effect:</b><.>Increase the production of all your GPUs by 50%.
     	tags:isUpgrade
         icon:icons[2,3]
-		cost:100000 microbitcoin
+		cost:50000 microbitcoin
 		passive:multiply yield of tag:isGPU by 1.5
         on earn:hide gpuOverclock
 		req:(gpusC + gpusB + gpusA + gpusS >=1)
@@ -1440,7 +1440,7 @@ Upgrades
 		desc:Push your GPUs further to the limit.<//><b>Effect:</b><.>Increase the production of all your GPUs by 50%.
     	tags:isUpgrade
         icon:icons[2,3]
-		cost:10000000 microbitcoin
+		cost:5000000 microbitcoin
 		passive:multiply yield of tag:isGPU by 1.5
         on earn:hide gpuOverclock2
 		req:(gpusC + gpusB + gpusA + gpusS >=1 and gpuOverclock)
@@ -1450,7 +1450,7 @@ Upgrades
 		desc:Push your GPUs further to the limit.<//><b>Effect:</b><.>Increase the production of all your GPUs by 50%.
     	tags:isUpgrade
         icon:icons[2,3]
-		cost:100000000 microbitcoin
+		cost:50000000 microbitcoin
 		passive:multiply yield of tag:isGPU by 1.5
         on earn:hide gpuOverclock3
 		req:(gpusC + gpusB + gpusA + gpusS >=1 and gpuOverclock2)
@@ -1460,7 +1460,7 @@ Upgrades
 		desc:Push your ASICs further to the limit.<//><b>Effect:</b><.>Increase the production of your ASICs by 50%.
     	tags:isUpgrade
         icon:icons[2,3]
-		cost:1000000 microbitcoin
+		cost:500000 microbitcoin
 		passive:multiply yield of tag:isASIC by 1.5
         on earn:hide asicOverclock
 		req:(asicC + asicB + asicA + asicS >=1)
@@ -1470,7 +1470,7 @@ Upgrades
 		desc:Push your ASICs further to the limit.<//><b>Effect:</b><.>Increase the production of your ASICs by 50%.
     	tags:isUpgrade
         icon:icons[2,3]
-		cost:100000000 microbitcoin
+		cost:50000000 microbitcoin
 		passive:multiply yield of tag:isASIC by 1.5
         on earn:hide asicOverclock2
 		req:(asicC + asicB + asicA + asicS >=1 and asicOverclock)
@@ -1480,7 +1480,7 @@ Upgrades
 		desc:Push your ASICs further to the limit.<//><b>Effect:</b><.>Increase the production of your ASICs by 50%.
     	tags:isUpgrade
         icon:icons[2,3]
-		cost:1000000000 microbitcoin
+		cost:500000000 microbitcoin
 		passive:multiply yield of tag:isASIC by 1.5
         on earn:hide asicOverclock3
 		req:(asicC + asicB + asicA + asicS >=1 and asicOverclock2)
@@ -1490,7 +1490,7 @@ Upgrades
 		desc:Push your FPGAs further to the limit.<//><b>Effect:</b><.>Increase the production of all your FPGAs by 50%.
     	tags:isUpgrade
         icon:icons[2,3]
-		cost:1000000 microbitcoin
+		cost:500000 microbitcoin
 		passive:multiply yield of fpgas by 1.5
         on earn:hide fpgaOverclock
 		req:(fpgas >=1)
@@ -1500,7 +1500,7 @@ Upgrades
 		desc:Push your FPGAs further to the limit.<//><b>Effect:</b><.>Increase the production of all your FPGAs by 50%.
     	tags:isUpgrade
         icon:icons[2,3]
-		cost:100000000 microbitcoin
+		cost:50000000 microbitcoin
 		passive:multiply yield of fpgas by 1.5
         on earn:hide fpgaOverclock2
 		req:(fpgas >=1 and fpgaOverclock)
@@ -1510,7 +1510,7 @@ Upgrades
 		desc:Push your FPGAs further to the limit.<//><b>Effect:</b><.>Increase the production of all your FPGAs by 50%.
     	tags:isUpgrade
         icon:icons[2,3]
-		cost:1000000000 microbitcoin
+		cost:500000000 microbitcoin
 		passive:multiply yield of fpgas by 1.5
         on earn:hide fpgaOverclock3
 		req:(fpgas >=1 and fpgaOverclock2)
@@ -1523,7 +1523,7 @@ Upgrades
 		cost:2000000 microbitcoin
 		passive:multiply yield of tag:isGPU by 1.5
         on earn:hide driversUpdate
-		req:(gpusC >=1)
+		req:(gpusB + gpusA + gpusS >=1)
 		
 	*compCleaning
 		name:Hardware Cleaning
@@ -1797,6 +1797,12 @@ Achievements
 		name:Working out.
 		desc:Buy the <b>Sleight of Hand</b> upgrade.
 		req:1 mineFaster
+        icon:icons[3,3]
+		
+	*mineSmarterUpAch
+		name:Working smart.
+		desc:Buy the <b>Clever Hand</b> upgrade.
+		req:1 mineSmarter
         icon:icons[3,3]
 
 	*pickaxeUpAch

@@ -1195,7 +1195,7 @@ Buildings
     desc:Have you really been doing it by hand? <//><b>Effect:</b><.>Produces [3] μBitcoin every second.
     text:CPU<b>[cpus]</b>
     icon:icons[1,0]
-    tags:isBuilding
+    tags:isHardware isBuilding
     cost:275 microbitcoin
     on tick:yield 3 microbitcoin
     unlocked
@@ -1205,7 +1205,7 @@ Buildings
 	desc:A graphics card will allow you to use its computing power to solve problems faster, and thus, mine faster.<//><b>Effect:</b><.>Produces [22] μBitcoin every second.
     text:Graphics card type C<b>[gpusC]</b>
     icon:icons[2,0]
-    tags:isGPU isBuilding
+    tags:isGPU isHardware isBuilding
 	cost:3000 microbitcoin
 	on tick:yield 22 microbitcoins
 	req:(cpus >= 10)
@@ -1215,7 +1215,7 @@ Buildings
     desc:A computarized device that was designed for the sole purpose of mining Bitcoin. It is able to mine Bitcoin in a more efficient way than a standard computer.<//><b>Effect:</b><.>Produces [130] μBitcoin every second.
     text:ASIC chip type C<b>[asicsC]</b>
     icon:icons[3,1]
-    tags:isBuilding isAsic
+    tags:isBuilding isAsic isHardware
     cost:33000 microbitcoin
     on tick:yield 130 microbitcoin
     req:(gpusC >= 10)
@@ -1225,7 +1225,7 @@ Buildings
     desc:An integrated circuit you can configure to help you mine. <//><b>Effect:</b><.>Produces [740] μBitcoin every second.
     text:FPGA<b>[fpgas]</b>
     icon:icons[2,1]
-    tags:isBuilding
+    tags:isBuilding isHardware
     cost:370000 microbitcoin
     on tick:yield 740 microbitcoin
     req:(asicsC >= 10)
@@ -1235,7 +1235,7 @@ Buildings
     desc:A better graphics card solves problems even faster. <//><b>Effect:</b><.>Produces [4000] μBitcoin every second.
     text:Graphics card type B<b>[gpusB]</b>
     icon:icons[3,0]
-    tags:isGPU isBuilding
+    tags:isGPU isBuilding isHardware
     cost:4000000 microbitcoin
     on tick:yield 4000 microbitcoin
     req:(gpusC >= 30)
@@ -1245,7 +1245,7 @@ Buildings
     desc:Its sole purpose is mining Bitcoin... but now much better.<//><b>Effect:</b><.>Produces [17500] μBitcoin every second.
     text:ASIC chip type B<b>[asicsB]</b>
     icon:icons[0,2]
-    tags:isBuilding isAsic
+    tags:isBuilding isAsic isHardware
     cost:45000000 microbitcoin
     on tick:yield 17500 microbitcoin
     req:(asicC >= 30)
@@ -1265,7 +1265,7 @@ Buildings
     desc:There's always room for improvements. <//><b>Effect:</b><.>Produces [270000] μBitcoin every second.
     text:Graphics card type A<b>[gpusA]</b>
     icon:icons[0,1]
-    tags:isGPU isBuilding
+    tags:isGPU isBuilding isHardware
     cost:5300000000 microbitcoin
     on tick:yield 270000 microbitcoin
     req:(gpusC + gpusB >= 50)
@@ -1275,7 +1275,7 @@ Buildings
     desc:A Super Incredible Circuit.<//><b>Effect:</b><.>Produces 1.28 Bitcoin every second.
     text:ASIC chip type A<b>[asicsA]</b>
     icon:icons[1,2]
-    tags:isBuilding isAsic
+    tags:isBuilding isAsic isHardware
     cost:60000000000 microbitcoin
     on tick:yield 1280000 microbitcoin
     req:(asicsC + asicsB >= 50)
@@ -1295,7 +1295,7 @@ Buildings
     desc:This one is the Aston Martin of graphics. <//><b>Effect:</b><.>Produces [33] Bitcoin every second.
     text:Graphics card type S<b>[gpusS]</b>
     icon:icons[1,1]
-    tags:isGPU isBuilding
+    tags:isGPU isBuilding isHardware
     cost:7100000000000 microbitcoin
     on tick:yield 33000000 microbitcoin
     req:(gpusA + gpusB + gpusC >= 100)
@@ -1305,7 +1305,7 @@ Buildings
     desc:You won't find a better miner than this one here.<//><b>Effect:</b><.>Produces [197] Bitcoin every second.
     text:ASIC chip type S<b>[asicsS]</b>
     icon:icons[2,2]
-    tags:isBuilding isAsic
+    tags:isBuilding isAsic isHardware
     cost:78000000000000 microbitcoin
     on tick:yield 197000000 microbitcoin
     req:(asicsA + asicsB + asicsC >= 100)
@@ -1462,6 +1462,17 @@ Upgrades
 		passive:multiply yield of tag:isGPU by 1.5
         on earn:hide driversUpdate
 		req:(gpusC >=1)
+        
+    *coolingSystem
+        name:Cooling System
+        desc:Lowering the temperature of your hardware will improve its performance.<//><b>Effect:</b><.>Increase the production of all CPUs, GPUs, ASICs and FPGAs by 10%.
+        tags:isUpgrade
+        icon:icons[2,3]
+        cost:100000000 microbitcoin
+        passive:multiply yield of tag:isHardware by 1.1
+        on earn:hide coolingSystem
+        //TODO
+        req:(cpus >= 20 and gpusC + gpusB + gpusA + gpusS >= 50 and asicsA + asicsB + asicsC + asicsS >= 50 and fpgas >= 20)
 		
 	*compCleaning
 		name:Hardware Cleaning
@@ -1786,6 +1797,12 @@ Achievements
 		name:Up to date.
 		desc:Buy the <b>Drivers Update</b> upgrade. 
 		req:1 driversUpdate
+        icon:icons[3,3]
+
+    *coolingSystemUpAch
+        name:Be cool
+        desc:Buy the <b>Cooling System</b> upgrade.
+        req:1 coolingSystem
         icon:icons[3,3]
 
 	*compCleaningUpAch

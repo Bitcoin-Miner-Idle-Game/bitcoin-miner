@@ -1234,7 +1234,7 @@ Buildings
     tags:isGPU isHardware isBuilding
 	cost:3000 microbitcoin
 	on tick:yield 22 microbitcoins
-	req:(cpus >= 10)
+	req:(cpus >= 5)
     
   *asicC|asicsC
   	name:ASIC chip type C|ASIC chips type C
@@ -1244,7 +1244,7 @@ Buildings
     tags:isBuilding isAsic isHardware
     cost:33000 microbitcoin
     on tick:yield 130 microbitcoin
-    req:(gpusC >= 10)
+    req:(gpusC >= 5)
     
   *fpga|fpgas
   	name:FPGA|FPGAs
@@ -1254,7 +1254,7 @@ Buildings
     tags:isBuilding isHardware
     cost:370000 microbitcoin
     on tick:yield 740 microbitcoin
-    req:(asicsC >= 10)
+    req:(asicsC >= 5)
     
   *gpuB|gpusB
   	name:Graphics card type B|Graphics cards type B
@@ -1264,7 +1264,7 @@ Buildings
     tags:isGPU isBuilding isHardware
     cost:4000000 microbitcoin
     on tick:yield 4000 microbitcoin
-    req:(gpusC >= 30)
+    req:(gpusC >= 15)
     
   *asicB|asicsB
   	name:ASIC chip type B|ASIC chips type B
@@ -1274,7 +1274,7 @@ Buildings
     tags:isBuilding isAsic isHardware
     cost:45000000 microbitcoin
     on tick:yield 17500 microbitcoin
-    req:(asicC >= 30)
+    req:(asicC >= 15)
     
   *cloud|clouds
     name:Cloud mining datacenter|Cloud mining datacenters
@@ -1284,7 +1284,7 @@ Buildings
     tags:isBuilding
     cost:500000000 microbitcoin
     on tick:yield 70000 microbitcoin
-    req:(fpgas >= 30)
+    req:(fpgas >= 15)
     
   *gpuA|gpusA
   	name:Graphics card type A|Graphics cards type A
@@ -1294,7 +1294,7 @@ Buildings
     tags:isGPU isBuilding isHardware
     cost:5300000000 microbitcoin
     on tick:yield 270000 microbitcoin
-    req:(gpusC + gpusB >= 50)
+    req:(gpusC + gpusB >= 25)
     
   *asicA|asicsA
   	name:ASIC chip type A|ASIC chips type A
@@ -1304,7 +1304,7 @@ Buildings
     tags:isBuilding isAsic isHardware
     cost:60000000000 microbitcoin
     on tick:yield 1280000 microbitcoin
-    req:(asicsC + asicsB >= 50)
+    req:(asicsC + asicsB >= 25)
     
   *pool|pools
 	name:Mining Pool | Mining Pools
@@ -1314,7 +1314,7 @@ Buildings
 	tags:isBuilding
 	cost:650000000000 microbitcoin
 	on tick:yield 6500000 microbitcoins
-	req:(asicA + asicB + asicC + fpga + gpuA + gpuB + gpuC + cpu + pickaxe + cloud >= 250)
+	req:(asicA + asicB + asicC + fpga + gpuA + gpuB + gpuC + cpu + pickaxe + cloud >= 125)
     
   *gpuS|gpusS
   	name:Graphics card type S|Graphics cards type S
@@ -1324,7 +1324,7 @@ Buildings
     tags:isGPU isBuilding isHardware
     cost:7100000000000 microbitcoin
     on tick:yield 33000000 microbitcoin
-    req:(gpusA + gpusB + gpusC >= 100)
+    req:(gpusA + gpusB + gpusC >= 50)
     
   *asicS|asicsS
   	name:ASIC chip type S|ASIC chips type S
@@ -1334,7 +1334,7 @@ Buildings
     tags:isBuilding isAsic isHardware
     cost:78000000000000 microbitcoin
     on tick:yield 197000000 microbitcoin
-    req:(asicsA + asicsB + asicsC >= 100)
+    req:(asicsA + asicsB + asicsC >= 50)
 
   *calcCentre|calcCentres
     name: Calculation Centre|Calculation Centres
@@ -1344,7 +1344,7 @@ Buildings
     tags:isBuilding
     cost:860000000000000 microbitcoin
     on tick:yield 1187000000 microbitcoin
-    req:(asicS + asicA + asicB + asicC + fpga + gpuS + gpuA + gpuB + gpuC + cpu + pickaxe + cloud + pool>= 500)
+    req:(asicS + asicA + asicB + asicC + fpga + gpuS + gpuA + gpuB + gpuC + cpu + pickaxe + cloud + pool>= 250)
 
     // To show that there are more buildings
 
@@ -1356,62 +1356,62 @@ Buildings
     
     *gpuCHint
         text:???<u>[3000] μBitcoins</u>
-        req:(cpus >= 5 and cpus < 10)
+        req:(cpus >= 2 and cpus < 5)
         icon:icons[2,4]
 
     *asicCHint
         text:???<u>[33000] μBitcoins</u>
-        req:(gpusC >= 5 and gpusC < 10)
+        req:(gpusC >= 2 and gpusC < 5)
         icon:icons[3,5]
 
     *fpgaHint
         text:???<u>[370000] μBitcoins</u>
-        req:(asicC >= 5 and asicC < 10)
+        req:(asicC >= 2 and asicC < 5)
         icon:icons[2,5]
 
     *gpuBHint
         text:???<u>[4000000] μBitcoins</u>
-        req:(gpusC >= 20 and gpusC < 30)
+        req:(gpusC >= 10 and gpusC < 15)
         icon:icons[2,4]
 
     *asicBHint
         text:???<u>[45000000] μBitcoins</u>
-        req:(asicsC >= 20 and asicsC < 30)
+        req:(asicsC >= 10 and asicsC < 15)
         icon:icons[3,5]
 
     *cloudHint
         text:???<u>[500000000] μBitcoins</u>
-        req:(fpgas >= 20 and fpgas < 30)
+        req:(fpgas >= 10 and fpgas < 15)
         icon:icons[3,6]
 
     *gpuAHint
         text:???<u>[5300000000] μBitcoins</u>
-        req:(gpusC + gpusB >= 35 and gpusC + gpusB < 50)
+        req:(gpusC + gpusB >= 15 and gpusC + gpusB < 25)
         icon:icons[2,4]
 
     *asicAHint
         text:???<u>[60000000000] μBitcoins</u>
-        req:(asicsC + asicsB >= 35 and asicsC + asicsB < 50)
+        req:(asicsC + asicsB >= 15 and asicsC + asicsB < 25)
         icon:icons[3,5]
 
     *poolHint
         text:???<u>[650000000000] μBitcoins</u>
-        req:(asicA + asicB + asicC + fpga + gpuA + gpuB + gpuC + cpu + pickaxe + cloud >= 230 and asicA + asicB + asicC + fpga + gpuA + gpuB + gpuC + cpu + pickaxe + cloud < 250)
+        req:(asicA + asicB + asicC + fpga + gpuA + gpuB + gpuC + cpu + pickaxe + cloud >= 75 and asicA + asicB + asicC + fpga + gpuA + gpuB + gpuC + cpu + pickaxe + cloud < 125)
         icon:icons[0,7]
 
     *gpuSHint
         text:???<u>[7100000000000] μBitcoins</u>
-        req:(gpusC + gpusB + gpusA >= 75 and gpusC + gpusB + gpusA < 100)
+        req:(gpusC + gpusB + gpusA >= 30 and gpusC + gpusB + gpusA < 50)
         icon:icons[2,4]
 
     *asicSHint
         text:???<u>[78000000000000] μBitcoins</u>
-        req:(asicsA + asicsB + asicsC >= 75 and asicsA + asicsB + asicsC < 100)
+        req:(asicsA + asicsB + asicsC >= 30 and asicsA + asicsB + asicsC < 50)
         icon:icons[3,5]
 
     *calcCentreHint
         text:???<u>[860000000000000] μBitcoins</u>
-        req:(asicS + asicA + asicB + asicC + fpga + gpuS + gpuA + gpuB + gpuC + cpu + pickaxe + cloud + pool >= 425 and asicS + asicA + asicB + asicC + fpga + gpuS + gpuA + gpuB + gpuC + cpu + pickaxe + cloud + pool < 500)
+        req:(asicS + asicA + asicB + asicC + fpga + gpuS + gpuA + gpuB + gpuC + cpu + pickaxe + cloud + pool >= 150 and asicS + asicA + asicB + asicC + fpga + gpuS + gpuA + gpuB + gpuC + cpu + pickaxe + cloud + pool < 250)
         icon:icons[1,7]
 
 
@@ -1627,7 +1627,7 @@ Upgrades
 		cost:2000000 microbitcoin
 		passive:multiply yield of tag:isGPU by 1.5
         on earn:hide driversUpdate
-    req:(gpusB + gpusA + gpusS >=1)
+		req:(gpusB + gpusA + gpusS >=1)
         
     *coolingSystem
         name:Cooling System
@@ -1637,7 +1637,6 @@ Upgrades
         cost:100000000 microbitcoin
         passive:multiply yield of tag:isHardware by 1.1
         on earn:hide coolingSystem
-        //TODO
         req:(cpus >= 20 and gpusC + gpusB + gpusA + gpusS >= 50 and asicsA + asicsB + asicsC + asicsS >= 50 and fpgas >= 20)
 		
 	*compCleaning

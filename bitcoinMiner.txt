@@ -1234,7 +1234,7 @@ Buildings
     tags:isGPU isHardware isBuilding
 	cost:3000 microbitcoin
 	on tick:yield 22 microbitcoins
-	req:(cpus >= 10)
+	req:(cpus >= 5)
     
   *asicC|asicsC
   	name:ASIC chip type C|ASIC chips type C
@@ -1244,7 +1244,7 @@ Buildings
     tags:isBuilding isAsic isHardware
     cost:33000 microbitcoin
     on tick:yield 130 microbitcoin
-    req:(gpusC >= 10)
+    req:(gpusC >= 5)
     
   *fpga|fpgas
   	name:FPGA|FPGAs
@@ -1254,7 +1254,7 @@ Buildings
     tags:isBuilding isHardware
     cost:370000 microbitcoin
     on tick:yield 740 microbitcoin
-    req:(asicsC >= 10)
+    req:(asicsC >= 5)
     
   *gpuB|gpusB
   	name:Graphics card type B|Graphics cards type B
@@ -1264,7 +1264,7 @@ Buildings
     tags:isGPU isBuilding isHardware
     cost:4000000 microbitcoin
     on tick:yield 4000 microbitcoin
-    req:(gpusC >= 30)
+    req:(gpusC >= 15)
     
   *asicB|asicsB
   	name:ASIC chip type B|ASIC chips type B
@@ -1274,7 +1274,7 @@ Buildings
     tags:isBuilding isAsic isHardware
     cost:45000000 microbitcoin
     on tick:yield 17500 microbitcoin
-    req:(asicC >= 30)
+    req:(asicC >= 15)
     
   *cloud|clouds
     name:Cloud mining datacenter|Cloud mining datacenters
@@ -1284,7 +1284,7 @@ Buildings
     tags:isBuilding
     cost:500000000 microbitcoin
     on tick:yield 70000 microbitcoin
-    req:(fpgas >= 30)
+    req:(fpgas >= 15)
     
   *gpuA|gpusA
   	name:Graphics card type A|Graphics cards type A
@@ -1294,7 +1294,7 @@ Buildings
     tags:isGPU isBuilding isHardware
     cost:5300000000 microbitcoin
     on tick:yield 270000 microbitcoin
-    req:(gpusC + gpusB >= 50)
+    req:(gpusC + gpusB >= 25)
     
   *asicA|asicsA
   	name:ASIC chip type A|ASIC chips type A
@@ -1304,7 +1304,7 @@ Buildings
     tags:isBuilding isAsic isHardware
     cost:60000000000 microbitcoin
     on tick:yield 1280000 microbitcoin
-    req:(asicsC + asicsB >= 50)
+    req:(asicsC + asicsB >= 25)
     
   *pool|pools
 	name:Mining Pool | Mining Pools
@@ -1324,7 +1324,7 @@ Buildings
     tags:isGPU isBuilding isHardware
     cost:7100000000000 microbitcoin
     on tick:yield 33000000 microbitcoin
-    req:(gpusA + gpusB + gpusC >= 100)
+    req:(gpusA + gpusB + gpusC >= 50)
     
   *asicS|asicsS
   	name:ASIC chip type S|ASIC chips type S
@@ -1334,7 +1334,7 @@ Buildings
     tags:isBuilding isAsic isHardware
     cost:78000000000000 microbitcoin
     on tick:yield 197000000 microbitcoin
-    req:(asicsA + asicsB + asicsC >= 100)
+    req:(asicsA + asicsB + asicsC >= 50)
 
   *calcCentre|calcCentres
     name: Calculation Centre|Calculation Centres
@@ -1344,7 +1344,7 @@ Buildings
     tags:isBuilding
     cost:860000000000000 microbitcoin
     on tick:yield 1187000000 microbitcoin
-    req:(asicS + asicA + asicB + asicC + fpga + gpuS + gpuA + gpuB + gpuC + cpu + pickaxe + cloud + pool>= 500)
+    req:(asicS + asicA + asicB + asicC + fpga + gpuS + gpuA + gpuB + gpuC + cpu + pickaxe + cloud + pool>= 300)
 
     // To show that there are more buildings
 
@@ -1356,62 +1356,62 @@ Buildings
     
     *gpuCHint
         text:???<u>[3000] μBitcoins</u>
-        req:(cpus >= 5 and cpus < 10)
+        req:(cpus >= 2 and cpus < 5)
         icon:icons[2,4]
 
     *asicCHint
         text:???<u>[33000] μBitcoins</u>
-        req:(gpusC >= 5 and gpusC < 10)
+        req:(gpusC >= 2 and gpusC < 5)
         icon:icons[3,5]
 
     *fpgaHint
         text:???<u>[370000] μBitcoins</u>
-        req:(asicC >= 5 and asicC < 10)
+        req:(asicC >= 2 and asicC < 5)
         icon:icons[2,5]
 
     *gpuBHint
         text:???<u>[4000000] μBitcoins</u>
-        req:(gpusC >= 20 and gpusC < 30)
+        req:(gpusC >= 10 and gpusC < 15)
         icon:icons[2,4]
 
     *asicBHint
         text:???<u>[45000000] μBitcoins</u>
-        req:(asicsC >= 20 and asicsC < 30)
+        req:(asicsC >= 10 and asicsC < 15)
         icon:icons[3,5]
 
     *cloudHint
         text:???<u>[500000000] μBitcoins</u>
-        req:(fpgas >= 20 and fpgas < 30)
+        req:(fpgas >= 10 and fpgas < 15)
         icon:icons[3,6]
 
     *gpuAHint
         text:???<u>[5300000000] μBitcoins</u>
-        req:(gpusC + gpusB >= 35 and gpusC + gpusB < 50)
+        req:(gpusC + gpusB >= 15 and gpusC + gpusB < 25)
         icon:icons[2,4]
 
     *asicAHint
         text:???<u>[60000000000] μBitcoins</u>
-        req:(asicsC + asicsB >= 35 and asicsC + asicsB < 50)
+        req:(asicsC + asicsB >= 15 and asicsC + asicsB < 25)
         icon:icons[3,5]
 
     *poolHint
         text:???<u>[650000000000] μBitcoins</u>
-        req:(asicA + asicB + asicC + fpga + gpuA + gpuB + gpuC + cpu + pickaxe + cloud >= 230 and asicA + asicB + asicC + fpga + gpuA + gpuB + gpuC + cpu + pickaxe + cloud < 250)
+        req:(asicA + asicB + asicC + fpga + gpuA + gpuB + gpuC + cpu + pickaxe + cloud >= 200 and asicA + asicB + asicC + fpga + gpuA + gpuB + gpuC + cpu + pickaxe + cloud < 250)
         icon:icons[0,7]
 
     *gpuSHint
         text:???<u>[7100000000000] μBitcoins</u>
-        req:(gpusC + gpusB + gpusA >= 75 and gpusC + gpusB + gpusA < 100)
+        req:(gpusC + gpusB + gpusA >= 30 and gpusC + gpusB + gpusA < 50)
         icon:icons[2,4]
 
     *asicSHint
         text:???<u>[78000000000000] μBitcoins</u>
-        req:(asicsA + asicsB + asicsC >= 75 and asicsA + asicsB + asicsC < 100)
+        req:(asicsA + asicsB + asicsC >= 30 and asicsA + asicsB + asicsC < 50)
         icon:icons[3,5]
 
     *calcCentreHint
         text:???<u>[860000000000000] μBitcoins</u>
-        req:(asicS + asicA + asicB + asicC + fpga + gpuS + gpuA + gpuB + gpuC + cpu + pickaxe + cloud + pool >= 425 and asicS + asicA + asicB + asicC + fpga + gpuS + gpuA + gpuB + gpuC + cpu + pickaxe + cloud + pool < 500)
+        req:(asicS + asicA + asicB + asicC + fpga + gpuS + gpuA + gpuB + gpuC + cpu + pickaxe + cloud + pool >= 250 and asicS + asicA + asicB + asicC + fpga + gpuS + gpuA + gpuB + gpuC + cpu + pickaxe + cloud + pool < 300)
         icon:icons[1,7]
 
 
@@ -1428,6 +1428,66 @@ Upgrades
 		passive:multiply yield of pickaxes by 2
         on earn:hide pickaxeUpgrade
 		req:(pickaxes >=1)
+		
+	*pickaxeUpgrade2
+		name:Bi-Dual Wield Pickaxes
+		desc:Four hands work better than two.<//><b>Effect:</b><.>Double the production of your pickaxes.
+		tags:isUpgrade
+        icon:icons[2,3]
+		cost:10000 microbitcoin
+		passive:multiply yield of pickaxes by 2
+        on earn:hide pickaxeUpgrade2
+		req:(pickaxes >=1 and pickaxeUpgrade)
+		
+	*pickaxeUpgrade3
+		name:Tri-Dual Wield Pickaxes
+		desc:Eight hands work better than four.<//><b>Effect:</b><.>Double the production of your pickaxes.
+		tags:isUpgrade
+        icon:icons[2,3]
+		cost:100000 microbitcoin
+		passive:multiply yield of pickaxes by 2
+        on earn:hide pickaxeUpgrade3
+		req:(pickaxes >=1 and pickaxeUpgrade2)
+		
+	*pickaxeUpgrade4
+		name:Tetra-Dual Wield Pickaxes
+		desc:Sixteen hands work better than Eight.<//><b>Effect:</b><.>Double the production of your pickaxes.
+		tags:isUpgrade
+        icon:icons[2,3]
+		cost:1000000 microbitcoin
+		passive:multiply yield of pickaxes by 2
+        on earn:hide pickaxeUpgrade4
+		req:(pickaxes >=1 and pickaxeUpgrade3)
+		
+	*pickaxeUpgrade5
+		name:Penta-Dual Wield Pickaxes
+		desc:Thirty-two hands work better than sixteen.<//><b>Effect:</b><.>Double the production of your pickaxes.
+		tags:isUpgrade
+        icon:icons[2,3]
+		cost:10000000 microbitcoin
+		passive:multiply yield of pickaxes by 2
+        on earn:hide pickaxeUpgrade5
+		req:(pickaxes >=1 and pickaxeUpgrade4)
+		
+	*pickaxeUpgrade6
+		name:Hexa-Dual Wield Pickaxes
+		desc:Sixty-four hands work better than thirty-two.<//><b>Effect:</b><.>Double the production of your pickaxes.
+		tags:isUpgrade
+        icon:icons[2,3]
+		cost:100000000 microbitcoin
+		passive:multiply yield of pickaxes by 2
+        on earn:hide pickaxeUpgrade6
+		req:(pickaxes >=1 and pickaxeUpgrade5)
+		
+	*pickaxeUpgrade7
+		name:Hepta-Dual Wield Pickaxes
+		desc:One hundred and twenty-eight hands work better than sixty-four.<//><b>Effect:</b><.>Double the production of your pickaxes.
+		tags:isUpgrade
+        icon:icons[2,3]
+		cost:1000000000 microbitcoin
+		passive:multiply yield of pickaxes by 2
+        on earn:hide pickaxeUpgrade7
+		req:(pickaxes >=1 and pickaxeUpgrade6)
 
 	*uninstallApps
 		name:App Cleaning
@@ -1440,44 +1500,124 @@ Upgrades
 		req:(cpus >=1)
 
 	*cpuOverclock
-		name:CPU Overclock
+		name:CPU Beginner Overclock
     	desc:Push your CPU further to the limit.<//><b>Effect:</b><.>Increase the production of your CPUs by 50%.
     	tags:isUpgrade
         icon:icons[2,3]
-		cost:100000 microbitcoin
+		cost:50000 microbitcoin
 		passive:multiply yield of cpus by 1.5
         on earn:hide cpuOverclock
-		req:(cpus >=1) 
+		req:(cpus >=1)
+		
+	*cpuOverclock2
+		name:CPU Advanced Overclock
+    	desc:Push your CPU further to the limit.<//><b>Effect:</b><.>Increase the production of your CPUs by 50%.
+    	tags:isUpgrade
+        icon:icons[2,3]
+		cost:5000000 microbitcoin
+		passive:multiply yield of cpus by 1.5
+        on earn:hide cpuOverclock2
+		req:(cpus >= 1 and cpuOverclock)
+		
+	*cpuOverclock3
+		name:CPU Expert Overclock
+    	desc:Push your CPU further to the limit.<//><b>Effect:</b><.>Increase the production of your CPUs by 50%.
+    	tags:isUpgrade
+        icon:icons[2,3]
+		cost:50000000 microbitcoin
+		passive:multiply yield of cpus by 1.5
+        on earn:hide cpuOverclock3
+		req:(cpus >= 1 and cpuOverclock2)
  
 	*gpuOverclock
-		name:GPU Overclock
+		name:GPU Beginner Overclock
 		desc:Push your GPUs further to the limit.<//><b>Effect:</b><.>Increase the production of all your GPUs by 50%.
     	tags:isUpgrade
         icon:icons[2,3]
-		cost:100000 microbitcoin
+		cost:50000 microbitcoin
 		passive:multiply yield of tag:isGPU by 1.5
         on earn:hide gpuOverclock
-		req:(gpusC >=1)
+		req:(gpusC + gpusB + gpusA + gpusS >=1)
+		
+	*gpuOverclock2
+		name:GPU Advanced Overclock
+		desc:Push your GPUs further to the limit.<//><b>Effect:</b><.>Increase the production of all your GPUs by 50%.
+    	tags:isUpgrade
+        icon:icons[2,3]
+		cost:5000000 microbitcoin
+		passive:multiply yield of tag:isGPU by 1.5
+        on earn:hide gpuOverclock2
+		req:(gpusC + gpusB + gpusA + gpusS >=1 and gpuOverclock)
+		
+	*gpuOverclock3
+		name:GPU Expert Overclock
+		desc:Push your GPUs further to the limit.<//><b>Effect:</b><.>Increase the production of all your GPUs by 50%.
+    	tags:isUpgrade
+        icon:icons[2,3]
+		cost:50000000 microbitcoin
+		passive:multiply yield of tag:isGPU by 1.5
+        on earn:hide gpuOverclock3
+		req:(gpusC + gpusB + gpusA + gpusS >=1 and gpuOverclock2)
     
 	*asicOverclock
-		name:ASIC Overclock
+		name:ASIC Basic Overclock
 		desc:Push your ASICs further to the limit.<//><b>Effect:</b><.>Increase the production of your ASICs by 50%.
     	tags:isUpgrade
         icon:icons[2,3]
-		cost:1000000 microbitcoin
+		cost:500000 microbitcoin
 		passive:multiply yield of tag:isASIC by 1.5
         on earn:hide asicOverclock
-		req:(asicC >=1)
+		req:(asicC + asicB + asicA + asicS >=1)
+		
+	*asicOverclock2
+		name:ASIC Advanced Overclock
+		desc:Push your ASICs further to the limit.<//><b>Effect:</b><.>Increase the production of your ASICs by 50%.
+    	tags:isUpgrade
+        icon:icons[2,3]
+		cost:50000000 microbitcoin
+		passive:multiply yield of tag:isASIC by 1.5
+        on earn:hide asicOverclock2
+		req:(asicC + asicB + asicA + asicS >=1 and asicOverclock)
+		
+	*asicOverclock3
+		name:ASIC Expert Overclock
+		desc:Push your ASICs further to the limit.<//><b>Effect:</b><.>Increase the production of your ASICs by 50%.
+    	tags:isUpgrade
+        icon:icons[2,3]
+		cost:500000000 microbitcoin
+		passive:multiply yield of tag:isASIC by 1.5
+        on earn:hide asicOverclock3
+		req:(asicC + asicB + asicA + asicS >=1 and asicOverclock2)
 
     *fpgaOverclock
-		name:FPGA Overclock
+		name:FPGA Basic Overclock
 		desc:Push your FPGAs further to the limit.<//><b>Effect:</b><.>Increase the production of all your FPGAs by 50%.
     	tags:isUpgrade
         icon:icons[2,3]
-		cost:1000000 microbitcoin
+		cost:500000 microbitcoin
 		passive:multiply yield of fpgas by 1.5
         on earn:hide fpgaOverclock
 		req:(fpgas >=1)
+		
+	*fpgaOverclock2
+		name:FPGA Advanced Overclock
+		desc:Push your FPGAs further to the limit.<//><b>Effect:</b><.>Increase the production of all your FPGAs by 50%.
+    	tags:isUpgrade
+        icon:icons[2,3]
+		cost:50000000 microbitcoin
+		passive:multiply yield of fpgas by 1.5
+        on earn:hide fpgaOverclock2
+		req:(fpgas >=1 and fpgaOverclock)
+		
+	*fpgaOverclock3
+		name:FPGA Expert Overclock
+		desc:Push your FPGAs further to the limit.<//><b>Effect:</b><.>Increase the production of all your FPGAs by 50%.
+    	tags:isUpgrade
+        icon:icons[2,3]
+		cost:500000000 microbitcoin
+		passive:multiply yield of fpgas by 1.5
+        on earn:hide fpgaOverclock3
+		req:(fpgas >=1 and fpgaOverclock2)
 	
 	*driversUpdate
 		name:Drivers Update
@@ -1487,7 +1627,7 @@ Upgrades
 		cost:2000000 microbitcoin
 		passive:multiply yield of tag:isGPU by 1.5
         on earn:hide driversUpdate
-		req:(gpusC >=1)
+		req:(gpusB + gpusA + gpusS >=1)
         
     *coolingSystem
         name:Cooling System
@@ -1497,7 +1637,6 @@ Upgrades
         cost:100000000 microbitcoin
         passive:multiply yield of tag:isHardware by 1.1
         on earn:hide coolingSystem
-        //TODO
         req:(cpus >= 20 and gpusC + gpusB + gpusA + gpusS >= 50 and asicsA + asicsB + asicsC + asicsS >= 50 and fpgas >= 20)
         
     *ramExpansion
@@ -1517,8 +1656,7 @@ Upgrades
 		cost:1000000 microbitcoin
 		passive:multiply yield of tag:isBuilding by 1.1
         on earn:hide compCleaning
-		// TODO
-		req:(driversUpdate)
+		req:(fpgas >= 1)
 		
 	*poolRecruiting
 		name:Mining Pool Recruiting
@@ -1527,7 +1665,6 @@ Upgrades
 		cost:1000000000000 microbitcoin
 		passive:multiply yield of pools by 1.5
         on earn:hide poolRecruiting
-		// TODO
 		req:(pools >=1)
 	
 	*cheaperElectricity
@@ -1537,7 +1674,6 @@ Upgrades
 		cost:2000000000000 microbitcoin
 		passive:multiply yield of tag:isBuilding by 1.1
         on earn:hide cheaperElectricity
-		// TODO
 		req:(poolRecruiting)
 
 	// clicking multipliers
@@ -1786,6 +1922,12 @@ Achievements
 		name:Working out.
 		desc:Buy the <b>Sleight of Hand</b> upgrade.
 		req:1 mineFaster
+        icon:icons[3,3]
+		
+	*mineSmarterUpAch
+		name:Working smart.
+		desc:Buy the <b>Clever Hand</b> upgrade.
+		req:1 mineSmarter
         icon:icons[3,3]
 
 	*pickaxeUpAch

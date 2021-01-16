@@ -1799,6 +1799,12 @@ Achievements
 		req:1 driversUpdate
         icon:icons[3,3]
 
+    *coolingSystemUpAch
+        name:Be cool
+        desc:Buy the <b>Cooling System</b> upgrade.
+        req:1 coolingSystem
+        icon:icons[3,3]
+
 	*compCleaningUpAch
 		name:Hardware needs cleaning, too.
 		desc:Buy the <b>Hardware Cleaning</b> upgrade. 

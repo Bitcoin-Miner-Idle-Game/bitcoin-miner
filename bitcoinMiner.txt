@@ -1324,6 +1324,66 @@ Upgrades
 		passive:multiply yield of pickaxes by 2
         on earn:hide pickaxeUpgrade
 		req:(pickaxes >=1)
+		
+	*pickaxeUpgrade2
+		name:Bi-Dual Wield Pickaxes
+		desc:Four hands work better than two.<//><b>Effect:</b><.>Double the production of your pickaxes.
+		tags:isUpgrade
+        icon:icons[2,3]
+		cost:10000 microbitcoin
+		passive:multiply yield of pickaxes by 2
+        on earn:hide pickaxeUpgrade2
+		req:(pickaxes >=1 and pickaxeUpgrade)
+		
+	*pickaxeUpgrade3
+		name:Tri-Dual Wield Pickaxes
+		desc:Eight hands work better than four.<//><b>Effect:</b><.>Double the production of your pickaxes.
+		tags:isUpgrade
+        icon:icons[2,3]
+		cost:100000 microbitcoin
+		passive:multiply yield of pickaxes by 2
+        on earn:hide pickaxeUpgrade3
+		req:(pickaxes >=1 and pickaxeUpgrade2)
+		
+	*pickaxeUpgrade4
+		name:Tetra-Dual Wield Pickaxes
+		desc:Sixteen hands work better than Eight.<//><b>Effect:</b><.>Double the production of your pickaxes.
+		tags:isUpgrade
+        icon:icons[2,3]
+		cost:1000000 microbitcoin
+		passive:multiply yield of pickaxes by 2
+        on earn:hide pickaxeUpgrade4
+		req:(pickaxes >=1 and pickaxeUpgrade3)
+		
+	*pickaxeUpgrade5
+		name:Penta-Dual Wield Pickaxes
+		desc:Thirty-two hands work better than sixteen.<//><b>Effect:</b><.>Double the production of your pickaxes.
+		tags:isUpgrade
+        icon:icons[2,3]
+		cost:10000000 microbitcoin
+		passive:multiply yield of pickaxes by 2
+        on earn:hide pickaxeUpgrade5
+		req:(pickaxes >=1 and pickaxeUpgrade4)
+		
+	*pickaxeUpgrade6
+		name:Hexa-Dual Wield Pickaxes
+		desc:Sixty-four hands work better than thirty-two.<//><b>Effect:</b><.>Double the production of your pickaxes.
+		tags:isUpgrade
+        icon:icons[2,3]
+		cost:100000000 microbitcoin
+		passive:multiply yield of pickaxes by 2
+        on earn:hide pickaxeUpgrade6
+		req:(pickaxes >=1 and pickaxeUpgrade5)
+		
+	*pickaxeUpgrade7
+		name:Hepta-Dual Wield Pickaxes
+		desc:One hundred and twenty-eight hands work better than sixty-four.<//><b>Effect:</b><.>Double the production of your pickaxes.
+		tags:isUpgrade
+        icon:icons[2,3]
+		cost:1000000000 microbitcoin
+		passive:multiply yield of pickaxes by 2
+        on earn:hide pickaxeUpgrade7
+		req:(pickaxes >=1 and pickaxeUpgrade6)
 
 	*uninstallApps
 		name:App Cleaning
@@ -1336,37 +1396,97 @@ Upgrades
 		req:(cpus >=1)
 
 	*cpuOverclock
-		name:CPU Overclock
+		name:CPU Beginner Overclock
     	desc:Push your CPU further to the limit.<//><b>Effect:</b><.>Increase the production of your CPUs by 50%.
     	tags:isUpgrade
         icon:icons[2,3]
 		cost:100000 microbitcoin
 		passive:multiply yield of cpus by 1.5
         on earn:hide cpuOverclock
-		req:(cpus >=1) 
+		req:(cpus >=1)
+		
+	*cpuOverclock2
+		name:CPU Advanced Overclock
+    	desc:Push your CPU further to the limit.<//><b>Effect:</b><.>Increase the production of your CPUs by 50%.
+    	tags:isUpgrade
+        icon:icons[2,3]
+		cost:10000000 microbitcoin
+		passive:multiply yield of cpus by 1.5
+        on earn:hide cpuOverclock2
+		req:(cpus >= 1 and cpuOverclock)
+		
+	*cpuOverclock3
+		name:CPU Expert Overclock
+    	desc:Push your CPU further to the limit.<//><b>Effect:</b><.>Increase the production of your CPUs by 50%.
+    	tags:isUpgrade
+        icon:icons[2,3]
+		cost:100000000 microbitcoin
+		passive:multiply yield of cpus by 1.5
+        on earn:hide cpuOverclock3
+		req:(cpus >= 1 and cpuOverclock2)
  
 	*gpuOverclock
-		name:GPU Overclock
+		name:GPU Beginner Overclock
 		desc:Push your GPUs further to the limit.<//><b>Effect:</b><.>Increase the production of all your GPUs by 50%.
     	tags:isUpgrade
         icon:icons[2,3]
 		cost:100000 microbitcoin
 		passive:multiply yield of tag:isGPU by 1.5
         on earn:hide gpuOverclock
-		req:(gpusC >=1)
+		req:(gpusC + gpusB + gpusA + gpusS >=1)
+		
+	*gpuOverclock2
+		name:GPU Advanced Overclock
+		desc:Push your GPUs further to the limit.<//><b>Effect:</b><.>Increase the production of all your GPUs by 50%.
+    	tags:isUpgrade
+        icon:icons[2,3]
+		cost:10000000 microbitcoin
+		passive:multiply yield of tag:isGPU by 1.5
+        on earn:hide gpuOverclock2
+		req:(gpusC + gpusB + gpusA + gpusS >=1 and gpuOverclock)
+		
+	*gpuOverclock3
+		name:GPU Expert Overclock
+		desc:Push your GPUs further to the limit.<//><b>Effect:</b><.>Increase the production of all your GPUs by 50%.
+    	tags:isUpgrade
+        icon:icons[2,3]
+		cost:100000000 microbitcoin
+		passive:multiply yield of tag:isGPU by 1.5
+        on earn:hide gpuOverclock3
+		req:(gpusC + gpusB + gpusA + gpusS >=1 and gpuOverclock2)
     
 	*asicOverclock
-		name:ASIC Overclock
+		name:ASIC Basic Overclock
 		desc:Push your ASICs further to the limit.<//><b>Effect:</b><.>Increase the production of your ASICs by 50%.
     	tags:isUpgrade
         icon:icons[2,3]
 		cost:1000000 microbitcoin
 		passive:multiply yield of tag:isASIC by 1.5
         on earn:hide asicOverclock
-		req:(asicC >=1)
+		req:(asicC + asicB + asicA + asicS >=1)
+		
+	*asicOverclock2
+		name:ASIC Advanced Overclock
+		desc:Push your ASICs further to the limit.<//><b>Effect:</b><.>Increase the production of your ASICs by 50%.
+    	tags:isUpgrade
+        icon:icons[2,3]
+		cost:100000000 microbitcoin
+		passive:multiply yield of tag:isASIC by 1.5
+        on earn:hide asicOverclock2
+		req:(asicC + asicB + asicA + asicS >=1 and asicOverclock)
+		
+	*asicOverclock3
+		name:ASIC Expert Overclock
+		desc:Push your ASICs further to the limit.<//><b>Effect:</b><.>Increase the production of your ASICs by 50%.
+    	tags:isUpgrade
+        icon:icons[2,3]
+		cost:1000000000 microbitcoin
+		passive:multiply yield of tag:isASIC by 1.5
+        on earn:hide asicOverclock3
+		req:(asicC + asicB + asicA + asicS >=1 and asicOverclock2)
 
     *fpgaOverclock
-		name:FPGA Overclock
+		name:FPGA Basic Overclock
 		desc:Push your FPGAs further to the limit.<//><b>Effect:</b><.>Increase the production of all your FPGAs by 50%.
     	tags:isUpgrade
         icon:icons[2,3]
@@ -1374,6 +1494,26 @@ Upgrades
 		passive:multiply yield of fpgas by 1.5
         on earn:hide fpgaOverclock
 		req:(fpgas >=1)
+		
+	*fpgaOverclock2
+		name:FPGA Advanced Overclock
+		desc:Push your FPGAs further to the limit.<//><b>Effect:</b><.>Increase the production of all your FPGAs by 50%.
+    	tags:isUpgrade
+        icon:icons[2,3]
+		cost:100000000 microbitcoin
+		passive:multiply yield of fpgas by 1.5
+        on earn:hide fpgaOverclock2
+		req:(fpgas >=1 and fpgaOverclock)
+		
+	*fpgaOverclock3
+		name:FPGA Expert Overclock
+		desc:Push your FPGAs further to the limit.<//><b>Effect:</b><.>Increase the production of all your FPGAs by 50%.
+    	tags:isUpgrade
+        icon:icons[2,3]
+		cost:1000000000 microbitcoin
+		passive:multiply yield of fpgas by 1.5
+        on earn:hide fpgaOverclock3
+		req:(fpgas >=1 and fpgaOverclock2)
 	
 	*driversUpdate
 		name:Drivers Update
@@ -1392,8 +1532,7 @@ Upgrades
 		cost:1000000 microbitcoin
 		passive:multiply yield of tag:isBuilding by 1.1
         on earn:hide compCleaning
-		// TODO
-		req:(driversUpdate)
+		req:(fpgas >= 1)
 		
 	*poolRecruiting
 		name:Mining Pool Recruiting
@@ -1402,7 +1541,6 @@ Upgrades
 		cost:1000000000000 microbitcoin
 		passive:multiply yield of pools by 1.5
         on earn:hide poolRecruiting
-		// TODO
 		req:(pools >=1)
 	
 	*cheaperElectricity
@@ -1412,7 +1550,6 @@ Upgrades
 		cost:2000000000000 microbitcoin
 		passive:multiply yield of tag:isBuilding by 1.1
         on earn:hide cheaperElectricity
-		// TODO
 		req:(poolRecruiting)
 
 	// clicking multipliers

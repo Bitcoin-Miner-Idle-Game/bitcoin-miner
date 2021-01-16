@@ -1845,7 +1845,7 @@ Achievements
     *ramExpansionUpAch
         name:Elephants never forget
         desc:Buy the <b>RAM Expansion</b> upgrade.
-        req: 1 ramExpansion
+        req:1 ramExpansion
         icon:icons[3,3]
 
 	*compCleaningUpAch

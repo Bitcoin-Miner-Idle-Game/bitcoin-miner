@@ -278,6 +278,31 @@ CSS
             border-style: none solid none none;
         }
     }
+    
+    // Anims
+    
+    .frenzy-coin {
+        animation: frenzy-coin 5s linear 0s 12;
+    }
+    
+    @keyframes frenzy-coin {
+        from {
+            -webkit-transform: rotate(0deg);
+            -moz-transform: rotate(0deg);
+            -ms-transform: rotate(0deg);
+            -o-transform: rotate(0deg);
+            transform: rotate(0deg);
+            filter: contrast(200%);
+        }
+        to {
+            -webkit-transform: rotate(360deg);
+            -moz-transform: rotate(360deg);
+            -ms-transform: rotate(360deg);
+            -o-transform: rotate(360deg);
+            transform: rotate(360deg);
+            filter: contrast(200%);
+        }
+    }
 
 Layout
 	use default
@@ -311,6 +336,7 @@ Buttons
 		desc:Click here to mine bitcoins!
 		on click:anim icon wobble
 		on click:yield (1 + (bpsUpgrades*microbitcoin:ps)) microbitcoin
+        on frenzy:anim frenzy-coin
 		icon:https://raw.githubusercontent.com/Bitcoin-Miner-Idle-Game/bitcoin-miner/main/img/notsobigbutton.png
 		no text
 		class:bigButton hasFlares
@@ -1624,13 +1650,14 @@ Upgrades
 Shinies
 	*luckyClover
 		movement:onRight moveLeft wiggle:0.25 growShrink
-		frequency:90
-		frequency variation:20
+		frequency:180
+		frequency variation:30
 		icon:https://raw.githubusercontent.com/Bitcoin-Miner-Idle-Game/bitcoin-miner/main/img/lucky_clover_256bits.png
 		class:bigButton
 		on click:
 			$handicaps=random(0,5)
 			if (chance(70%))
+                do frenzy with bitcoinButton
 				yield 61 luckyTiming
 				toast You got lucky! Duplicate the productivity of your buildings for 1 minute.
 			else

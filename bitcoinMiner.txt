@@ -150,6 +150,15 @@ CSS
         left: 74px;
     }
     
+    #box-things-Buildings > div > .thing-text > div > u {
+        position: fixed;
+        position-anchor: 100% 50%;
+        text-decoration: none;
+        top: 24px;
+        left: 82px;
+        color: #f30;
+    }
+    
     #box-things-Buildings > div > .thing-costs > .costTimeRemaining {
         margin-top: -2px;
     }
@@ -269,6 +278,31 @@ CSS
             border-style: none solid none none;
         }
     }
+    
+    // Anims
+    
+    .frenzy-coin {
+        animation: frenzy-coin 5s linear 0s 12;
+    }
+    
+    @keyframes frenzy-coin {
+        from {
+            -webkit-transform: rotate(0deg);
+            -moz-transform: rotate(0deg);
+            -ms-transform: rotate(0deg);
+            -o-transform: rotate(0deg);
+            transform: rotate(0deg);
+            filter: contrast(200%);
+        }
+        to {
+            -webkit-transform: rotate(360deg);
+            -moz-transform: rotate(360deg);
+            -ms-transform: rotate(360deg);
+            -o-transform: rotate(360deg);
+            transform: rotate(360deg);
+            filter: contrast(200%);
+        }
+    }
 
 Layout
 	use default
@@ -302,6 +336,7 @@ Buttons
 		desc:Click here to mine bitcoins!
 		on click:anim icon wobble
 		on click:yield (1 + (bpsUpgrades*microbitcoin:ps)) microbitcoin
+        on frenzy:anim frenzy-coin
 		icon:https://raw.githubusercontent.com/Bitcoin-Miner-Idle-Game/bitcoin-miner/main/img/notsobigbutton.png
 		no text
 		class:bigButton hasFlares
@@ -1186,7 +1221,7 @@ Buildings
     desc:Have you really been doing it by hand? <//><b>Effect:</b><.>Produces [3] μBitcoin every second.
     text:CPU<b>[cpus]</b>
     icon:icons[1,0]
-    tags:isBuilding
+    tags:isHardware isBuilding
     cost:275 microbitcoin
     on tick:yield 3 microbitcoin
     unlocked
@@ -1196,7 +1231,7 @@ Buildings
 	desc:A graphics card will allow you to use its computing power to solve problems faster, and thus, mine faster.<//><b>Effect:</b><.>Produces [22] μBitcoin every second.
     text:Graphics card type C<b>[gpusC]</b>
     icon:icons[2,0]
-    tags:isGPU isBuilding
+    tags:isGPU isHardware isBuilding
 	cost:3000 microbitcoin
 	on tick:yield 22 microbitcoins
 	req:(cpus >= 10)
@@ -1206,7 +1241,7 @@ Buildings
     desc:A computarized device that was designed for the sole purpose of mining Bitcoin. It is able to mine Bitcoin in a more efficient way than a standard computer.<//><b>Effect:</b><.>Produces [130] μBitcoin every second.
     text:ASIC chip type C<b>[asicsC]</b>
     icon:icons[3,1]
-    tags:isBuilding isAsic
+    tags:isBuilding isAsic isHardware
     cost:33000 microbitcoin
     on tick:yield 130 microbitcoin
     req:(gpusC >= 10)
@@ -1216,7 +1251,7 @@ Buildings
     desc:An integrated circuit you can configure to help you mine. <//><b>Effect:</b><.>Produces [740] μBitcoin every second.
     text:FPGA<b>[fpgas]</b>
     icon:icons[2,1]
-    tags:isBuilding
+    tags:isBuilding isHardware
     cost:370000 microbitcoin
     on tick:yield 740 microbitcoin
     req:(asicsC >= 10)
@@ -1226,7 +1261,7 @@ Buildings
     desc:A better graphics card solves problems even faster. <//><b>Effect:</b><.>Produces [4000] μBitcoin every second.
     text:Graphics card type B<b>[gpusB]</b>
     icon:icons[3,0]
-    tags:isGPU isBuilding
+    tags:isGPU isBuilding isHardware
     cost:4000000 microbitcoin
     on tick:yield 4000 microbitcoin
     req:(gpusC >= 30)
@@ -1236,7 +1271,7 @@ Buildings
     desc:Its sole purpose is mining Bitcoin... but now much better.<//><b>Effect:</b><.>Produces [17500] μBitcoin every second.
     text:ASIC chip type B<b>[asicsB]</b>
     icon:icons[0,2]
-    tags:isBuilding isAsic
+    tags:isBuilding isAsic isHardware
     cost:45000000 microbitcoin
     on tick:yield 17500 microbitcoin
     req:(asicC >= 30)
@@ -1256,7 +1291,7 @@ Buildings
     desc:There's always room for improvements. <//><b>Effect:</b><.>Produces [270000] μBitcoin every second.
     text:Graphics card type A<b>[gpusA]</b>
     icon:icons[0,1]
-    tags:isGPU isBuilding
+    tags:isGPU isBuilding isHardware
     cost:5300000000 microbitcoin
     on tick:yield 270000 microbitcoin
     req:(gpusC + gpusB >= 50)
@@ -1266,7 +1301,7 @@ Buildings
     desc:A Super Incredible Circuit.<//><b>Effect:</b><.>Produces 1.28 Bitcoin every second.
     text:ASIC chip type A<b>[asicsA]</b>
     icon:icons[1,2]
-    tags:isBuilding isAsic
+    tags:isBuilding isAsic isHardware
     cost:60000000000 microbitcoin
     on tick:yield 1280000 microbitcoin
     req:(asicsC + asicsB >= 50)
@@ -1286,7 +1321,7 @@ Buildings
     desc:This one is the Aston Martin of graphics. <//><b>Effect:</b><.>Produces [33] Bitcoin every second.
     text:Graphics card type S<b>[gpusS]</b>
     icon:icons[1,1]
-    tags:isGPU isBuilding
+    tags:isGPU isBuilding isHardware
     cost:7100000000000 microbitcoin
     on tick:yield 33000000 microbitcoin
     req:(gpusA + gpusB + gpusC >= 100)
@@ -1296,7 +1331,7 @@ Buildings
     desc:You won't find a better miner than this one here.<//><b>Effect:</b><.>Produces [197] Bitcoin every second.
     text:ASIC chip type S<b>[asicsS]</b>
     icon:icons[2,2]
-    tags:isBuilding isAsic
+    tags:isBuilding isAsic isHardware
     cost:78000000000000 microbitcoin
     on tick:yield 197000000 microbitcoin
     req:(asicsA + asicsB + asicsC >= 100)
@@ -1310,6 +1345,75 @@ Buildings
     cost:860000000000000 microbitcoin
     on tick:yield 1187000000 microbitcoin
     req:(asicS + asicA + asicB + asicC + fpga + gpuS + gpuA + gpuB + gpuC + cpu + pickaxe + cloud + pool>= 500)
+
+    // To show that there are more buildings
+
+    *TEMPLATE
+        name:???
+        cost:999999999999999999 microbitcoin
+        desc:Keep buying buildings to unlock more!
+        no buy
+    
+    *gpuCHint
+        text:???<u>[3000] μBitcoins</u>
+        req:(cpus >= 5 and cpus < 10)
+        icon:icons[2,4]
+
+    *asicCHint
+        text:???<u>[33000] μBitcoins</u>
+        req:(gpusC >= 5 and gpusC < 10)
+        icon:icons[3,5]
+
+    *fpgaHint
+        text:???<u>[370000] μBitcoins</u>
+        req:(asicC >= 5 and asicC < 10)
+        icon:icons[2,5]
+
+    *gpuBHint
+        text:???<u>[4000000] μBitcoins</u>
+        req:(gpusC >= 20 and gpusC < 30)
+        icon:icons[2,4]
+
+    *asicBHint
+        text:???<u>[45000000] μBitcoins</u>
+        req:(asicsC >= 20 and asicsC < 30)
+        icon:icons[3,5]
+
+    *cloudHint
+        text:???<u>[500000000] μBitcoins</u>
+        req:(fpgas >= 20 and fpgas < 30)
+        icon:icons[3,6]
+
+    *gpuAHint
+        text:???<u>[5300000000] μBitcoins</u>
+        req:(gpusC + gpusB >= 35 and gpusC + gpusB < 50)
+        icon:icons[2,4]
+
+    *asicAHint
+        text:???<u>[60000000000] μBitcoins</u>
+        req:(asicsC + asicsB >= 35 and asicsC + asicsB < 50)
+        icon:icons[3,5]
+
+    *poolHint
+        text:???<u>[650000000000] μBitcoins</u>
+        req:(asicA + asicB + asicC + fpga + gpuA + gpuB + gpuC + cpu + pickaxe + cloud >= 230 and asicA + asicB + asicC + fpga + gpuA + gpuB + gpuC + cpu + pickaxe + cloud < 250)
+        icon:icons[0,7]
+
+    *gpuSHint
+        text:???<u>[7100000000000] μBitcoins</u>
+        req:(gpusC + gpusB + gpusA >= 75 and gpusC + gpusB + gpusA < 100)
+        icon:icons[2,4]
+
+    *asicSHint
+        text:???<u>[78000000000000] μBitcoins</u>
+        req:(asicsA + asicsB + asicsC >= 75 and asicsA + asicsB + asicsC < 100)
+        icon:icons[3,5]
+
+    *calcCentreHint
+        text:???<u>[860000000000000] μBitcoins</u>
+        req:(asicS + asicA + asicB + asicC + fpga + gpuS + gpuA + gpuB + gpuC + cpu + pickaxe + cloud + pool >= 425 and asicS + asicA + asicB + asicC + fpga + gpuS + gpuA + gpuB + gpuC + cpu + pickaxe + cloud + pool < 500)
+        icon:icons[1,7]
+
 
 Upgrades
 	*TEMPLATE
@@ -1523,7 +1627,18 @@ Upgrades
 		cost:2000000 microbitcoin
 		passive:multiply yield of tag:isGPU by 1.5
         on earn:hide driversUpdate
-		req:(gpusB + gpusA + gpusS >=1)
+    req:(gpusB + gpusA + gpusS >=1)
+        
+    *coolingSystem
+        name:Cooling System
+        desc:Lowering the temperature of your hardware will improve its performance.<//><b>Effect:</b><.>Increase the production of all CPUs, GPUs, ASICs and FPGAs by 10%.
+        tags:isUpgrade
+        icon:icons[2,3]
+        cost:100000000 microbitcoin
+        passive:multiply yield of tag:isHardware by 1.1
+        on earn:hide coolingSystem
+        //TODO
+        req:(cpus >= 20 and gpusC + gpusB + gpusA + gpusS >= 50 and asicsA + asicsB + asicsC + asicsS >= 50 and fpgas >= 20)
 		
 	*compCleaning
 		name:Hardware Cleaning
@@ -1683,13 +1798,14 @@ Upgrades
 Shinies
 	*luckyClover
 		movement:onRight moveLeft wiggle:0.25 growShrink
-		frequency:90
-		frequency variation:20
+		frequency:180
+		frequency variation:30
 		icon:https://raw.githubusercontent.com/Bitcoin-Miner-Idle-Game/bitcoin-miner/main/img/lucky_clover_256bits.png
 		class:bigButton
 		on click:
 			$handicaps=random(0,5)
 			if (chance(70%))
+                do frenzy with bitcoinButton
 				yield 61 luckyTiming
 				toast You got lucky! Duplicate the productivity of your buildings for 1 minute.
 			else
@@ -1851,6 +1967,12 @@ Achievements
 		name:Up to date.
 		desc:Buy the <b>Drivers Update</b> upgrade. 
 		req:1 driversUpdate
+        icon:icons[3,3]
+
+    *coolingSystemUpAch
+        name:Be cool
+        desc:Buy the <b>Cooling System</b> upgrade.
+        req:1 coolingSystem
         icon:icons[3,3]
 
 	*compCleaningUpAch

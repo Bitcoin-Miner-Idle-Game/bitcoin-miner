@@ -1314,7 +1314,7 @@ Buildings
 	tags:isBuilding
 	cost:650000000000 microbitcoin
 	on tick:yield 6500000 microbitcoins
-	req:(asicA + asicB + asicC + fpga + gpuA + gpuB + gpuC + cpu + pickaxe + cloud >= 125)
+	req:(asicA + asicB + asicC + fpga + gpuA + gpuB + gpuC + cpu + pickaxe + cloud >= 250)
     
   *gpuS|gpusS
   	name:Graphics card type S|Graphics cards type S
@@ -1344,7 +1344,7 @@ Buildings
     tags:isBuilding
     cost:860000000000000 microbitcoin
     on tick:yield 1187000000 microbitcoin
-    req:(asicS + asicA + asicB + asicC + fpga + gpuS + gpuA + gpuB + gpuC + cpu + pickaxe + cloud + pool>= 250)
+    req:(asicS + asicA + asicB + asicC + fpga + gpuS + gpuA + gpuB + gpuC + cpu + pickaxe + cloud + pool>= 300)
 
     // To show that there are more buildings
 
@@ -1396,7 +1396,7 @@ Buildings
 
     *poolHint
         text:???<u>[650000000000] μBitcoins</u>
-        req:(asicA + asicB + asicC + fpga + gpuA + gpuB + gpuC + cpu + pickaxe + cloud >= 75 and asicA + asicB + asicC + fpga + gpuA + gpuB + gpuC + cpu + pickaxe + cloud < 125)
+        req:(asicA + asicB + asicC + fpga + gpuA + gpuB + gpuC + cpu + pickaxe + cloud >= 200 and asicA + asicB + asicC + fpga + gpuA + gpuB + gpuC + cpu + pickaxe + cloud < 250)
         icon:icons[0,7]
 
     *gpuSHint
@@ -1411,7 +1411,7 @@ Buildings
 
     *calcCentreHint
         text:???<u>[860000000000000] μBitcoins</u>
-        req:(asicS + asicA + asicB + asicC + fpga + gpuS + gpuA + gpuB + gpuC + cpu + pickaxe + cloud + pool >= 150 and asicS + asicA + asicB + asicC + fpga + gpuS + gpuA + gpuB + gpuC + cpu + pickaxe + cloud + pool < 250)
+        req:(asicS + asicA + asicB + asicC + fpga + gpuS + gpuA + gpuB + gpuC + cpu + pickaxe + cloud + pool >= 250 and asicS + asicA + asicB + asicC + fpga + gpuS + gpuA + gpuB + gpuC + cpu + pickaxe + cloud + pool < 300)
         icon:icons[1,7]
 
 

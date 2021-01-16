@@ -1321,73 +1321,69 @@ Buildings
 
     *TEMPLATE
         name:???
+        desc:Keep buying buildings to unlock more!
         cost:999999999999999999 microbitcoin
-        icon:icons[2,3]
         no buy
 
-    // TODO poner descripciones bonitas (si es la misma para todos se puede poner en el TEMPLATE)
-    // TODO poner textos decentes (estos no pueden ir al TEMPLATE pero pueden ser todos iguales también)
-    // TODO revisar cuándo sale cada cosa para que se vea bien en el juego
-
     *gpuCHint
-        desc:There's something hidden
-        text:Buy more buildings<u>[3000] μBitcoins</u>
+        text:???<u>[3000] μBitcoins</u>
         req:(cpus >= 5 and cpus < 10)
+        icon:icons[2,4]
     
     *asicCHint
-        desc:There's something hidden
-        text:Buy more buildings<u>[33000] μBitcoins</u>
+        text:???<u>[33000] μBitcoins</u>
         req:(gpusC >= 5 and gpusC < 10)
+        icon:icons[3,5]
     
     *fpgaHint
-        desc:There's something hidden
-        text:Buy more buildings<u>[370000] μBitcoins</u>
+        text:???<u>[370000] μBitcoins</u>
         req:(asicC >= 5 and asicC < 10)
+        icon:icons[2,5]
     
     *gpuBHint
-        desc:There's something hidden
-        text:Buy more buildings<u>[4000000] μBitcoins</u>
+        text:???<u>[4000000] μBitcoins</u>
         req:(gpusC >= 20 and gpusC < 30)
+        icon:icons[2,4]
     
     *asicBHint
-        desc:There's something hidden
-        text:Buy more buildings<u>[45000000] μBitcoins</u>
+        text:???<u>[45000000] μBitcoins</u>
         req:(asicsC >= 20 and asicsC < 30)
+        icon:icons[3,5]
     
     *cloudHint
-        desc:There's something hidden
-        text:Buy more buildings<u>[500000000] μBitcoins</u>
+        text:???<u>[500000000] μBitcoins</u>
         req:(fpgas >= 20 and fpgas < 30)
+        icon:icons[3,6]
     
     *gpuAHint
-        desc:There's something hidden
-        text:Buy more buildings<u>[5300000000] μBitcoins</u>
+        text:???<u>[5300000000] μBitcoins</u>
         req:(gpusC + gpusB >= 35 and gpusC + gpusB < 50)
+        icon:icons[2,4]
     
     *asicAHint
-        desc:There's something hidden
-        text:Buy more buildings<u>[60000000000] μBitcoins</u>
+        text:???<u>[60000000000] μBitcoins</u>
         req:(asicsC + asicsB >= 35 and asicsC + asicsB < 50)
+        icon:icons[3,5]
     
     *poolHint
-        desc:There's something hidden
-        text:Buy more buildings<u>[650000000000] μBitcoins</u>
+        text:???<u>[650000000000] μBitcoins</u>
         req:(asicA + asicB + asicC + fpga + gpuA + gpuB + gpuC + cpu + pickaxe + cloud >= 230 and asicA + asicB + asicC + fpga + gpuA + gpuB + gpuC + cpu + pickaxe + cloud < 250)
+        icon:icons[0,7]
     
     *gpuSHint
-        desc:There's something hidden
-        text:Buy more buildings<u>[7100000000000] μBitcoins</u>
+        text:???<u>[7100000000000] μBitcoins</u>
         req:(gpusC + gpusB + gpusA >= 75 and gpusC + gpusB + gpusA < 100)
+        icon:icons[2,4]
     
     *asicSHint
-        desc:There's something hidden
-        text:Buy more buildings<u>[78000000000000] μBitcoins</u>
+        text:???<u>[78000000000000] μBitcoins</u>
         req:(asicsA + asicsB + asicsC >= 75 and asicsA + asicsB + asicsC < 100)
+        icon:icons[3,5]
     
     *calcCentreHint
-        desc:There's something hidden
-        text:Buy more buildings<u>[860000000000000] μBitcoins</u>
+        text:???<u>[860000000000000] μBitcoins</u>
         req:(asicS + asicA + asicB + asicC + fpga + gpuS + gpuA + gpuB + gpuC + cpu + pickaxe + cloud + pool >= 425 and asicS + asicA + asicB + asicC + fpga + gpuS + gpuA + gpuB + gpuC + cpu + pickaxe + cloud + pool < 500)
+        icon:icons[1,7]
 
 Upgrades
 	*TEMPLATE

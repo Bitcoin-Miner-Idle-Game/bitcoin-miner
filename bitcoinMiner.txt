@@ -33,8 +33,8 @@ Let's make a game!
 	by:BitcoinMiner Team
 	desc:This is an idle game made to show the basics of bitcoin mining and blockchain.<//>Become rich by unleashing the power of technology!
 	created:07/12/2020
-	updated:04/01/2020
-	version:1
+	updated:17/01/2020
+	version:1.1
  
 Settings
 	background:https://raw.githubusercontent.com/Bitcoin-Miner-Idle-Game/bitcoin-miner/main/img/background_fuzzy.png
@@ -343,10 +343,6 @@ Buttons
 		icon class:shadowed
 		tooltip origin:bottom
 		tooltip class:red
-    
-    *cheatEdu
-        name:1 Tip
-        on click:do unlock with eduMax
     
     *eduClose
         text:<b><</b>

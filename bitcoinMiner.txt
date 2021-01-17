@@ -1084,10 +1084,10 @@ Resources
 		always hidden
 		on tick:
 			if ((ineffTiming) > 1)
-				multiply yield of cpu by 10/11
+				multiply yield of cpu by 9/10
 		 		lose 1 ineffTiming
 			else if ((ineffTiming) is 1)
-				multiply yield of cpu by 11/10
+				multiply yield of cpu by 10/9
 				lose 1 ineffTiming
 			end
 		end
@@ -1096,10 +1096,10 @@ Resources
 		always hidden
 		on tick:
 			if ((overTiming) > 1)
-				multiply yield of cpu by 5/6
+				multiply yield of cpu by 8/10
 		 		lose 1 overTiming
 			else if ((overTiming) is 1)
-				multiply yield of cpu by 6/5
+				multiply yield of cpu by 10/8
 				lose 1 overTiming
 			end
 		end
@@ -1108,10 +1108,10 @@ Resources
 		always hidden
 		on tick:
 			if ((malWTiming) > 1)
-				multiply yield of tag:isBuilding by 2/3
+				multiply yield of tag:isBuilding by 1/2
 		 		lose 1 malWTiming
 			else if ((malWTiming) is 1)
-				multiply yield of tag:isBuilding by 3/2
+				multiply yield of tag:isBuilding by 2
 				lose 1 malWTiming
 			end
 		end
@@ -1120,10 +1120,10 @@ Resources
 		always hidden
 		on tick:
 			if ((frozenTiming) > 1)
-				multiply yield of tag:isBuilding by 2/3
+				multiply yield of tag:isBuilding by 1/2
 		 		lose 1 frozenTiming
 			else if ((frozenTiming) is 1)
-				multiply yield of tag:isBuilding by 3/2
+				multiply yield of tag:isBuilding by 2
 				lose 1 frozenTiming
 			end
 		end
@@ -1132,10 +1132,10 @@ Resources
 		always hidden
 		on tick:
 			if ((cutTiming) > 1)
-				multiply yield of tag:isBuilding by 10/17
+				multiply yield of tag:isBuilding by 7/10
 		 		lose 1 cutTiming
 			else if ((cutTiming) is 1)
-				multiply yield of tag:isBuilding by 17/10
+				multiply yield of tag:isBuilding by 10/7
 				lose 1 cutTiming
 			end
 		end
@@ -1144,10 +1144,10 @@ Resources
 		always hidden
 		on tick:
 			if ((electricTiming) > 1)
-				multiply yield of tag:isBuilding by 10/11
+				multiply yield of tag:isBuilding by 9/10
 		 		lose 1 electricTiming
 			else if ((electricTiming) is 1)
-				multiply yield of tag:isBuilding by 11/10
+				multiply yield of tag:isBuilding by 10/9
 				lose 1 electricTiming
 			end
 		end

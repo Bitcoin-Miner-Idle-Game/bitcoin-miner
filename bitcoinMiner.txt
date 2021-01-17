@@ -150,6 +150,15 @@ CSS
         left: 74px;
     }
     
+    #box-things-Buildings > div > .thing-text > div > u {
+        position: fixed;
+        position-anchor: 100% 50%;
+        text-decoration: none;
+        top: 24px;
+        left: 82px;
+        color: #f30;
+    }
+    
     #box-things-Buildings > div > .thing-costs > .costTimeRemaining {
         margin-top: -2px;
     }
@@ -171,25 +180,68 @@ CSS
         left: 0;
         width: 20%;
         height: 60%;
-        background: linear-gradient(to left,rgba(0,0,0,0) 0%,rgba(0,0,0,0.25) 20%);
+        -webkit-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
     }
     
     #box-things-edu {
         height: 100%;
     }
     
-    .edu-text, .edu-text:hover {
+    .edu-text, .edu-text:hover, .edu-text-extra, .edu-text-extra:hover {
         width: 100%;
         cursor: auto;
         background: rgba(0,0,0,0);
         box-shadow: initial;
         text-align: left;
+        padding-right: 2px;
+    }
+    
+    .edu-text::before {
+        content: "";
+        background: rgba(0, 0, 0, 0.25);
+        border-color: #333 #333;
+        border-width: 1px 0px;
+        border-style: solid;
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        z-index: -1;
     }
     
     .edu-text > .thing-text {
         max-width: 100%;
         font-weight: normal;
         word-wrap: break-word;
+    }
+    
+    .edu-close, .edu-open {
+        background-color: #333;
+        border-color: #444;
+        border-width: 1px;
+        position: fixed;
+        top: 0;
+        width: 14px;
+        height: 100%;
+        font-size: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .edu-close:hover, .edu-open:hover {
+        background-color: #666;
+    }
+    
+    .edu-close {
+        right: -14px;
+    }
+    
+    .edu-open {
+        left: 0px;
     }
     
     #box-eduControl {
@@ -226,6 +278,31 @@ CSS
             border-style: none solid none none;
         }
     }
+    
+    // Anims
+    
+    .frenzy-coin {
+        animation: frenzy-coin 5s linear 0s 12;
+    }
+    
+    @keyframes frenzy-coin {
+        from {
+            -webkit-transform: rotate(0deg);
+            -moz-transform: rotate(0deg);
+            -ms-transform: rotate(0deg);
+            -o-transform: rotate(0deg);
+            transform: rotate(0deg);
+            filter: contrast(200%);
+        }
+        to {
+            -webkit-transform: rotate(360deg);
+            -moz-transform: rotate(360deg);
+            -ms-transform: rotate(360deg);
+            -o-transform: rotate(360deg);
+            transform: rotate(360deg);
+            filter: contrast(200%);
+        }
+    }
 
 Layout
 	use default
@@ -258,7 +335,8 @@ Buttons
 		name:Coin
 		desc:Click here to mine bitcoins!
 		on click:anim icon wobble
-		on click:yield 1 microbitcoin
+		on click:yield (1 + (bpsUpgrades*microbitcoin:ps)) microbitcoin
+        on frenzy:anim frenzy-coin
 		icon:https://raw.githubusercontent.com/Bitcoin-Miner-Idle-Game/bitcoin-miner/main/img/notsobigbutton.png
 		no text
 		class:bigButton hasFlares
@@ -266,214 +344,490 @@ Buttons
 		tooltip origin:bottom
 		tooltip class:red
     
+    *cheatEdu
+        name:1 Tip
+        on click:do unlock with eduMax
+    
+    *eduClose
+        text:<b><</b>
+        tag:eduControl
+        class:edu-close
+        no tooltip
+        on click:
+            hide eduClose
+            hide eduBack
+            hide eduNext
+            do close with tag:edu
+            show eduOpen
+        end
+    
+    *eduOpen
+        text:<b>></b>
+        tag:eduControl
+        class:edu-open
+        no tooltip
+        on click:do open
+        on open:
+            hide eduOpen
+            $eduCount = eduNext:clicks - eduBack:clicks + eduOffset
+            // Just in case
+            hide eduBack
+            hide eduNext
+            if ($eduCount > 0) show eduBack
+            if ($eduCount < eduMax) show eduNext
+            do change with tag:edu
+            show eduClose
+        end
+        hidden
+    
     *edu0
-       text:<b><i><#fff875>Hey hey, this mining thing reminds me of a blocksomething word I've heard somewhere...</#></i></b><//></>Hi there. Blockchain technology removes the intermediaries in transactions. I.e., those people who check the veracity, validity and security of it, as banks for financial transactions.
+        text:<b><i><#fff875>Hi there. You can learn about the elements involved in the Bitcoin mining process through playing. However, if you're also interested in knowing a bit more about what's behind this technology, check this box once in a while.</#></i></b><//></>
         tag:edu
         no tooltip
         class:edu-text
-        
+        on close:hide edu0
+        on change:
+            if ($eduCount = 0)
+                show edu0
+            else
+                hide edu0
+            end
+        end
+    
     *edu1
-        text:<b><i><#fff875>So mining bitcoin and blockchain are the same thing?</#></i></b><//></>No, but they are related. The important thing to understand is that you can use bitcoin transactions and not mine at all, or be dedicated to mining but not using bitcoin for anything (though if you succeed in your mining, you’re paid in bitcoins). Naturally, you can both mine and use transactions.
+       text:<b><i><#fff875>Bitcoin mining is related to blockchain technology</#></i></b><//></>Blockchain technology removes the intermediaries in transactions. I.e., those people who check the veracity, validity and security of it, as banks for financial transactions.
         tag:edu
         no tooltip
         class:edu-text
         hidden
+        on close:hide edu1
+        on change:
+            if ($eduCount = 1)
+                show edu1
+            else
+                hide edu1
+            end
+        end
         
     *edu2
-        text:<b><i><#fff875>If there’s no one checking things are going well… Is Blockchain not secure?</#></i></b><//></>Quite the opposite. Blockchain transactions are completely secured.
+        text:<b><i><#fff875>Mining ≠ Blockchain</#></i></b><//></>The important thing to understand is that you can use bitcoin transactions and not mine at all, or be dedicated to mining but not using bitcoin for anything (though if you succeed in your mining, you’re paid in bitcoins). Naturally, you can both mine and use transactions.
         tag:edu
         no tooltip
         class:edu-text
         hidden
-
-	*edu3
-        text:<b><i><#fff875>And... how so?</#></i></b><//></>For starters, we use a certain ciphering method: SHA-256 functions. When we cipher something, we say we hash it. We call the ciphered message the hash. Its advantages are mainly two: <//></> - If you cipher something, it is impossible to decipher it back. So it doesn't matter if people see your hash over the internet, no one would know the original message.
+        on close:hide edu2
+        on change:
+            if ($eduCount = 2)
+                show edu2
+            else
+                hide edu2
+            end
+        end
+        
+    *edu3
+        text:<b><i><#fff875>Although there’s no one checking things are going well, blockchain is secure</#></i></b><//></>For starters, we use a certain ciphering method: SHA-256 functions. When we cipher something, we say we hash it. We call the ciphered message the hash. Its advantages are mainly two: <//></> 1. If you cipher something, it is impossible to decipher it back. So it doesn't matter if people see your hash over the internet, no one would know the original message.
         tag:edu
         no tooltip
         class:edu-text
         hidden
+        on close:hide edu3
+        on change:
+            if ($eduCount = 3)
+                show edu3
+            else
+                hide edu3
+            end
+        end
 
 	*edu4
-        text:<b><i><#fff875>And... how so?</#></i></b><//></>-Two very similar texts result in very different hashes. Ciphering “Hello, Anne” would result in, for example, “f35cg2”. But “Hello, Ane”, would get “j8v9ah”. Nothing alike.<//></>This is what is used worldwide for regular online transactions. So, as you may have noticed, it’s extremely secure.
+        text:<b><i><#fff875>More on security hash issues</#></i></b><//></>2. Two very similar texts result in very different hashes. Ciphering “Hello, Anne” would result in, for example, “f35cg2”. But “Hello, Ane”, would get “j8v9ah”. Nothing alike.<//></>This is what is used worldwide for regular online transactions. So, as you may have noticed, it’s extremely secure.
         tag:edu
         no tooltip
         class:edu-text
         hidden
+        on close:hide edu4
+        on change:
+            if ($eduCount = 4)
+                show edu4
+            else
+                hide edu4
+            end
+        end
 
 	*edu5
-        text:<b><i><#fff875>But online transactions need intermediaries…</#></i></b><//></>In order to do this without a third party, we need some clever system over this ciphering. The system works by making a chain of consecutive blocks (thus the name Blockchain).
+        text:<b><i><#fff875>How do we use this secure transactions without a third party?</#></i></b><//></>We need some clever system over this ciphering. The system works by making a chain of consecutive blocks (thus the name Blockchain).
         tag:edu
         no tooltip
         class:edu-text
         hidden
+        on close:hide edu5
+        on change:
+            if ($eduCount = 5)
+                show edu5
+            else
+                hide edu5
+            end
+        end
 
 	*edu6
-        text:<b><i><#fff875>Surprising name indeed. But are we building toy houses or something? What’s a block?</#></i></b><//></>A block is just the name given to a bunch of text organized in a certain way. This information includes:<//></>1. Block number. e.g, 314. It’s unique for each block. Once a block is created, it has a new unused number assigned to it.
+        text:<b><i><#fff875>What’s a block? Block numbers</#></i></b><//></>A block is just the name given to a bunch of text organized in a certain way. This information includes:<//></>1. Block number. e.g, 314. It’s unique for each block. Once a block is created, it has a new unused number assigned to it.
 		tag:edu
         no tooltip
         class:edu-text
         hidden
+        on close:hide edu6
+        on change:
+            if ($eduCount = 6)
+                show edu6
+            else
+                hide edu6
+            end
+        end
 
 	*edu7
-        text:<b><i><#fff875>Surprising name indeed. But are we building toy houses or something? What’s a block?</#></i></b><//></>2. Previous block’s hash (it’s not the previous ID number (313), this is something very simple and remember, we want things to be secure).
+        text:<b><i><#fff875>What’s a block? The chain</#></i></b><//></>2. Previous block’s hash (it’s not the previous ID number (313), this is something very simple and remember, we want things to be secure). This is the reason why the blocks are said to form a chain.
 		tag:edu
         no tooltip
         class:edu-text
         hidden
+        on close:hide edu7
+        on change:
+            if ($eduCount = 7)
+                show edu7
+            else
+                hide edu7
+            end
+        end
 
 	*edu8
-        text:<b><i><#fff875>Surprising name indeed. But are we building toy houses or something? What’s a block?</#></i></b><//></>3. Transaction list. A transaction is just something simple in the format: (money, sender, receiver, signature). e.g, (10, Gandalf, Bilbo, 28391huibivy126). Names are unique IDs just as your twitter @ is. Just that in this case you’re represented by a bunch of apparently random characters (Gandalf would be 788123ybuibvf6328, for example).
+        text:<b><i><#fff875>What’s a block? Information</#></i></b><//></>3. Transaction list. A transaction is just something simple in the format: (money, sender, receiver, signature). e.g, (10, Gandalf, Bilbo, 28391huibivy126). Names are unique IDs just as your twitter @ is. Just that in this case you’re represented by a bunch of apparently random characters (Gandalf would be 788123ybuibvf6328, for example).
 		tag:edu
         no tooltip
         class:edu-text
         hidden
+        on close:hide edu8
+        on change:
+            if ($eduCount = 8)
+                show edu8
+            else
+                hide edu8
+            end
+        end
 
 	*edu9
-        text:<b><i><#fff875>Surprising name indeed. But are we building toy houses or something? What’s a block?</#></i></b><//></>The transaction signature is something built with what is called a private or secret key. When you authorize a transaction, you sign it with this password only you know (just like your bank account password).
+        text:<b><i><#fff875>Transaction security: signatures</#></i></b><//></>The transaction signature is something built with what is called a private or secret key. When you authorize a transaction, you sign it with this password only you know (just like your bank account password).
 		tag:edu
         no tooltip
         class:edu-text
         hidden
+        on close:hide edu9
+        on change:
+            if ($eduCount = 9)
+                show edu9
+            else
+                hide edu9
+            end
+        end
 
 	*edu10
-        text:<b><i><#fff875>Surprising name indeed. But are we building toy houses or something? What’s a block?</#></i></b><//></>Thing is, when you sign, you return a text that has been ciphered depending on this private key and the other things involved such as the receiver’s ID and the money you are sending. That would result in the 28391huibivy126 in our example.
+        text:<b><i><#fff875>Transaction security: ciphering</#></i></b><//></>Thing is, when you sign, you return a text that has been ciphered depending on this private key and the other things involved such as the receiver’s ID and the money you are sending. That would result in the 28391huibivy126 in our example.
 		tag:edu
         no tooltip
         class:edu-text
         hidden
+        on close:hide edu10
+        on change:
+            if ($eduCount = 10)
+                show edu10
+            else
+                hide edu10
+            end
+        end
 
 	*edu11
-        text:<b><i><#fff875>Surprising name indeed. But are we building toy houses or something? What’s a block?</#></i></b><//></>Now remember the hash properties: if the money is 20 instead of 10, the signature would be nothing close to the one with 10. e.g, uiasd7817guibdsa.
+        text:<b><i><#fff875>Transaction security: small changes make big differences</#></i></b><//></>Now remember the hash properties: if the money is 20 instead of 10, the signature would be nothing close to the one with 10. e.g, uiasd7817guibdsa.
 		tag:edu
         no tooltip
         class:edu-text
         hidden
+        on close:hide edu11
+        on change:
+            if ($eduCount = 11)
+                show edu11
+            else
+                hide edu11
+            end
+        end
 
 	*edu12
-        text:<b><i><#fff875>Surprising name indeed. But are we building toy houses or something? What’s a block?</#></i></b><//></>Signatures are validated by using your public key. This is another number, but one that everyone else is allowed to know. With this number we can check if the signature is really legitimate.
+        text:<b><i><#fff875>Transaction security: how to validate</#></i></b><//></>Signatures are validated by using your public key. This is another number, but one that everyone else is allowed to know. With this number we can check if the signature is really legitimate.
 		tag:edu
         no tooltip
         class:edu-text
         hidden
+        on close:hide edu12
+        on change:
+            if ($eduCount = 12)
+                show edu12
+            else
+                hide edu12
+            end
+        end
 
 	*edu13
-        text:<b><i><#fff875>Surprising name indeed. But are we building toy houses or something? What’s a block?</#></i></b><//></>So a block contains a list formed by a lot of these transactions between different users.
+        text:<b><i><#fff875>What’s a block? Information (summarized)</#></i></b><//></>A block contains a list formed by a lot of these transactions between different users.
 		tag:edu
         no tooltip
         class:edu-text
         hidden
+        on close:hide edu13
+        on change:
+            if ($eduCount = 13)
+                show edu13
+            else
+                hide edu13
+            end
+        end
 
 	*edu14
-        text:<b><i><#fff875>Surprising name indeed. But are we building toy houses or something? What’s a block?</#></i></b><//></>4. Block hash. At this point this is easy to explain. It’s just the hash formed from the block content. So, this is also a bunch of characters that makes no sense (to the human eye).
+        text:<b><i><#fff875>What’s a block? Hashing everything</#></i></b><//></>4. Block hash. At this point this is easy to explain. It’s just the hash formed from the block content. So, this is also a bunch of characters that makes no sense (to the human eye).
 		tag:edu
         no tooltip
         class:edu-text
         hidden
+        on close:hide edu14
+        on change:
+            if ($eduCount = 14)
+                show edu14
+            else
+                hide edu14
+            end
+        end
 
 	*edu15
-        text:<b><i><#fff875>Surprising name indeed. But are we building toy houses or something? What’s a block?</#></i></b><//></>5. Nonce. This is the tricky part and where mining comes into action. As it is part of the block, it affects to the hash.
+        text:<b><i><#fff875>What’s a block? The magic number</#></i></b><//></>5. Nonce. This is just a number, but is where mining comes into action. Remember that, as the nonce is part of the block, it affects to the hash.
 		tag:edu
         no tooltip
         class:edu-text
         hidden
+        on close:hide edu15
+        on change:
+            if ($eduCount = 15)
+                show edu15
+            else
+                hide edu15
+            end
+        end
 
 	*edu16
-        text:<b><i><#fff875>Surprising name indeed. But are we building toy houses or something? What’s a block?</#></i></b><//></>The particular thing of the nonce it’s that it has to ensure that the block’s hash starts by a certain number of 0’s. So, if we have a block, our work as miners is to find that nonce.
+        text:<b><i><#fff875>The trick of the nonce</#></i></b><//></>The particular thing of the nonce it’s that it has to ensure that the block’s hash starts by a certain number of 0’s. So, if we have a block, our work as miners is to find the specific nonce that satisfies this.
 		tag:edu
         no tooltip
         class:edu-text
         hidden
+        on close:hide edu16
+        on change:
+            if ($eduCount = 16)
+                show edu16
+            else
+                hide edu16
+            end
+        end
 
 	*edu17
-        text:<b><i><#fff875>Oookayyy…</#></i></b><//></>This is not as complicated as these words may sound. Say we need our blocks to have 4 zeros at the beginning of their hash. And we want to send 10BTC to someone. So we take an existing block with its list and add our transaction. This, naturally, alters the block. So we need to hash it again. This is the work done by the miners.
+        text:<b><i><#fff875>What the miners do: find the nonce</#></i></b><//></>Say we need our blocks to have 4 zeros at the beginning of their hash. And we want to send 10BTC to someone. So we take an existing block with its list and add our transaction. This, naturally, alters the block. So we need to hash it again. This is the work done by the miners.
 		tag:edu
         no tooltip
         class:edu-text
         hidden
+        on close:hide edu17
+        on change:
+            if ($eduCount = 17)
+                show edu17
+            else
+                hide edu17
+            end
+        end
 
 	*edu18
-        text:<b><i><#fff875>So mining is finding a number? Easy!</#></i></b><//></>Well no, it isn’t. We are treating here with quite large numbers, with more digits that you can imagine. Also, remember what these hash functions are about: tricky maths. There is no known way to find these numbers other than by trial and error.
+        text:<b><i><#fff875>What the miners don't: easily find the nonce</#></i></b><//></>We are treating here with quite large numbers, with more digits that you can imagine. Also, remember what these hash functions are about: tricky maths. There is no known way to find these numbers other than by trial and error.
 		tag:edu
         no tooltip
         class:edu-text
         hidden
+        on close:hide edu18
+        on change:
+            if ($eduCount = 18)
+                show edu18
+            else
+                hide edu18
+            end
+        end
 
 	*edu19
-        text:<b><i><#fff875>What? So robots can dance but a computer can’t find a number efficiently?</#></i></b><//></>Exactly. Cryptographic issues are no simple tasks for today’s technology.
+        text:<b><i><#fff875>1 month = 0.1 BTC of profit</#></i></b><//></>Cryptographic issues are no simple tasks for today’s technology. So setups are insanely expensive (and the electricity bill is too). 
 		tag:edu
         no tooltip
         class:edu-text
         hidden
+        on close:hide edu19
+        on change:
+            if ($eduCount = 19)
+                show edu19
+            else
+                hide edu19
+            end
+        end
 
 	*edu20
-        text:<b><i><#fff875>Well then… Why do I have to find this tricky number for them? What’s in for me?</#></i></b><//></>You’re not the only one doing so. When a new block is sent, every miner currently active in the world is trying to find the nonce. If you are the first to succeed in the task, you get some bitcoin! That’s how your work is rewarded.
+        text:<b><i><#fff875>What’s in for me if I consider to find this nonce?</#></i></b><//></>You’re not going to be the only one doing so. When a new block is sent, every miner currently active in the world is trying to find the nonce. If you are the first to succeed in the task, you get some bitcoin! That’s how your work is rewarded.
 		tag:edu
         no tooltip
         class:edu-text
         hidden
+        on close:hide edu20
+        on change:
+            if ($eduCount = 20)
+                show edu20
+            else
+                hide edu20
+            end
+        end
 
 	*edu21
-        text:<b><i><#fff875>Some bitcoin? Do people give their money to others?</#></i></b><//></>It’s not people’s money. It’s an auto-generated quantity by the system. Did you know that there can only be 21 million bitcoins around? So in order to try not to reach this number, each time the money you earn for mining is lower. And that’s also why as time passes, there are more bitcoins around.
+        text:<b><i><#fff875>Your reward ≠ Other's money</#></i></b><//></>It’s not people’s money. It’s an auto-generated quantity by the system. Did you know that there can only be 21 million bitcoins around? So in order to try not to reach this number, each time the money you earn for mining is lower. And that’s also why as time passes, there are more bitcoins around.
 		tag:edu
         no tooltip
         class:edu-text
         hidden
+        on close:hide edu21
+        on change:
+            if ($eduCount = 21)
+                show edu21
+            else
+                hide edu21
+            end
+        end
 
 	*edu22
-        text:<b><i><#fff875>Seems quite cool… But why do they actually need people doing that mining work?</#></i></b><//></>Let’s get back to the security and veracity of the transactions. As there are a lot of people checking and hashing the blocks, if you alter one, you’ll be the one with the altered copy, so you’ll need to fool everyone else into thinking that’s the real one.
+        text:<b><i><#fff875>Why so many people are needed for doing the mining work?</#></i></b><//></>Let’s get back to the security and veracity of the transactions. As there are a lot of people checking and hashing the blocks, if you alter one, you’ll be the one with the altered copy, so you’ll need to fool everyone else into thinking that’s the real one.
 		tag:edu
         no tooltip
         class:edu-text
         hidden
+        on close:hide edu22
+        on change:
+            if ($eduCount = 22)
+                show edu22
+            else
+                hide edu22
+            end
+        end
 
 	*edu23
-        text:<b><i><#fff875>Fool?</#></i></b><//></>Yes, so people will consider it a valid block and then add it to the chain. Remember, changing an intermediate block of the chain implies hashing again all the consecutive ones, as a block’s hash depends on its previous one.
+        text:<b><i><#fff875>Fooling = everyone considers your malicious block part of the chain</#></i></b><//></>No easy task. Changing an intermediate block of the chain implies hashing again all the consecutive ones, as a block’s hash depends on its previous one.
 		tag:edu
         no tooltip
         class:edu-text
         hidden
+        on close:hide edu23
+        on change:
+            if ($eduCount = 23)
+                show edu23
+            else
+                hide edu23
+            end
+        end
 
 	*edu24
-        text:<b><i><#fff875>Fool?</#></i></b><//></>So considering you are the only one mining that fake chain, it would take you a really long time. Similarly, if you change the most recent block you have, you’ll have to hash it on your own. If several people are working on the same problem, it will be solved much faster.
+        text:<b><i><#fff875>Fooling takes a long time for an individual</#></i></b><//></>You have nobody helping you mine the same thing. Similarly, if you change the most recent block you have, you’ll have to hash it on your own. If several people are working on the same problem, it will be solved much faster.
 		tag:edu
         no tooltip
         class:edu-text
         hidden
+        on close:hide edu24
+        on change:
+            if ($eduCount = 24)
+                show edu24
+            else
+                hide edu24
+            end
+        end
 
 	*edu25
-        text:<b><i><#fff875>But say I’m super lucky and I hash fake blocks quite quickly.</#></i></b><//></>Say your malicious hash is Z. You will be the only obtaining it. There will be other miners, honest ones, that took that block and obtained all the same hash, say A.
+        text:<b><i><#fff875>Groups > Individual luck</#></i></b><//></>Say your incredibly quick and malicious hash is Z. You will be the only obtaining it. There will be other miners, honest ones, that took that block and obtained all the same hash, say A.
 		tag:edu
         no tooltip
         class:edu-text
         hidden
+        on close:hide edu25
+        on change:
+            if ($eduCount = 25)
+                show edu25
+            else
+                hide edu25
+            end
+        end
 
 	*edu26
-        text:<b><i><#fff875>But say I’m super lucky and I hash fake blocks quite quickly.</#></i></b><//></>So there will be, for example, 500 people saying “yes, it’s A”, but only you saying “no, it’s Z”. When discrepancies occur, construction of the chain awaits and then favors the most “voted” hash. In this case, A. Democracy.
+        text:<b><i><#fff875>Block democracy</#></i></b><//></>So there will be, for example, 500 people saying “yes, it’s A”, but only you saying “no, it’s Z”. When discrepancies occur, construction of the chain awaits and then favors the most “voted” hash. In this case, A. Democracy.
 		tag:edu
         no tooltip
         class:edu-text
         hidden
+        on close:hide edu26
+        on change:
+            if ($eduCount = 26)
+                show edu26
+            else
+                hide edu26
+            end
+        end
 
 	*edu27
-        text:<b><i><#fff875>That’s a clever way to validate transactions!</#></i></b><//></>Yes, and, in addition, you have the security provided by the private key/public key explained before. Remember it?
+        text:<b><i><#fff875>Extra security</#></i></b><//></>In addition to this democracy, you also have the security provided by the private key/public key explained before. Remember it?
 		tag:edu
         no tooltip
         class:edu-text
         hidden
+        on close:hide edu27
+        on change:
+            if ($eduCount = 27)
+                show edu27
+            else
+                hide edu27
+            end
+        end
 
 	*edu28
-        text:<b><i><#fff875>That’s a clever way to validate transactions!</#></i></b><//></>Basically, we have a secret password or secret key. Hashing it though one of these complicated functions will return our safe-to-publish public key, as the hash guarantees we can’t obtain the secret key associated with it. Then, we sign an operation op with it, and anyone else can verify it using our public key.
+        text:<b><i><#fff875>Secret Key/Public Key</#></i></b><//></>Basically, we have a secret password or secret key. Hashing it though one of these complicated functions will return our safe-to-publish public key, as the hash guarantees we can’t obtain the secret key associated with it. Then, we sign an operation op with it, and anyone else can verify it using our public key.
 		tag:edu
         no tooltip
         class:edu-text
         hidden
+        on close:hide edu28
+        on change:
+            if ($eduCount = 28)
+                show edu28
+            else
+                hide edu28
+            end
+        end
 
 	*edu29
-        text:<b><i><#fff875>That’s a clever way to validate transactions!</#></i></b><//></>Summarizing:<//></>hash(skey) = pkey<//></>Sign operation: sign(op, skey) = signature<//></>Validate operation: verify(op, pkey) = Valid/Not valid
+        text:<b><i><#fff875>Summarizing sk/pk systems</#></i></b><//></><//></>hash(skey) = pkey<//></>Sign operation: sign(op, skey) = signature<//></>Validate operation: verify(op, pkey) = Valid/Not valid
 		tag:edu
         no tooltip
         class:edu-text
         hidden
+        on close:hide edu29
+        on change:
+            if ($eduCount = 29)
+                show edu29
+            else
+                hide edu29
+            end
+        end
 
 	*edu30
         text:<b><i><#fff875>Why are you telling me all of this again?</#></i></b><//></>Because if you change a transaction A made by person X to transaction B, it will invalidate or alter it’s signature, as the operation was modified.
@@ -481,20 +835,44 @@ Buttons
         no tooltip
         class:edu-text
         hidden
+        on close:hide edu30
+        on change:
+            if ($eduCount = 30)
+                show edu30
+            else
+                hide edu30
+            end
+        end
 
 	*edu31
-        text:<b><i><#fff875>Why are you telling me all of this again?</#></i></b><//></>So now it won’t pass the verification of the public key, and it won’t be recognized that person X signed that modified transaction A with their unknown secret key. This will be marked as unauthorized and the block will be discarded without further verification.
+        text:<b><i><#fff875>Discarding invalid modifications</#></i></b><//></>Now it won’t pass the verification of the public key, and it won’t be recognized that person X signed that modified transaction A with their unknown secret key. This will be marked as unauthorized and the block will be discarded without further verification.
 		tag:edu
         no tooltip
         class:edu-text
         hidden
+        on close:hide edu31
+        on change:
+            if ($eduCount = 31)
+                show edu31
+            else
+                hide edu31
+            end
+        end
 
 	*edu32
-        text:<b><i><#fff875>So it’s another way of guaranteeing security.</#></i></b><//></>It is, but it’s different from the principles of blockchain. It’s additional security, and public key/secret key cryptosystems are used in a lot of other things apart from blockchain.
+        text:<b><i><#fff875>Several ways of guaranteeing security</#></i></b><//></>Public key/secret key systems are different from the principles of blockchain. It’s additional security, and this cryptosystems are used in a lot of other things apart from blockchain.
 		tag:edu
         no tooltip
         class:edu-text
         hidden
+        on close:hide edu32
+        on change:
+            if ($eduCount = 32)
+                show edu32
+            else
+                hide edu32
+            end
+        end
 
 	*edu33
         text:We hope this was somehow useful. If you are curious about why is this game a thing, you can find more information in <u>https://wikis.fdi.ucm.es/ELP/Assignment:Bitcoin_Miner</u>. Enjoy your mining time and good luck!
@@ -502,12 +880,31 @@ Buttons
         no tooltip
         class:edu-text
         hidden
+        on close:hide edu33
+        on change:
+            if ($eduCount = 33)
+                show edu33
+            else
+                hide edu33
+            end
+        end
+        
+    // If new edu tip is added modify eduLimit resource to match new number of tips
     
-	/*
-        Para añadir un cartelito educacional nuevo copia el anterior, cambia el id, pon el texto que quieras
-        y modifica eduBack y eduNext para que se muestre en el orden correcto. Y las líneas hide eduBack,
-        show eduNext, etc., tienen que estar siempre en el primer y último if de la forma en que están ahora.
-    */
+    *eduFinal
+        text:<#fff875>Keep playing to learn more things about Bitcoin! :D</#>
+        tag:edu
+        no tooltip
+        class:edu-text-extra
+        hidden
+        on close:hide eduFinal
+        on change:
+            if ($eduCount = eduMax and !($eduCount = eduLimit))
+                show eduFinal
+            else
+                hide eduFinal
+            end
+        end
     
     *eduBack
         name:Back
@@ -515,112 +912,13 @@ Buttons
         class:edu-back
         no tooltip
         on click:
-            if (eduNext:clicks - eduBack:clicks = 0)
-                hide edu1
-                show edu0
+            $eduCount = eduNext:clicks - eduBack:clicks + eduOffset
+            if ($eduCount = 0)
                 hide eduBack
-             else if (eduNext:clicks - eduBack:clicks = 1)
-                hide edu2
-                show edu1
-			else if (eduNext:clicks - eduBack:clicks = 2)
-                hide edu3
-                show edu2
-			else if (eduNext:clicks - eduBack:clicks = 3)
-                hide edu4
-                show edu3
-			else if (eduNext:clicks - eduBack:clicks = 4)
-                hide edu5
-                show edu4
-			else if (eduNext:clicks - eduBack:clicks = 5)
-                hide edu6
-                show edu5
-			else if (eduNext:clicks - eduBack:clicks = 6)
-                hide edu7
-                show edu6
-			else if (eduNext:clicks - eduBack:clicks = 7)
-                hide edu8
-                show edu7
-			else if (eduNext:clicks - eduBack:clicks = 8)
-                hide edu9
-                show edu8
-            end
-            // This engine is stupid and only allows up to 8 else ifs
-			if (eduNext:clicks - eduBack:clicks = 9)
-                hide edu10
-                show edu9
-			else if (eduNext:clicks - eduBack:clicks = 10)
-                hide edu11
-                show edu10
-			else if (eduNext:clicks - eduBack:clicks = 11)
-                hide edu12
-                show edu11
-			else if (eduNext:clicks - eduBack:clicks = 12)
-                hide edu13
-                show edu12
-			else if (eduNext:clicks - eduBack:clicks = 13)
-                hide edu14
-                show edu13
-			else if (eduNext:clicks - eduBack:clicks = 14)
-                hide edu15
-                show edu14
-			else if (eduNext:clicks - eduBack:clicks = 15)
-                hide edu16
-                show edu15
-			else if (eduNext:clicks - eduBack:clicks = 16)
-                hide edu17
-                show edu16
-			else if (eduNext:clicks - eduBack:clicks = 17)
-                hide edu18
-                show edu17
-            end
-			if (eduNext:clicks - eduBack:clicks = 18)
-                hide edu19
-                show edu18
-			else if (eduNext:clicks - eduBack:clicks = 19)
-                hide edu20
-                show edu19
-			else if (eduNext:clicks - eduBack:clicks = 20)
-                hide edu21
-                show edu20
-			else if (eduNext:clicks - eduBack:clicks = 21)
-                hide edu22
-                show edu21
-			else if (eduNext:clicks - eduBack:clicks = 22)
-                hide edu23
-                show edu22
-			else if (eduNext:clicks - eduBack:clicks = 23)
-                hide edu24
-                show edu23
-			else if (eduNext:clicks - eduBack:clicks = 24)
-                hide edu25
-                show edu24
-			else if (eduNext:clicks - eduBack:clicks = 25)
-                hide edu26
-                show edu25
-			else if (eduNext:clicks - eduBack:clicks = 26)
-                hide edu27
-                show edu26
-            end
-			if (eduNext:clicks - eduBack:clicks = 27)
-                hide edu28
-                show edu27
-			else if (eduNext:clicks - eduBack:clicks = 28)
-                hide edu29
-                show edu28
-			else if (eduNext:clicks - eduBack:clicks = 29)
-                hide edu30
-                show edu29
-			else if (eduNext:clicks - eduBack:clicks = 30)
-                hide edu31
-                show edu30
-			else if (eduNext:clicks - eduBack:clicks = 31)
-                hide edu32
-                show edu31
-			else if (eduNext:clicks - eduBack:clicks = 32)
-                hide edu33
-                show edu32
+            else if ($eduCount = eduMax - 1)
                 show eduNext
             end
+            do change with tag:edu
         end
         hidden
     
@@ -630,111 +928,13 @@ Buttons
         class:edu-next
         no tooltip
         on click:
-            if (eduNext:clicks - eduBack:clicks = 1)
-                hide edu0
-                show edu1
-                show eduBack
-            else if (eduNext:clicks - eduBack:clicks = 2)
-                hide edu1
-                show edu2
-			else if (eduNext:clicks - eduBack:clicks = 3)
-                hide edu2
-                show edu3
-			else if (eduNext:clicks - eduBack:clicks = 4)
-                hide edu3
-                show edu4
-			else if (eduNext:clicks - eduBack:clicks = 5)
-                hide edu4
-                show edu5
-			else if (eduNext:clicks - eduBack:clicks = 6)
-                hide edu5
-                show edu6
-			else if (eduNext:clicks - eduBack:clicks = 7)
-                hide edu6
-                show edu7
-			else if (eduNext:clicks - eduBack:clicks = 8)
-                hide edu7
-                show edu8
-			else if (eduNext:clicks - eduBack:clicks = 9)
-                hide edu8
-                show edu9
-            end
-			if (eduNext:clicks - eduBack:clicks = 10)
-                hide edu9
-                show edu10
-			else if (eduNext:clicks - eduBack:clicks = 11)
-                hide edu10
-                show edu11
-			else if (eduNext:clicks - eduBack:clicks = 12)
-                hide edu11
-                show edu12
-			else if (eduNext:clicks - eduBack:clicks = 13)
-                hide edu12
-                show edu13
-			else if (eduNext:clicks - eduBack:clicks = 14)
-                hide edu13
-                show edu14
-			else if (eduNext:clicks - eduBack:clicks = 15)
-                hide edu14
-                show edu15
-			else if (eduNext:clicks - eduBack:clicks = 16)
-                hide edu15
-                show edu16
-			else if (eduNext:clicks - eduBack:clicks = 17)
-                hide edu16
-                show edu17
-			else if (eduNext:clicks - eduBack:clicks = 18)
-                hide edu17
-                show edu18
-            end
-			if (eduNext:clicks - eduBack:clicks = 19)
-                hide edu18
-                show edu19
-			else if (eduNext:clicks - eduBack:clicks = 20)
-                hide edu19
-                show edu20
-			else if (eduNext:clicks - eduBack:clicks = 21)
-                hide edu20
-                show edu21
-			else if (eduNext:clicks - eduBack:clicks = 22)
-                hide edu21
-                show edu22
-			else if (eduNext:clicks - eduBack:clicks = 23)
-                hide edu22
-                show edu23
-			else if (eduNext:clicks - eduBack:clicks = 24)
-                hide edu23
-                show edu24
-			else if (eduNext:clicks - eduBack:clicks = 25)
-                hide edu24
-                show edu25
-			else if (eduNext:clicks - eduBack:clicks = 26)
-                hide edu25
-                show edu26
-			else if (eduNext:clicks - eduBack:clicks = 27)
-                hide edu26
-                show edu27
-            end
-			if (eduNext:clicks - eduBack:clicks = 28)
-                hide edu27
-                show edu28
-			else if (eduNext:clicks - eduBack:clicks = 29)
-                hide edu28
-                show edu29
-			else if (eduNext:clicks - eduBack:clicks = 30)
-                hide edu29
-                show edu30
-			else if (eduNext:clicks - eduBack:clicks = 31)
-                hide edu30
-                show edu31
-			else if (eduNext:clicks - eduBack:clicks = 32)
-                hide edu31
-                show edu32
-			else if (eduNext:clicks - eduBack:clicks = 33)
-                hide edu32
-                show edu33
+            $eduCount = eduNext:clicks - eduBack:clicks + eduOffset
+            if ($eduCount = eduMax)
                 hide eduNext
+            else if ($eduCount = 1)
+                show eduBack
             end
+            do change with tag:edu
         end
  
 Resources
@@ -792,10 +992,10 @@ Resources
 		always hidden
 		on tick:
 			if ((ineffTiming) > 1)
-				multiply yield of cpu by 10/11
+				multiply yield of cpu by 9/10
 		 		lose 1 ineffTiming
 			else if ((ineffTiming) is 1)
-				multiply yield of cpu by 11/10
+				multiply yield of cpu by 10/9
 				lose 1 ineffTiming
 			end
 		end
@@ -804,10 +1004,10 @@ Resources
 		always hidden
 		on tick:
 			if ((overTiming) > 1)
-				multiply yield of cpu by 5/6
+				multiply yield of cpu by 8/10
 		 		lose 1 overTiming
 			else if ((overTiming) is 1)
-				multiply yield of cpu by 6/5
+				multiply yield of cpu by 10/8
 				lose 1 overTiming
 			end
 		end
@@ -816,10 +1016,10 @@ Resources
 		always hidden
 		on tick:
 			if ((malWTiming) > 1)
-				multiply yield of tag:isBuilding by 2/3
+				multiply yield of tag:isBuilding by 1/2
 		 		lose 1 malWTiming
 			else if ((malWTiming) is 1)
-				multiply yield of tag:isBuilding by 3/2
+				multiply yield of tag:isBuilding by 2
 				lose 1 malWTiming
 			end
 		end
@@ -828,10 +1028,10 @@ Resources
 		always hidden
 		on tick:
 			if ((frozenTiming) > 1)
-				multiply yield of tag:isBuilding by 2/3
+				multiply yield of tag:isBuilding by 1/2
 		 		lose 1 frozenTiming
 			else if ((frozenTiming) is 1)
-				multiply yield of tag:isBuilding by 3/2
+				multiply yield of tag:isBuilding by 2
 				lose 1 frozenTiming
 			end
 		end
@@ -840,10 +1040,10 @@ Resources
 		always hidden
 		on tick:
 			if ((cutTiming) > 1)
-				multiply yield of tag:isBuilding by 10/17
+				multiply yield of tag:isBuilding by 7/10
 		 		lose 1 cutTiming
 			else if ((cutTiming) is 1)
-				multiply yield of tag:isBuilding by 17/10
+				multiply yield of tag:isBuilding by 10/7
 				lose 1 cutTiming
 			end
 		end
@@ -852,14 +1052,59 @@ Resources
 		always hidden
 		on tick:
 			if ((electricTiming) > 1)
-				multiply yield of tag:isBuilding by 10/11
+				multiply yield of tag:isBuilding by 9/10
 		 		lose 1 electricTiming
 			else if ((electricTiming) is 1)
-				multiply yield of tag:isBuilding by 11/10
+				multiply yield of tag:isBuilding by 10/9
 				lose 1 electricTiming
 			end
 		end
     
+    *allBuildings
+        always hidden
+        // Don't forget to add buildings here if more are added
+        is always:asicS + asicA + asicB + asicC + fpga + gpuS + gpuA + gpuB + gpuC + cpu + pickaxe + cloud + pool + calcCentre
+    
+    *eduLimit
+        always hidden
+        is always:33
+    
+    *eduMax
+        name:Tip
+        always hidden
+        on unlock:if (eduMax < eduLimit) yield 1 eduMax
+        on earn:
+            yield (eduMax - (eduNext:clicks - eduBack:clicks + (eduOffset))) eduOffset
+            do open with eduOpen
+        end
+        on tick:
+            if (allBuildings >= edu2Unlock)
+                // In case of a previously saved game
+                if (!(edu2Unlock = 0)) do unlock
+                yield (allBuildings + 5 - (edu2Unlock)) edu2Unlock
+            end
+        end
+        start with:4
+    
+    *eduOffset
+        always hidden
+        can be negative
+        // Start with negative offset if anyone loads a game from the previous version
+        // and they had a (now) locked tip open
+        // We don't want to break anyone's saved game
+        on load:
+            $diff = eduNext:clicks - eduBack:clicks
+            if ($diff > eduMax)
+                lose (eduOffset + $diff) eduOffset
+                do open with eduOpen
+            end
+        end
+
+    *edu2Unlock
+        always hidden
+        
+    *bpsUpgrades
+		    always hidden
     
 Buildings
 	*TEMPLATE
@@ -884,7 +1129,7 @@ Buildings
     desc:Have you really been doing it by hand? <//><b>Effect:</b><.>Produces [3] μBitcoin every second.
     text:CPU<b>[cpus]</b>
     icon:icons[1,0]
-    tags:isBuilding
+    tags:isHardware isBuilding
     cost:275 microbitcoin
     on tick:yield 3 microbitcoin
     unlocked
@@ -894,50 +1139,50 @@ Buildings
 	desc:A graphics card will allow you to use its computing power to solve problems faster, and thus, mine faster.<//><b>Effect:</b><.>Produces [22] μBitcoin every second.
     text:Graphics card type C<b>[gpusC]</b>
     icon:icons[2,0]
-    tags:isGPU isBuilding
+    tags:isGPU isHardware isBuilding
 	cost:3000 microbitcoin
 	on tick:yield 22 microbitcoins
-	req:(cpus >= 10)
+	req:(cpus >= 5)
     
   *asicC|asicsC
   	name:ASIC chip type C|ASIC chips type C
     desc:A computarized device that was designed for the sole purpose of mining Bitcoin. It is able to mine Bitcoin in a more efficient way than a standard computer.<//><b>Effect:</b><.>Produces [130] μBitcoin every second.
     text:ASIC chip type C<b>[asicsC]</b>
     icon:icons[3,1]
-    tags:isBuilding isAsic
+    tags:isBuilding isAsic isHardware
     cost:33000 microbitcoin
     on tick:yield 130 microbitcoin
-    req:(gpusC >= 10)
+    req:(gpusC >= 5)
     
   *fpga|fpgas
   	name:FPGA|FPGAs
     desc:An integrated circuit you can configure to help you mine. <//><b>Effect:</b><.>Produces [740] μBitcoin every second.
     text:FPGA<b>[fpgas]</b>
     icon:icons[2,1]
-    tags:isBuilding
+    tags:isBuilding isHardware
     cost:370000 microbitcoin
     on tick:yield 740 microbitcoin
-    req:(asicsC >= 10)
+    req:(asicsC >= 5)
     
   *gpuB|gpusB
   	name:Graphics card type B|Graphics cards type B
     desc:A better graphics card solves problems even faster. <//><b>Effect:</b><.>Produces [4000] μBitcoin every second.
     text:Graphics card type B<b>[gpusB]</b>
     icon:icons[3,0]
-    tags:isGPU isBuilding
+    tags:isGPU isBuilding isHardware
     cost:4000000 microbitcoin
     on tick:yield 4000 microbitcoin
-    req:(gpusC >= 30)
+    req:(gpusC >= 15)
     
   *asicB|asicsB
   	name:ASIC chip type B|ASIC chips type B
     desc:Its sole purpose is mining Bitcoin... but now much better.<//><b>Effect:</b><.>Produces [17500] μBitcoin every second.
     text:ASIC chip type B<b>[asicsB]</b>
     icon:icons[0,2]
-    tags:isBuilding isAsic
+    tags:isBuilding isAsic isHardware
     cost:45000000 microbitcoin
     on tick:yield 17500 microbitcoin
-    req:(asicC >= 30)
+    req:(asicC >= 15)
     
   *cloud|clouds
     name:Cloud mining datacenter|Cloud mining datacenters
@@ -947,27 +1192,27 @@ Buildings
     tags:isBuilding
     cost:500000000 microbitcoin
     on tick:yield 70000 microbitcoin
-    req:(fpgas >= 30)
+    req:(fpgas >= 15)
     
   *gpuA|gpusA
   	name:Graphics card type A|Graphics cards type A
     desc:There's always room for improvements. <//><b>Effect:</b><.>Produces [270000] μBitcoin every second.
     text:Graphics card type A<b>[gpusA]</b>
     icon:icons[0,1]
-    tags:isGPU isBuilding
+    tags:isGPU isBuilding isHardware
     cost:5300000000 microbitcoin
     on tick:yield 270000 microbitcoin
-    req:(gpusC + gpusB >= 50)
+    req:(gpusC + gpusB >= 25)
     
   *asicA|asicsA
   	name:ASIC chip type A|ASIC chips type A
     desc:A Super Incredible Circuit.<//><b>Effect:</b><.>Produces 1.28 Bitcoin every second.
     text:ASIC chip type A<b>[asicsA]</b>
     icon:icons[1,2]
-    tags:isBuilding isAsic
+    tags:isBuilding isAsic isHardware
     cost:60000000000 microbitcoin
     on tick:yield 1280000 microbitcoin
-    req:(asicsC + asicsB >= 50)
+    req:(asicsC + asicsB >= 25)
     
   *pool|pools
 	name:Mining Pool | Mining Pools
@@ -984,20 +1229,20 @@ Buildings
     desc:This one is the Aston Martin of graphics. <//><b>Effect:</b><.>Produces [33] Bitcoin every second.
     text:Graphics card type S<b>[gpusS]</b>
     icon:icons[1,1]
-    tags:isGPU isBuilding
+    tags:isGPU isBuilding isHardware
     cost:7100000000000 microbitcoin
     on tick:yield 33000000 microbitcoin
-    req:(gpusA + gpusB + gpusC >= 100)
+    req:(gpusA + gpusB + gpusC >= 50)
     
   *asicS|asicsS
   	name:ASIC chip type S|ASIC chips type S
     desc:You won't find a better miner than this one here.<//><b>Effect:</b><.>Produces [197] Bitcoin every second.
     text:ASIC chip type S<b>[asicsS]</b>
     icon:icons[2,2]
-    tags:isBuilding isAsic
+    tags:isBuilding isAsic isHardware
     cost:78000000000000 microbitcoin
     on tick:yield 197000000 microbitcoin
-    req:(asicsA + asicsB + asicsC >= 100)
+    req:(asicsA + asicsB + asicsC >= 50)
 
   *calcCentre|calcCentres
     name: Calculation Centre|Calculation Centres
@@ -1007,20 +1252,80 @@ Buildings
     tags:isBuilding
     cost:860000000000000 microbitcoin
     on tick:yield 1187000000 microbitcoin
-    req:(asicS + asicA + asicB + asicC + fpga + gpuS + gpuA + gpuB + gpuC + cpu + pickaxe + cloud + pool>= 500)
+    req:(asicS + asicA + asicB + asicC + fpga + gpuS + gpuA + gpuB + gpuC + cpu + pickaxe + cloud + pool>= 300)
+
+    // To show that there are more buildings
+
+    *TEMPLATE
+        name:???
+        cost:999999999999999999 microbitcoin
+        desc:Keep buying buildings to unlock more!
+        no buy
+    
+    *gpuCHint
+        text:???<u>[3000] μBitcoins</u>
+        req:(cpus >= 2 and cpus < 5)
+        icon:icons[2,4]
+
+    *asicCHint
+        text:???<u>[33000] μBitcoins</u>
+        req:(gpusC >= 2 and gpusC < 5)
+        icon:icons[3,5]
+
+    *fpgaHint
+        text:???<u>[370000] μBitcoins</u>
+        req:(asicC >= 2 and asicC < 5)
+        icon:icons[2,5]
+
+    *gpuBHint
+        text:???<u>[4000000] μBitcoins</u>
+        req:(gpusC >= 10 and gpusC < 15)
+        icon:icons[2,4]
+
+    *asicBHint
+        text:???<u>[45000000] μBitcoins</u>
+        req:(asicsC >= 10 and asicsC < 15)
+        icon:icons[3,5]
+
+    *cloudHint
+        text:???<u>[500000000] μBitcoins</u>
+        req:(fpgas >= 10 and fpgas < 15)
+        icon:icons[3,6]
+
+    *gpuAHint
+        text:???<u>[5300000000] μBitcoins</u>
+        req:(gpusC + gpusB >= 15 and gpusC + gpusB < 25)
+        icon:icons[2,4]
+
+    *asicAHint
+        text:???<u>[60000000000] μBitcoins</u>
+        req:(asicsC + asicsB >= 15 and asicsC + asicsB < 25)
+        icon:icons[3,5]
+
+    *poolHint
+        text:???<u>[650000000000] μBitcoins</u>
+        req:(asicA + asicB + asicC + fpga + gpuA + gpuB + gpuC + cpu + pickaxe + cloud >= 200 and asicA + asicB + asicC + fpga + gpuA + gpuB + gpuC + cpu + pickaxe + cloud < 250)
+        icon:icons[0,7]
+
+    *gpuSHint
+        text:???<u>[7100000000000] μBitcoins</u>
+        req:(gpusC + gpusB + gpusA >= 30 and gpusC + gpusB + gpusA < 50)
+        icon:icons[2,4]
+
+    *asicSHint
+        text:???<u>[78000000000000] μBitcoins</u>
+        req:(asicsA + asicsB + asicsC >= 30 and asicsA + asicsB + asicsC < 50)
+        icon:icons[3,5]
+
+    *calcCentreHint
+        text:???<u>[860000000000000] μBitcoins</u>
+        req:(asicS + asicA + asicB + asicC + fpga + gpuS + gpuA + gpuB + gpuC + cpu + pickaxe + cloud + pool >= 250 and asicS + asicA + asicB + asicC + fpga + gpuS + gpuA + gpuB + gpuC + cpu + pickaxe + cloud + pool < 300)
+        icon:icons[1,7]
+
 
 Upgrades
 	*TEMPLATE
 		on click:anim glow
-
-    *mineFaster
-		name:Sleight of Hand
-		desc:Practice makes perfect. <//><b>Effect:</b><.>Mine twice as efficiently with each click.
-        icon:icons[2,3]
-		cost:50 microbitcoin
-		passive:increase microbitcoins yield of bitcoinButton by 1
-        on earn:hide mineFaster
-		req:(microbitcoin:earned >= 200)
 	
     *pickaxeUpgrade
 		name:Dual Wield Pickaxes
@@ -1031,6 +1336,66 @@ Upgrades
 		passive:multiply yield of pickaxes by 2
         on earn:hide pickaxeUpgrade
 		req:(pickaxes >=1)
+		
+	*pickaxeUpgrade2
+		name:Bi-Dual Wield Pickaxes
+		desc:Four hands work better than two.<//><b>Effect:</b><.>Double the production of your pickaxes.
+		tags:isUpgrade
+        icon:icons[2,3]
+		cost:10000 microbitcoin
+		passive:multiply yield of pickaxes by 2
+        on earn:hide pickaxeUpgrade2
+		req:(pickaxes >=1 and pickaxeUpgrade)
+		
+	*pickaxeUpgrade3
+		name:Tri-Dual Wield Pickaxes
+		desc:Eight hands work better than four.<//><b>Effect:</b><.>Double the production of your pickaxes.
+		tags:isUpgrade
+        icon:icons[2,3]
+		cost:100000 microbitcoin
+		passive:multiply yield of pickaxes by 2
+        on earn:hide pickaxeUpgrade3
+		req:(pickaxes >=1 and pickaxeUpgrade2)
+		
+	*pickaxeUpgrade4
+		name:Tetra-Dual Wield Pickaxes
+		desc:Sixteen hands work better than Eight.<//><b>Effect:</b><.>Double the production of your pickaxes.
+		tags:isUpgrade
+        icon:icons[2,3]
+		cost:1000000 microbitcoin
+		passive:multiply yield of pickaxes by 2
+        on earn:hide pickaxeUpgrade4
+		req:(pickaxes >=1 and pickaxeUpgrade3)
+		
+	*pickaxeUpgrade5
+		name:Penta-Dual Wield Pickaxes
+		desc:Thirty-two hands work better than sixteen.<//><b>Effect:</b><.>Double the production of your pickaxes.
+		tags:isUpgrade
+        icon:icons[2,3]
+		cost:10000000 microbitcoin
+		passive:multiply yield of pickaxes by 2
+        on earn:hide pickaxeUpgrade5
+		req:(pickaxes >=1 and pickaxeUpgrade4)
+		
+	*pickaxeUpgrade6
+		name:Hexa-Dual Wield Pickaxes
+		desc:Sixty-four hands work better than thirty-two.<//><b>Effect:</b><.>Double the production of your pickaxes.
+		tags:isUpgrade
+        icon:icons[2,3]
+		cost:100000000 microbitcoin
+		passive:multiply yield of pickaxes by 2
+        on earn:hide pickaxeUpgrade6
+		req:(pickaxes >=1 and pickaxeUpgrade5)
+		
+	*pickaxeUpgrade7
+		name:Hepta-Dual Wield Pickaxes
+		desc:One hundred and twenty-eight hands work better than sixty-four.<//><b>Effect:</b><.>Double the production of your pickaxes.
+		tags:isUpgrade
+        icon:icons[2,3]
+		cost:1000000000 microbitcoin
+		passive:multiply yield of pickaxes by 2
+        on earn:hide pickaxeUpgrade7
+		req:(pickaxes >=1 and pickaxeUpgrade6)
 
 	*uninstallApps
 		name:App Cleaning
@@ -1043,44 +1408,124 @@ Upgrades
 		req:(cpus >=1)
 
 	*cpuOverclock
-		name:CPU Overclock
+		name:CPU Beginner Overclock
     	desc:Push your CPU further to the limit.<//><b>Effect:</b><.>Increase the production of your CPUs by 50%.
     	tags:isUpgrade
         icon:icons[2,3]
-		cost:100000 microbitcoin
+		cost:50000 microbitcoin
 		passive:multiply yield of cpus by 1.5
         on earn:hide cpuOverclock
-		req:(cpus >=1) 
+		req:(cpus >=1)
+		
+	*cpuOverclock2
+		name:CPU Advanced Overclock
+    	desc:Push your CPU further to the limit.<//><b>Effect:</b><.>Increase the production of your CPUs by 50%.
+    	tags:isUpgrade
+        icon:icons[2,3]
+		cost:5000000 microbitcoin
+		passive:multiply yield of cpus by 1.5
+        on earn:hide cpuOverclock2
+		req:(cpus >= 1 and cpuOverclock)
+		
+	*cpuOverclock3
+		name:CPU Expert Overclock
+    	desc:Push your CPU further to the limit.<//><b>Effect:</b><.>Increase the production of your CPUs by 50%.
+    	tags:isUpgrade
+        icon:icons[2,3]
+		cost:50000000 microbitcoin
+		passive:multiply yield of cpus by 1.5
+        on earn:hide cpuOverclock3
+		req:(cpus >= 1 and cpuOverclock2)
  
 	*gpuOverclock
-		name:GPU Overclock
+		name:GPU Beginner Overclock
 		desc:Push your GPUs further to the limit.<//><b>Effect:</b><.>Increase the production of all your GPUs by 50%.
     	tags:isUpgrade
         icon:icons[2,3]
-		cost:100000 microbitcoin
+		cost:50000 microbitcoin
 		passive:multiply yield of tag:isGPU by 1.5
         on earn:hide gpuOverclock
-		req:(gpusC >=1)
+		req:(gpusC + gpusB + gpusA + gpusS >=1)
+		
+	*gpuOverclock2
+		name:GPU Advanced Overclock
+		desc:Push your GPUs further to the limit.<//><b>Effect:</b><.>Increase the production of all your GPUs by 50%.
+    	tags:isUpgrade
+        icon:icons[2,3]
+		cost:5000000 microbitcoin
+		passive:multiply yield of tag:isGPU by 1.5
+        on earn:hide gpuOverclock2
+		req:(gpusC + gpusB + gpusA + gpusS >=1 and gpuOverclock)
+		
+	*gpuOverclock3
+		name:GPU Expert Overclock
+		desc:Push your GPUs further to the limit.<//><b>Effect:</b><.>Increase the production of all your GPUs by 50%.
+    	tags:isUpgrade
+        icon:icons[2,3]
+		cost:50000000 microbitcoin
+		passive:multiply yield of tag:isGPU by 1.5
+        on earn:hide gpuOverclock3
+		req:(gpusC + gpusB + gpusA + gpusS >=1 and gpuOverclock2)
     
 	*asicOverclock
-		name:ASIC Overclock
+		name:ASIC Basic Overclock
 		desc:Push your ASICs further to the limit.<//><b>Effect:</b><.>Increase the production of your ASICs by 50%.
     	tags:isUpgrade
         icon:icons[2,3]
-		cost:1000000 microbitcoin
+		cost:500000 microbitcoin
 		passive:multiply yield of tag:isASIC by 1.5
         on earn:hide asicOverclock
-		req:(asicC >=1)
+		req:(asicC + asicB + asicA + asicS >=1)
+		
+	*asicOverclock2
+		name:ASIC Advanced Overclock
+		desc:Push your ASICs further to the limit.<//><b>Effect:</b><.>Increase the production of your ASICs by 50%.
+    	tags:isUpgrade
+        icon:icons[2,3]
+		cost:50000000 microbitcoin
+		passive:multiply yield of tag:isASIC by 1.5
+        on earn:hide asicOverclock2
+		req:(asicC + asicB + asicA + asicS >=1 and asicOverclock)
+		
+	*asicOverclock3
+		name:ASIC Expert Overclock
+		desc:Push your ASICs further to the limit.<//><b>Effect:</b><.>Increase the production of your ASICs by 50%.
+    	tags:isUpgrade
+        icon:icons[2,3]
+		cost:500000000 microbitcoin
+		passive:multiply yield of tag:isASIC by 1.5
+        on earn:hide asicOverclock3
+		req:(asicC + asicB + asicA + asicS >=1 and asicOverclock2)
 
     *fpgaOverclock
-		name:FPGA Overclock
+		name:FPGA Basic Overclock
 		desc:Push your FPGAs further to the limit.<//><b>Effect:</b><.>Increase the production of all your FPGAs by 50%.
     	tags:isUpgrade
         icon:icons[2,3]
-		cost:1000000 microbitcoin
+		cost:500000 microbitcoin
 		passive:multiply yield of fpgas by 1.5
         on earn:hide fpgaOverclock
 		req:(fpgas >=1)
+		
+	*fpgaOverclock2
+		name:FPGA Advanced Overclock
+		desc:Push your FPGAs further to the limit.<//><b>Effect:</b><.>Increase the production of all your FPGAs by 50%.
+    	tags:isUpgrade
+        icon:icons[2,3]
+		cost:50000000 microbitcoin
+		passive:multiply yield of fpgas by 1.5
+        on earn:hide fpgaOverclock2
+		req:(fpgas >=1 and fpgaOverclock)
+		
+	*fpgaOverclock3
+		name:FPGA Expert Overclock
+		desc:Push your FPGAs further to the limit.<//><b>Effect:</b><.>Increase the production of all your FPGAs by 50%.
+    	tags:isUpgrade
+        icon:icons[2,3]
+		cost:500000000 microbitcoin
+		passive:multiply yield of fpgas by 1.5
+        on earn:hide fpgaOverclock3
+		req:(fpgas >=1 and fpgaOverclock2)
 	
 	*driversUpdate
 		name:Drivers Update
@@ -1090,7 +1535,27 @@ Upgrades
 		cost:2000000 microbitcoin
 		passive:multiply yield of tag:isGPU by 1.5
         on earn:hide driversUpdate
-		req:(gpusC >=1)
+		req:(gpusB + gpusA + gpusS >=1)
+        
+    *coolingSystem
+        name:Cooling System
+        desc:Lowering the temperature of your hardware will improve its performance.<//><b>Effect:</b><.>Increase the production of all CPUs, GPUs, ASICs and FPGAs by 10%.
+        tags:isUpgrade
+        icon:icons[2,3]
+        cost:100000000 microbitcoin
+        passive:multiply yield of tag:isHardware by 1.1
+        on earn:hide coolingSystem
+        req:(cpus >= 20 and gpusC + gpusB + gpusA + gpusS >= 50 and asicsA + asicsB + asicsC + asicsS >= 50 and fpgas >= 20)
+        
+    *ramExpansion
+        name:RAM Expansion
+        desc:Upgrading to a bigger RAM memory will make everything faster.<//><b>Effect:</b><.>Increase the production of all CPUs by 10%.
+        tag:isUpgrade
+        icon:icons[2,3]
+        cost:10000000 microbitcoin
+        passive:multiply yield of cpus by 1.1
+        //TODO
+        req:(cpus >= 40)
 		
 	*compCleaning
 		name:Hardware Cleaning
@@ -1099,8 +1564,7 @@ Upgrades
 		cost:1000000 microbitcoin
 		passive:multiply yield of tag:isBuilding by 1.1
         on earn:hide compCleaning
-		// TODO
-		req:(driversUpdate)
+		req:(fpgas >= 1)
 		
 	*poolRecruiting
 		name:Mining Pool Recruiting
@@ -1109,7 +1573,6 @@ Upgrades
 		cost:1000000000000 microbitcoin
 		passive:multiply yield of pools by 1.5
         on earn:hide poolRecruiting
-		// TODO
 		req:(pools >=1)
 	
 	*cheaperElectricity
@@ -1119,19 +1582,147 @@ Upgrades
 		cost:2000000000000 microbitcoin
 		passive:multiply yield of tag:isBuilding by 1.1
         on earn:hide cheaperElectricity
-		// TODO
 		req:(poolRecruiting)
+
+	// clicking multipliers
+
+	*mineFaster
+		name:Sleight of Hand
+        icon:icons[2,3]
+		cost:100 microbitcoin
+		desc:Practice makes perfect. <//><b>Effect:</b><.>Mine 100% more with each click.
+		passive:multiply yield of bitcoinButton by 2
+        on earn:hide mineFaster
+
+	*mineFaster2
+		name:Fast Hand
+        icon:icons[2,3]
+		cost:1000 microbitcoin
+		desc:Practice makes perfect. <//><b>Effect:</b><.>Mine 50% more with each click.
+		passive:multiply yield of bitcoinButton by 1.5
+        on earn:hide mineFaster2
+		req:(microbitcoin:earned >= 5000 and mineFaster)
+
+	*mineFaster3
+		name:Quick Hand
+        icon:icons[2,3]
+		cost:10000 microbitcoin
+		desc:Practice makes perfect. <//><b>Effect:</b><.>Mine 33% more with each click.
+		passive:multiply yield of bitcoinButton by 1.33
+        on earn:hide mineFaster3
+		req:(microbitcoin:earned >= 50000 and mineFaster2)
+
+	*mineFaster4
+		name:Rapid Hand
+        icon:icons[2,3]
+		cost:100000 microbitcoin
+		desc:Practice makes perfect. <//><b>Effect:</b><.>Mine 25% more with each click.
+		passive:multiply yield of bitcoinButton by 1.25
+        on earn:hide mineFaster4
+		req:(microbitcoin:earned >= 500000 and mineFaster3)
+
+	*mineFaster5
+		name:Swift Hand
+        icon:icons[2,3]
+		cost:1000000 microbitcoin
+		desc:Practice makes perfect. <//><b>Effect:</b><.>Mine 20% more with each click.
+		passive:multiply yield of bitcoinButton by 1.2
+        on earn:hide mineFaster5
+		req:(microbitcoin:earned >= 5000000 and mineFaster4)
+
+	*mineFaster6
+		name:Speedy Hand
+        icon:icons[2,3]
+		cost:10000000 microbitcoin
+		desc:Practice makes perfect. <//><b>Effect:</b><.>Mine 15% more with each click.
+		passive:multiply yield of bitcoinButton by 1.15
+        on earn:hide mineFaster6
+		req:(microbitcoin:earned >= 50000000 and mineFaster5)
+
+	*mineFaster7
+		name:Nimble Hand
+        icon:icons[2,3]
+		cost:100000000 microbitcoin
+		desc:Practice makes perfect. <//><b>Effect:</b><.>Mine 12% more with each click.
+		passive:multiply yield of bitcoinButton by 1.12
+        on earn:hide mineFaster7
+		req:(microbitcoin:earned >= 500000000 and mineFaster6)
+
+	*mineFaster8
+		name:Supersonic Hand
+        icon:icons[2,3]
+		cost:1000000000 microbitcoin
+		desc:Practice makes perfect. <//><b>Effect:</b><.>Mine 10% more with each click.
+		passive:multiply yield of bitcoinButton by 1.1
+        on earn:hide mineFaster8
+		req:(microbitcoin:earned >= 5000000000 and mineFaster7)
+
+	// clicking gets 1% of bps
+	*TEMPLATE
+		on click:anim glow
+		desc:Knowledge is power. <//><b>Effect:</b><.>Clicking grants you an extra 1% of your current bitcoins per second.
+		on earn:yield 0.01 bpsUpgrades
+
+	*mineSmarter
+		name:Clever Hand
+        icon:icons[2,3]
+		cost:500 microbitcoin
+        on earn:hide mineSmarter
+		req:(microbitcoin:earned >= 1000)
+
+	*mineSmarter2
+		name:Intelligent Hand
+        icon:icons[2,3]
+		cost:5000 microbitcoin
+        on earn:hide mineSmarter2
+		req:(microbitcoin:earned >= 10000 and mineSmarter)
+
+	*mineSmarter3
+		name:Erudite Hand
+        icon:icons[2,3]
+		cost:50000 microbitcoin
+        on earn:hide mineSmarter3
+		req:(microbitcoin:earned >= 100000 and mineSmarter2)
+
+	*mineSmarter4
+		name:Gifted Hand
+        icon:icons[2,3]
+		cost:500000 microbitcoin
+        on earn:hide mineSmarter4
+		req:(microbitcoin:earned >= 1000000 and mineSmarter3)
+
+	*mineSmarter5
+		name:Proficient Hand
+        icon:icons[2,3]
+		cost:5000000 microbitcoin
+        on earn:hide mineSmarter5
+		req:(microbitcoin:earned >= 10000000 and mineSmarter4)
+
+	*mineSmarter6
+		name:Smart Hand
+        icon:icons[2,3]
+		cost:50000000 microbitcoin
+        on earn:hide mineSmarter6
+		req:(microbitcoin:earned >= 100000000 and mineSmarter5)
+
+	*mineSmarter7
+		name:Bright Hand
+        icon:icons[2,3]
+		cost:500000000 microbitcoin
+        on earn:hide mineSmarter7
+		req:(microbitcoin:earned >= 1000000000 and mineSmarter6)
 
 Shinies
 	*luckyClover
 		movement:onRight moveLeft wiggle:0.25 growShrink
-		frequency:90
-		frequency variation:20
+		frequency:180
+		frequency variation:30
 		icon:https://raw.githubusercontent.com/Bitcoin-Miner-Idle-Game/bitcoin-miner/main/img/lucky_clover_256bits.png
 		class:bigButton
 		on click:
 			$handicaps=random(0,5)
 			if (chance(70%))
+                do frenzy with bitcoinButton
 				yield 61 luckyTiming
 				toast You got lucky! Duplicate the productivity of your buildings for 1 minute.
 			else
@@ -1240,6 +1831,12 @@ Achievements
 		desc:Buy the <b>Sleight of Hand</b> upgrade.
 		req:1 mineFaster
         icon:icons[3,3]
+		
+	*mineSmarterUpAch
+		name:Working smart.
+		desc:Buy the <b>Clever Hand</b> upgrade.
+		req:1 mineSmarter
+        icon:icons[3,3]
 
 	*pickaxeUpAch
 		name:Buying another pickaxe.
@@ -1287,6 +1884,18 @@ Achievements
 		name:Up to date.
 		desc:Buy the <b>Drivers Update</b> upgrade. 
 		req:1 driversUpdate
+        icon:icons[3,3]
+
+    *coolingSystemUpAch
+        name:Be cool
+        desc:Buy the <b>Cooling System</b> upgrade.
+        req:1 coolingSystem
+        icon:icons[3,3]
+        
+    *ramExpansionUpAch
+        name:Elephants never forget
+        desc:Buy the <b>RAM Expansion</b> upgrade.
+        req:1 ramExpansion
         icon:icons[3,3]
 
 	*compCleaningUpAch

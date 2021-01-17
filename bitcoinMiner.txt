@@ -1693,7 +1693,7 @@ Upgrades
 		desc:Practice makes perfect. <//><b>Effect:</b><.>Mine 50% more with each click.
 		passive:multiply yield of bitcoinButton by 1.5
         on earn:hide mineFaster2
-		req:(microbitcoin:earned >= 5000)
+		req:(microbitcoin:earned >= 5000 and mineFaster)
 
 	*mineFaster3
 		name:Quick Hand
@@ -1702,7 +1702,7 @@ Upgrades
 		desc:Practice makes perfect. <//><b>Effect:</b><.>Mine 33% more with each click.
 		passive:multiply yield of bitcoinButton by 1.33
         on earn:hide mineFaster3
-		req:(microbitcoin:earned >= 50000)
+		req:(microbitcoin:earned >= 50000 and mineFaster2)
 
 	*mineFaster4
 		name:Rapid Hand
@@ -1711,7 +1711,7 @@ Upgrades
 		desc:Practice makes perfect. <//><b>Effect:</b><.>Mine 25% more with each click.
 		passive:multiply yield of bitcoinButton by 1.25
         on earn:hide mineFaster4
-		req:(microbitcoin:earned >= 500000)
+		req:(microbitcoin:earned >= 500000 and mineFaster3)
 
 	*mineFaster5
 		name:Swift Hand
@@ -1720,7 +1720,7 @@ Upgrades
 		desc:Practice makes perfect. <//><b>Effect:</b><.>Mine 20% more with each click.
 		passive:multiply yield of bitcoinButton by 1.2
         on earn:hide mineFaster5
-		req:(microbitcoin:earned >= 5000000)
+		req:(microbitcoin:earned >= 5000000 and mineFaster4)
 
 	*mineFaster6
 		name:Speedy Hand
@@ -1729,7 +1729,7 @@ Upgrades
 		desc:Practice makes perfect. <//><b>Effect:</b><.>Mine 15% more with each click.
 		passive:multiply yield of bitcoinButton by 1.15
         on earn:hide mineFaster6
-		req:(microbitcoin:earned >= 50000000)
+		req:(microbitcoin:earned >= 50000000 and mineFaster5)
 
 	*mineFaster7
 		name:Nimble Hand
@@ -1738,7 +1738,7 @@ Upgrades
 		desc:Practice makes perfect. <//><b>Effect:</b><.>Mine 12% more with each click.
 		passive:multiply yield of bitcoinButton by 1.12
         on earn:hide mineFaster7
-		req:(microbitcoin:earned >= 500000000)
+		req:(microbitcoin:earned >= 500000000 and mineFaster6)
 
 	*mineFaster8
 		name:Supersonic Hand
@@ -1747,7 +1747,7 @@ Upgrades
 		desc:Practice makes perfect. <//><b>Effect:</b><.>Mine 10% more with each click.
 		passive:multiply yield of bitcoinButton by 1.1
         on earn:hide mineFaster8
-		req:(microbitcoin:earned >= 5000000000)
+		req:(microbitcoin:earned >= 5000000000 and mineFaster7)
 
 	// clicking gets 1% of bps
 	*TEMPLATE
@@ -1767,42 +1767,42 @@ Upgrades
         icon:icons[2,3]
 		cost:5000 microbitcoin
         on earn:hide mineSmarter2
-		req:(microbitcoin:earned >= 10000)
+		req:(microbitcoin:earned >= 10000 and mineSmarter)
 
 	*mineSmarter3
 		name:Erudite Hand
         icon:icons[2,3]
 		cost:50000 microbitcoin
         on earn:hide mineSmarter3
-		req:(microbitcoin:earned >= 100000)
+		req:(microbitcoin:earned >= 100000 and mineSmarter2)
 
 	*mineSmarter4
 		name:Gifted Hand
         icon:icons[2,3]
 		cost:500000 microbitcoin
         on earn:hide mineSmarter4
-		req:(microbitcoin:earned >= 1000000)
+		req:(microbitcoin:earned >= 1000000 and mineSmarter3)
 
 	*mineSmarter5
 		name:Proficient Hand
         icon:icons[2,3]
 		cost:5000000 microbitcoin
         on earn:hide mineSmarter5
-		req:(microbitcoin:earned >= 10000000)
+		req:(microbitcoin:earned >= 10000000 and mineSmarter4)
 
 	*mineSmarter6
 		name:Smart Hand
         icon:icons[2,3]
 		cost:50000000 microbitcoin
         on earn:hide mineSmarter6
-		req:(microbitcoin:earned >= 100000000)
+		req:(microbitcoin:earned >= 100000000 and mineSmarter5)
 
 	*mineSmarter7
 		name:Bright Hand
         icon:icons[2,3]
 		cost:500000000 microbitcoin
         on earn:hide mineSmarter7
-		req:(microbitcoin:earned >= 1000000000)
+		req:(microbitcoin:earned >= 1000000000 and mineSmarter6)
 
 Shinies
 	*luckyClover
